@@ -403,8 +403,12 @@ Install via CLI or copy-paste. All components live in your repo — you own your
 
 
   <div className=" h-[300px] w-[54%] ml-auto mr-auto flex">
-    <div className=" w-[33.33%] h-full flex items-center border-[#e7e7e715] border-l">
-
+    <div className=" w-[33.33%] h-full flex items-center border-[#e7e7e715] border-l relative">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" 
+        className="w-6 h-6 text-[#e7e7e740] absolute top-0 right-0 -mt-3 -mr-3" aria-hidden="true">
+        <path d="M5 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M12 5V19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
         <div className="w-[80%] ml-auto mr-auto h-[80%]">
           <p className="text-2xl fon ">Code Ownership</p>
           <p className="text-sm fon mt-5">No hidden dependencies. No vendor lock-in. Only established, widely-adopted npm packages used.
@@ -412,6 +416,11 @@ Install via CLI or copy-paste. All components live in your repo — you own your
 Install via CLI or copy-paste. All components live in your repo — you own your code</p>
 
         </div>
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" 
+        className="w-6 h-6 ml-1  text-[#e7e7e740] absolute bottom-0 right-0 -mb-3 -mr-3" aria-hidden="true">
+        <path d="M5 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M12 5V19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
     </div>
     
     <div className=" w-[33.33%] border-l  border-[#e7e7e715] h-full flex items-center ">
@@ -464,31 +473,37 @@ Install via CLI or copy-paste. All components live in your repo — you own your
 
     </div>
   </div>
+  <div className="   w-full h-full flex">
+    <div className="w-[20%] flex items-center justify-center">
+    <TiltedLines  height={50} showIcons={false}/>
+
+    </div>
+    <div className=" w-full flex items-center justify-center h-full">
+    <div className="w-full h-full border border-[#e7e7e715] flex items-center justify-center">
+    <svg className="" xmlns="http://www.w3.org/2000/svg" width="1.8em" height="1.8em" viewBox="0 0 256 256"> <defs><linearGradient id="logosNextjsIcon0" x1="55.633%" x2="83.228%" y1="56.385%" y2="96.08%"><stop offset="0%" stopColor="#FFF"/><stop offset="100%" stopColor="#FFF" stopOpacity="0"/></linearGradient><linearGradient id="logosNextjsIcon1" x1="50%" x2="49.953%" y1="0%" y2="73.438%"><stop offset="0%" stopColor="#FFF"/><stop offset="100%" stopColor="#FFF" stopOpacity="0"/></linearGradient><circle id="logosNextjsIcon2" cx="128" cy="128" r="128"/></defs><mask id="logosNextjsIcon3" fill="#fff"><use href="#logosNextjsIcon2"/></mask><g mask="url(#logosNextjsIcon3)"><circle cx="128" cy="128" r="128"/><path fill="url(#logosNextjsIcon0)" d="M212.634 224.028L98.335 76.8H76.8v102.357h17.228V98.68L199.11 234.446a128 128 0 0 0 13.524-10.418"/><path fill="url(#logosNextjsIcon1)" d="M163.556 76.8h17.067v102.4h-17.067z"/></g></svg>
+
+    </div>
+    <div className="w-full h-full border border-[#e7e7e715] flex items-center justify-center">
+    <svg className="" xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 256 263"> <defs><linearGradient id="logosSupabaseIcon0" x1="20.862%" x2="63.426%" y1="20.687%" y2="44.071%"><stop offset="0%" stopColor="#249361"></stop><stop offset="100%" stopColor="#3ECF8E"></stop></linearGradient><linearGradient id="logosSupabaseIcon1" x1="1.991%" x2="21.403%" y1="-13.158%" y2="34.708%"><stop offset="0%"></stop><stop offset="100%" stopOpacity="0"></stop></linearGradient></defs><path fill="url(#logosSupabaseIcon0)" d="M149.602 258.579c-6.718 8.46-20.338 3.824-20.5-6.977l-2.367-157.984h106.229c19.24 0 29.971 22.223 18.007 37.292z"></path><path fill="url(#logosSupabaseIcon1)" fillOpacity=".2" d="M149.602 258.579c-6.718 8.46-20.338 3.824-20.5-6.977l-2.367-157.984h106.229c19.24 0 29.971 22.223 18.007 37.292z"></path><path fill="#3ECF8E" d="M106.399 4.37c6.717-8.461 20.338-3.826 20.5 6.976l1.037 157.984H23.037c-19.241 0-29.973-22.223-18.008-37.292z"></path></svg>
+
+    </div>
+    <div className="w-full h-full border border-[#e7e7e715] flex items-center justify-center">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1.65em" height="1.65em" viewBox="0 0 256 351"><defs><filter id="logosFirebase0" width="200%" height="200%" x="-50%" y="-50%" filterUnits="objectBoundingBox"><feGaussianBlur in="SourceAlpha" result="shadowBlurInner1" stdDeviation="17.5"></feGaussianBlur><feOffset in="shadowBlurInner1" result="shadowOffsetInner1"></feOffset><feComposite in="shadowOffsetInner1" in2="SourceAlpha" k2="-1" k3="1" operator="arithmetic" result="shadowInnerInner1"></feComposite><feColorMatrix in="shadowInnerInner1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0"></feColorMatrix></filter><filter id="logosFirebase1" width="200%" height="200%" x="-50%" y="-50%" filterUnits="objectBoundingBox"><feGaussianBlur in="SourceAlpha" result="shadowBlurInner1" stdDeviation="3.5"></feGaussianBlur><feOffset dx="1" dy="-9" in="shadowBlurInner1" result="shadowOffsetInner1"></feOffset><feComposite in="shadowOffsetInner1" in2="SourceAlpha" k2="-1" k3="1" operator="arithmetic" result="shadowInnerInner1"></feComposite><feColorMatrix in="shadowInnerInner1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.09 0"></feColorMatrix></filter><path id="logosFirebase2" d="m1.253 280.732l1.605-3.131l99.353-188.518l-44.15-83.475C54.392-1.283 45.074.474 43.87 8.188z"></path><path id="logosFirebase3" d="m134.417 148.974l32.039-32.812l-32.039-61.007c-3.042-5.791-10.433-6.398-13.443-.59l-17.705 34.109l-.53 1.744z"></path></defs><path fill="#FFC24A" d="m0 282.998l2.123-2.972L102.527 89.512l.212-2.017L58.48 4.358C54.77-2.606 44.33-.845 43.114 6.951z"></path><use fill="#FFA712" fillRule="evenodd" href="#logosFirebase2"></use><use filter="url(#logosFirebase0)" href="#logosFirebase2"></use><path fill="#F4BD62" d="m135.005 150.38l32.955-33.75l-32.965-62.93c-3.129-5.957-11.866-5.975-14.962 0L102.42 87.287v2.86z"></path><use fill="#FFA50E" fillRule="evenodd" href="#logosFirebase3"></use><use filter="url(#logosFirebase1)" href="#logosFirebase3"></use><path fill="#F6820C" d="m0 282.998l.962-.968l3.496-1.42l128.477-128l1.628-4.431l-32.05-61.074z"></path><path fill="#FDE068" d="m139.121 347.551l116.275-64.847l-33.204-204.495c-1.039-6.398-8.888-8.927-13.468-4.34L0 282.998l115.608 64.548a24.13 24.13 0 0 0 23.513.005"></path><path fill="#FCCA3F" d="M254.354 282.16L221.402 79.218c-1.03-6.35-7.558-8.977-12.103-4.424L1.29 282.6l114.339 63.908a23.94 23.94 0 0 0 23.334.006z"></path><path fill="#EEAB37" d="M139.12 345.64a24.13 24.13 0 0 1-23.512-.005L.931 282.015l-.93.983l115.607 64.548a24.13 24.13 0 0 0 23.513.005l116.275-64.847l-.285-1.752z"></path></svg>
+    </div>
+    </div>
+    <div className="ml-auto w-[25%] ">
+    <TiltedLines  height={50} showIcons={false} />
+    
+
+    </div>
+  </div>
+
   <div className="  w-full h-full flex">
   <div className="w-[20%]">
     <TiltedLines  height={50} showIcons={false} />
     </div>
     <div className=" w-full flex items-center justify-center h-full">
-    <div className="w-full h-full border  border-[#e7e7e715]  flex items-center justify-center"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256"> <defs><linearGradient id="logosNextjsIcon0" x1="55.633%" x2="83.228%" y1="56.385%" y2="96.08%"><stop offset="0%" stopColor="#FFF"/><stop offset="100%" stopColor="#FFF" stopOpacity="0"/></linearGradient><linearGradient id="logosNextjsIcon1" x1="50%" x2="49.953%" y1="0%" y2="73.438%"><stop offset="0%" stopColor="#FFF"/><stop offset="100%" stopColor="#FFF" stopOpacity="0"/></linearGradient><circle id="logosNextjsIcon2" cx="128" cy="128" r="128"/></defs><mask id="logosNextjsIcon3" fill="#fff"><use href="#logosNextjsIcon2"/></mask><g mask="url(#logosNextjsIcon3)"><circle cx="128" cy="128" r="128"/><path fill="url(#logosNextjsIcon0)" d="M212.634 224.028L98.335 76.8H76.8v102.357h17.228V98.68L199.11 234.446a128 128 0 0 0 13.524-10.418"/><path fill="url(#logosNextjsIcon1)" d="M163.556 76.8h17.067v102.4h-17.067z"/></g></svg>
-    </div>
-    <div className="w-full h-full border  border-[#e7e7e715]  flex items-center justify-center">
-    <svg className="" xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 256 263"> <defs><linearGradient id="logosSupabaseIcon0" x1="20.862%" x2="63.426%" y1="20.687%" y2="44.071%"><stop offset="0%" stopColor="#249361"></stop><stop offset="100%" stopColor="#3ECF8E"></stop></linearGradient><linearGradient id="logosSupabaseIcon1" x1="1.991%" x2="21.403%" y1="-13.158%" y2="34.708%"><stop offset="0%"></stop><stop offset="100%" stopOpacity="0"></stop></linearGradient></defs><path fill="url(#logosSupabaseIcon0)" d="M149.602 258.579c-6.718 8.46-20.338 3.824-20.5-6.977l-2.367-157.984h106.229c19.24 0 29.971 22.223 18.007 37.292z"></path><path fill="url(#logosSupabaseIcon1)" fillOpacity=".2" d="M149.602 258.579c-6.718 8.46-20.338 3.824-20.5-6.977l-2.367-157.984h106.229c19.24 0 29.971 22.223 18.007 37.292z"></path><path fill="#3ECF8E" d="M106.399 4.37c6.717-8.461 20.338-3.826 20.5 6.976l1.037 157.984H23.037c-19.241 0-29.973-22.223-18.008-37.292z"></path></svg>
-    </div>
-    <div className="w-full h-full border  border-[#e7e7e715]  flex items-center justify-center">
-    <svg xmlns="http://www.w3.org/2000/svg" width="1.8em" height="1.8em" viewBox="0 0 256 256"><path fill="#010101" d="M96.447 7.382c32.267-8.275 67.929-3.453 96.386 14.11c35.84 21.433 59.238 61.976 59.833 103.71c1.31 42.15-20.659 83.944-55.963 106.865c-39.293 26.433-93.648 27.446-133.775 2.322c-40.9-24.41-64.774-73.645-58.641-120.916c4.94-49.95 43.52-94.005 92.16-106.09"></path><path fill="#FFF" d="M91.505 27.803c60.964-24.41 135.74 20.658 142.05 86.028c9.824 58.82-38.995 118.593-98.59 120.32c-56.677 5.656-111.449-42.39-113.056-99.304c-4.227-46.08 26.136-91.803 69.596-107.044"></path><path fill="#010101" d="M97.637 121.69c27.327-22.326 54.058-45.426 81.98-67.097c-14.646 22.505-29.708 44.711-44.354 67.215c-12.562.06-25.123.06-37.626-.119m23.1 12.443c12.621 0 25.183 0 37.745.179c-27.505 22.206-54.117 45.484-82.099 67.096c14.646-22.505 29.708-44.77 44.354-67.275"></path></svg>
-
-    </div>
-    </div>
-    <div className="ml-auto w-[25%]">
-    <TiltedLines  height={50} showIcons={false} />
-    </div>
-  </div>
-  <div className="  w-full  h-full flex">
-  <div className="w-[20%]">
-    <TiltedLines  height={50} showIcons={false} />
-    </div>
-    <div className=" w-full flex items-center justify-center h-full">
-    <div className="w-full h-full border border-[#e7e7e715] flex items-center justify-center" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256"> <defs><linearGradient id="logosNextjsIcon0" x1="55.633%" x2="83.228%" y1="56.385%" y2="96.08%"><stop offset="0%" stopColor="#FFF"/><stop offset="100%" stopColor="#FFF" stopOpacity="0"/></linearGradient><linearGradient id="logosNextjsIcon1" x1="50%" x2="49.953%" y1="0%" y2="73.438%"><stop offset="0%" stopColor="#FFF"/><stop offset="100%" stopColor="#FFF" stopOpacity="0"/></linearGradient><circle id="logosNextjsIcon2" cx="128" cy="128" r="128"/></defs><mask id="logosNextjsIcon3" fill="#fff"><use href="#logosNextjsIcon2"/></mask><g mask="url(#logosNextjsIcon3)"><circle cx="128" cy="128" r="128"/><path fill="url(#logosNextjsIcon0)" d="M212.634 224.028L98.335 76.8H76.8v102.357h17.228V98.68L199.11 234.446a128 128 0 0 0 13.524-10.418"/><path fill="url(#logosNextjsIcon1)" d="M163.556 76.8h17.067v102.4h-17.067z"/></g></svg></div>
+    <div className="w-full h-full border  border-[#e7e7e715]  flex items-center justify-center"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256"> <defs><linearGradient id="logosNextjsIcon0" x1="55.633%" x2="83.228%" y1="56.385%" y2="96.08%"><stop offset="0%" stopColor="#FFF"/><stop offset="100%" stopColor="#FFF" stopOpacity="0"/></linearGradient><linearGradient id="logosNextjsIcon1" x1="50%" x2="49.953%" y1="0%" y2="73.438%"><stop offset="0%" stopColor="#FFF"/><stop offset="100%" stopColor="#FFF" stopOpacity="0"/></linearGradient><circle id="logosNextjsIcon2" cx="128" cy="128" r="128"/></defs><mask id="logosNextjsIcon3" fill="#fff"><use href="#logosNextjsIcon2"/></mask><g mask="url(#logosNextjsIcon3)"><circle cx="128" cy="128" r="128"/><path fill="url(#logosNextjsIcon0)" d="M212.634 224.028L98.335 76.8H76.8v102.357h17.228V98.68L199.11 234.446a128 128 0 0 0 13.524-10.418"/><path fill="url(#logosNextjsIcon1)" d="M163.556 76.8h17.067v102.4h-17.067z"/></g></svg></div>
     <div className="w-full h-full border border-[#e7e7e715] flex items-center justify-center">
       <svg xmlns="http://www.w3.org/2000/svg" width="33.24" height="28" viewBox="0 0 256 220"> <path fill="#912626" d="M245.97 168.943c-13.662 7.121-84.434 36.22-99.501 44.075s-23.437 7.78-35.34 2.09c-11.902-5.69-87.216-36.112-100.783-42.597C3.566 169.271 0 166.535 0 163.951v-25.876s98.05-21.345 113.879-27.024c15.828-5.679 21.32-5.884 34.79-.95c13.472 4.936 94.018 19.468 107.331 24.344l-.006 25.51c.002 2.558-3.07 5.364-10.024 8.988"/><path fill="#C6302B" d="m174.782 115.362l1.303-4.583c1.568-5.449.987-10.48-1.639-14.173c-2.418-3.417-6.424-5.422-11.296-5.656l-92.312-1.193a1.82 1.82 0 0 1-1.459-.776a1.92 1.92 0 0 1-.203-1.693a2.5 2.5 0 0 1 2.154-1.662l93.173-1.193c11.063-.511 23.015-9.58 27.208-20.633l5.313-14.04c.214-.596.27-1.238.156-1.86C191.126 20.51 166.91 0 137.96 0C111.269 0 88.626 17.403 80.5 41.596a27 27 0 0 0-19.156-5.359C48.549 37.524 38.25 47.946 36.979 60.88a27.9 27.9 0 0 0 .702 9.642C16.773 71.145 0 88.454 0 109.726c0 1.923.137 3.818.413 5.667c.115.897.879 1.57 1.783 1.568h170.48a2.22 2.22 0 0 0 2.106-1.63"></path></svg>
     </div>
@@ -673,16 +688,25 @@ Every component from uipub registry is compatible with shadcn/ui CLI.</p>
 <TiltedLines  borderL={true} borderR={true}  />
 <div className="w-[54%] ml-auto mr-auto min-h-[600px] ">
   <div className="border-b border-l  border-[#e7e7e715] min-h-[600px] w-full flex">
-    <div className=" w-[33.33%]  border-r border-[#e7e7e715] min-h-[600px] flex items-center ">
+    <div className=" w-[33.33%]  border-r border-[#e7e7e715] min-h-[600px] flex items-center relative">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" 
+        className="w-6 h-6 text-[#e7e7e740] absolute top-0 right-0 -mt-3 -mr-3" aria-hidden="true">
+        <path d="M5 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M12 5V19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+      
       <div className=" w-[80%] h-[85%] ml-auto mr-auto">
-    <p className="text-2xl fon">Common Questions</p>
-    <p className="text-xs ml-0.5 mt-1.5 fon">Still have questions? Email Me</p>
-
-    
-
+        <p className="text-2xl fon">Common Questions</p>
+        <p className="text-xs ml-0.5 mt-1.5 fon">Still have questions? Email Me</p>
       </div>
+
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" 
+        className=" w-6 h-6  text-[#e7e7e740] absolute bottom-0 right-0 -mb-3 -mr-3.5" aria-hidden="true">
+        <path d="M5 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M12 5V19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
     </div>
-    <div className=" w-[66.66%] h-full border-r border-[#e7e7e715]  ">
+    <div className=" w-[66.66%]  border-r min-h-[600px] border-[#e7e7e715]  ">
 
 
 <CommonQuestionItem borderSide="" question={"What Is Your Education?"} answer={"I will receive a M.Tech degree in 2026 and B.E. in IT Engineering from SVIT, Vasad (GTU) in 2024, building on my Diploma in Computer Engineering (8 CGPA) from Parul Polytechnic Institute (GTU)."} />
@@ -705,7 +729,7 @@ Every component from uipub registry is compatible with shadcn/ui CLI.</p>
     <div className=" w-[100%] h-full flex items-center justify-center ">
       
     <div className="h-[70%]  w-[95%] flex items-start  ">
-    <p className="text-sm fon">©  2025 Designed & Developed By Bhargav Joshi</p>
+    <p className="text-sm fon">© 2025 Designed & Developed By Bhargav Joshi</p>
     </div>
 
 
