@@ -65,9 +65,52 @@
   font-family: 'Object Sans Regular';
   src: url('/fonts/ObjectSans-Regular.woff2') format('woff2'),
        url('/fonts/ObjectSans-Regular.woff') format('woff'),
+       url('/fonts/ObjectSans-Heavy.woff') format('woff'),
        url('/fonts/ObjectSans-Regular.otf') format('opentype');
   font-display: swap;
 }
+
+@font-face {
+  font-family: 'Object Sans Heavy';
+  src: url('/fonts/ObjectSans-Heavy.woff2') format('woff2'),
+       url('/fonts/ObjectSans-Heavy.woff') format('woff'),
+       url('/fonts/ObjectSans-Heavy.otf') format('opentype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gotham Bold';
+  src: url('/fonts/Gotham-Bold.woff2') format('woff2'),
+       url('/fonts/Gotham-Bold.woff') format('woff'),
+       url('/fonts/Gotham-Bold.otf') format('opentype');
+  font-display: swap;
+}
+
+/* Simplified font classes */
+.gotl {
+  font-family: 'Gotham Light', sans-serif;
+}
+
+.objr {
+  font-family: 'Object Sans Regular', sans-serif;
+}
+
+.gotl-white {
+  font-family: 'Gotham Light', sans-serif;
+  color: white;
+}
+
+.objh {
+  font-family: 'Object Sans Heavy', sans-serif;
+}
+
+.gotb {
+  font-family: 'Gotham Bold', sans-serif;
+}
+
+/* You can remove these older classes if you want:
+.fon, .fonc, .fonx
+*/
 
 .fon {
   font-family: 'Gotham Light', sans-serif;
@@ -121,11 +164,11 @@
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
   --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
+  --chart-1: #4285F4;
+  --chart-2: #666666;
+  --chart-3: #FF7139;
+  --chart-4: #0078D7;
+  --chart-5: #95A5A6;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);
@@ -178,3 +221,4 @@
     @apply bg-background text-foreground;
   }
 }
+
