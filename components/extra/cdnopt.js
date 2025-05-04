@@ -1,14 +1,19 @@
 "use client"
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
 import { useState } from "react";
 import Chart1 from "./chart1";
 import { toast } from "sonner"
-
-
+import {
+    ResizableHandle,
+    ResizablePanel,
+    ResizablePanelGroup,
+  } from "@/components/ui/resizable"
+  
 export default function CdnOpt() {
-    const [selectedSize, setSelectedSize] = useState("");
-    const [selectedCdn, setSelectedCdn] = useState("");
-    const [selectedRoute, setSelectedRoute] = useState("");
+    const [selectedRoute, setSelectedRoute] = useState("direct");
+    const [selectedVersion, setSelectedVersion] = useState("light");
+    const [selectedSize, setSelectedSize] = useState("light");
+    const [selectedCdn, setSelectedCdn] = useState("light");
     const [loadTime, setLoadTime] = useState(0);
     const [chartData, setChartData] = useState([
         { name: "DNS Lookup", time: 0, fill: "#FFFFFF" },
@@ -52,53 +57,34 @@ export default function CdnOpt() {
     <div className="w-[40%] border-l border-r border-[#e7e7e715] ">
 
     <div className="w-full h-full flex flex-col items-start justify-start">
-            <div className="w-[80%] ml-auto mr-auto border-b border-[#e7e7e715] gap-2 flex items-center justify-center h-[20%]">
-                <Select onValueChange={setSelectedRoute}>
-                    <SelectTrigger className="text-white w-[180px]">
-                        <SelectValue className="text-white" placeholder="Route" />
-                    </SelectTrigger>
-                    <SelectContent>
-                        <SelectItem value="direct">Non Routed</SelectItem>
-                        <SelectItem value="routed">Routed</SelectItem>
-                        <SelectItem value="wrapped">Routed + Wrapped</SelectItem>
-                    </SelectContent>
-                </Select>
-                <Select>
-                    <SelectTrigger className="text-white w-[180px]">
-                        <SelectValue placeholder="Version" />
-                    </SelectTrigger>
-                    <SelectContent>
-                        <SelectItem value="light">v 0.1</SelectItem>
-                    </SelectContent>
-                </Select>
-            </div>
+    <ResizablePanelGroup direction="vertical" > 
+          <ResizablePanel defaultSize={40} className={"flex items-center justify-center h-full "}>
+          <div className=" w-[80%] ml-auto mr-auto gap-4 flex flex-col items-center justify-center h-[40%]">
+    
+     
+       
+     
+    <ToggleGroup type="single" value={selectedRoute} onValueChange={setSelectedRoute}>
+            <ToggleGroupItem value="direct" className={"px-4 text-[#e7e7e795] data-[state=on]:text-[#e7e7e7]"}>Non Routed</ToggleGroupItem>
+            <ToggleGroupItem value="routed" className={"px-4 text-[#e7e7e795] data-[state=on]:text-[#e7e7e7]"}>Routed</ToggleGroupItem>
+            <ToggleGroupItem value="wrapped" className={"px-8 text-[#e7e7e795] data-[state=on]:text-[#e7e7e7]"}>Routed + Wrapped</ToggleGroupItem>
+    </ToggleGroup>
 
-            <div className="w-[80%] ml-auto mr-auto gap-2 flex items-center justify-center h-[20%]">
-                <Select onValueChange={setSelectedSize}>
-                    <SelectTrigger className="text-white w-[180px]">
-                        <SelectValue placeholder="Size" />
-                    </SelectTrigger>
-                    <SelectContent>
-                        <SelectItem value="light">~500 KB</SelectItem>
-                        <SelectItem value="dark">~ 1 MB</SelectItem>
-                        <SelectItem value="system">~ 5 MB</SelectItem>
-                    </SelectContent>
-                </Select>
-                <Select onValueChange={setSelectedCdn}>
-                    <SelectTrigger className="text-white w-[180px]">
-                        <SelectValue placeholder="Points Of Presence" />
-                    </SelectTrigger>
-                    <SelectContent>
-                        <SelectItem value="light">EU Endpoint</SelectItem>
-                        <SelectItem value="dark">Mumbai Endpoint</SelectItem>
-                        <SelectItem value="system">Global CDN</SelectItem>
-                    </SelectContent>
-                </Select>
-            </div>
-
-            <hr className="w-[95%] ml-auto mr-auto border-[#e7e7e715] bg-[#e7e7e715]" />
-
-            <button 
+    <ToggleGroup type="single" value={selectedSize} onValueChange={setSelectedSize}>
+            <ToggleGroupItem value="light" className={"px-4 text-[#e7e7e795] data-[state=on]:text-[#e7e7e7]"}>~500 KB</ToggleGroupItem>
+            <ToggleGroupItem value="dark" className={"px-4 text-[#e7e7e795] data-[state=on]:text-[#e7e7e7]"}>~ 1 MB</ToggleGroupItem>
+            <ToggleGroupItem value="system" className={"px-4 text-[#e7e7e795] data-[state=on]:text-[#e7e7e7]"}>~ 5 MB</ToggleGroupItem>
+    </ToggleGroup>
+    <ToggleGroup type="single" value={selectedCdn} onValueChange={setSelectedCdn}>
+            <ToggleGroupItem value="light" className={"px-4 text-[#e7e7e795] data-[state=on]:text-[#e7e7e7]"}>EU Endpoint</ToggleGroupItem>
+            <ToggleGroupItem value="dark" className={"px-4 text-[#e7e7e795] data-[state=on]:text-[#e7e7e7]"}>Mumbai Endpoint</ToggleGroupItem>
+            <ToggleGroupItem value="system" className={"px-4 text-[#e7e7e795] data-[state=on]:text-[#e7e7e7]"}>Global CDN</ToggleGroupItem>
+    </ToggleGroup>
+</div>
+          </ResizablePanel>
+          <ResizableHandle className={"bg-[#e7e7e715] w-[90%] ml-auto mr-auto"} />
+          <ResizablePanel defaultSize={60} className={"flex flex-col items-center justify-start   "}>
+          <button 
                 onClick={() => {
                     if (!selectedSize || !selectedCdn || !selectedRoute) {
                       
@@ -147,14 +133,14 @@ export default function CdnOpt() {
                         imgElement.src = imageUrl;
                     }
                 }}
-                className="w-[180px] h-[40px] mt-4 mx-auto bg-[#1a1a1a] text-white rounded-md
+                className="w-[180px] h-[40px]   bg-[#1a1a1a] text-white rounded-md
                 border border-[#e7e7e715] transition-all duration-200 hover:bg-[#2a2a2a]
-                active:scale-95 focus:outline-none focus:ring-2 focus:ring-[#e7e7e715]"
+                active:scale-95 focus:outline-none focus:ring-2 mt-8 focus:ring-[#e7e7e715]"
             >
                Test CDN
             </button>
 
-            <div className="h-[100px] mt-4 mx-auto">  {/* Changed from w-full to w-[200px] and added mx-auto */}
+            <div className="h-[100px] ">  {/* Changed from w-full to w-[200px] and added mx-auto */}
                 
                 <Chart1 
                   data={chartData}
@@ -162,12 +148,19 @@ export default function CdnOpt() {
                   className="text-white"
                 />
             </div>
+            
+          </ResizablePanel>
+        </ResizablePanelGroup>
+    
 
-            <div className="ml-auto mr-auto w-full items-center justify-center bg-red-600"></div>
+            {/* <hr className="bg-[#e7e7e750] text-[#e7e7e750] w-[90%] ml-auto mr-auto" /> */}
+
+            
+
                
             </div>
         
-
+            
 
     </div>
   </div>

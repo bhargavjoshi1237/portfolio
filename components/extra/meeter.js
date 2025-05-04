@@ -64,9 +64,10 @@ export default function Meeter() {
                 </svg>
                 
                 <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="fonc text-4xl font-bold text-[#DF52A9]">
+                    <span className="fonc text-4xl font-bold text-white">
                         {scrollPercentage}%
                     </span>
+                    <p  ></p>
                 </div>
             </div>
         </div>
