@@ -19,12 +19,17 @@ module.exports = {
         layoutShift3: {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(-10px)' }
+        },
+        'scale-loop': {
+          '0%, 100%': { transform: 'scale(1)' },
+          '50%': { transform: 'scale(1.05)' },
         }
       },
       animation: {
         'layoutShift1': 'layoutShift1 2s infinite',
         'layoutShift2': 'layoutShift2 2s infinite',
-        'layoutShift3': 'layoutShift3 2s infinite'
+        'layoutShift3': 'layoutShift3 2s infinite',
+        'scale-loop': 'scale-loop infinite ease-in-out',
       }
     }
   },

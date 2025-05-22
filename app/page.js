@@ -2,12 +2,22 @@
 import TiltedLines from "@/components/extra/tiltedlines";
 import CommonQuestionItem from "@/components/extra/commonquestionitem";
 import Meeter from "@/components/extra/meeter";
-import Scro from "@/components/extra/scro";
 import Scrox from "@/components/extra/scro";
 import CdnOpt from "@/components/extra/cdnopt";
-import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
 import { toast } from "sonner"
 import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator"
+import { ThreeDMarqueeDemo } from "@/components/marq";
+import dynamic from 'next/dynamic';
+import Dashboard from "@/components/Dashboard";
+
+// Dynamically import Spline with error boundary
+const SplineComponent = dynamic(() => import('@splinetool/react-spline'), {
+  ssr: false,
+  loading: () => <div className="w-full h-full flex items-center justify-center">
+    <p className="text-sm text-[#e7e7e780]">Loading 3D scene...</p>
+  </div>
+});
 
 
 export default function Home() {
@@ -78,6 +88,7 @@ export default function Home() {
       <div className="flex">
         <div className="min-w-[23%] h-full "></div>
         <div className="min-w-[54%]  flex border-l border-r  border-[#e7e7e730] ">
+          
         <svg 
             className="  -mt-[100%] inset-0 pointer-events-none  text-[#e7e7e730]" 
             viewBox="0 0 210 340" 
@@ -105,6 +116,7 @@ export default function Home() {
               </linearGradient>
             </defs>
           </svg>
+  
           <div className=" absolute z-20 w-[54%] flex  h-[67%]">
             
           <div className="w-[61.5%] flex flex-col items-center justify-center mr-auto  h-full">
@@ -316,7 +328,7 @@ export default function Home() {
 
       
 
-<div className="tilted-lines border flex items-center justify-center border-[#e7e7e715] h-[100px]">
+{/* <div className="tilted-lines border flex items-center justify-center border-[#e7e7e715] h-[100px]">
  <div className="border border-[#e7e7e715] w-[54%] h-full">
   
     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 -ml-3 -mt-3.5 text-[#e7e7e740] -mr-3.5 -mb-3" aria-hidden="true">
@@ -341,7 +353,12 @@ export default function Home() {
       </svg>
     </div>
   </div>
-</div>
+</div> */}
+{/* <div className="w-[100%] ml-auto mr-auto border-[#e7e7e715] border-t border-b border-l border-r h-[80px] flex items-center  justify-evenly "> */}
+
+<TiltedLines height={100} borderL={true} borderR={true} />
+ {/* </div> */}
+
 <div className="h-[300px] w-[54%] flex  ml-auto mr-auto -mt-[1px] -mb-[1px] border-l border-[#373737]">
 
     <div className=" w-[60%] flex">
@@ -360,13 +377,15 @@ export default function Home() {
           </div>
       </div>
     </div>
-    <div className=" w-[40%]  bg-[#161616] border-l border-r border-[#e7e7e715] ">
+    <div className=" w-[40%]  bg-[#161616] border-l border-t border-r border-[#e7e7e715] ">
   
+
 
     </div>
 
 
 </div>
+
 
 
 <div className="tilted-lines border flex items-center justify-center border-[#e7e7e715] h-[100px]">
@@ -397,8 +416,10 @@ export default function Home() {
 
 
 
-<div className="w-[54%] ml-auto mr-auto h-[350px] ">
-  <div className="border-l  border-[#e7e7e715]  h-[350px] w-full flex">
+
+
+<div className="w-[54%] ml-auto mr-auto h-[550px] ">
+  <div className="border-l  border-[#e7e7e715]  h-[550px] w-full flex">
     <div className=" w-[60%] h-full flex items-center ">
       
 <div className=" w-[100%] flex ">
@@ -417,7 +438,9 @@ export default function Home() {
       </div>
     </div>
     </div>
-    <div className="w-[40%] border-l border-r border-[#e7e7e715] "></div>
+  <div className="w-[40%] border-l border-r border-[#e7e7e715] ">
+    <SplineComponent className="-mt-7" scene="/cube.splinecode" />
+  </div>
   </div>
   {/* <div className="border border-[#e7e7e715]  h-[200px] w-full flex">
     <div className=" w-[60%] h-full">
@@ -444,7 +467,7 @@ Every component from uipub registry is compatible with shadcn/ui CLI.</p>
 
 <div className="w-[54%] ml-auto mr-auto">
 
-<TiltedLines width={100} showIcons={false} height={50} />
+<TiltedLines width={100} showIcons={true} height={50}   widthx={100} />
 
 </div>
 
@@ -589,21 +612,23 @@ Every component from uipub registry is compatible with shadcn/ui CLI.</p>
 
   <div className=" h-[300px] w-[54%] ml-auto mr-auto flex">
     <div className=" w-[33.33%] h-full flex items-center border-[#e7e7e715] border-l relative">
-    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" 
-        className="w-6 h-6 text-[#e7e7e740] absolute top-0 right-0 -mt-3 -mr-3" aria-hidden="true">
-        <path d="M5 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M12 5V19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>
-        <div className="w-[80%] ml-auto mr-auto h-[80%]">
-          <p className="text-2xl fon ">Coming Soon</p>
-          <p className="text-sm fon mt-5">Upcoming Project</p>
+     
+    <div className="w-[80%] ml-auto mr-auto h-[80%]">
+    <div className="  w-[100%] h-[50px] items-center justify-start flex">
+         <p className="text-2xl fon ">E - Marks</p>
+         <img src="/emark.png" className="ml-auto end-0 h-[90%] aspect-auto" alt="" />
+         </div>
+         <p className="text-sm fon mt-5">
 
+          A Very Detailed and organisition oriented notes and taks taking app, with a focus on the user experience and the ability to take notes in a very detailed manner.
+
+         </p>
+         <p className="text-sm fon mt-5">
+
+Works in Folders and page formate, with tags.
+</p>
         </div>
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" 
-        className="w-6 h-6 ml-1  text-[#e7e7e740] absolute bottom-0 right-0 -mb-3 -mr-3" aria-hidden="true">
-        <path d="M5 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M12 5V19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>
+        
     </div>
     
     <div className=" w-[33.33%] border-l  border-[#e7e7e715] h-full flex items-center ">
@@ -637,10 +662,32 @@ Works in notebook and page formate, with tags, also works as CRM, with whiteboar
   </div>
   
   
-  <div className="w-[54%] ml-auto mr-auto border-t border-[#e7e7e715]  flex items-center justify-center h-[50px]"> 
+  <div className="w-[54%] ml-auto mr-auto   border-[#e7e7e715]  flex items-center justify-center h-[50px]"> 
 
   <div className=" border-l border-[#e7e7e715]   w-full h-full flex">
-   
+  <div className="   w-full h-full flex">
+    <div className="w-[20%] flex items-center justify-center">
+    <TiltedLines  height={50} showIcons={false}/>
+
+    </div>
+    <div className=" w-full flex items-center justify-center h-full">
+    <div className="w-full h-full border border-[#e7e7e715] flex items-center justify-center">
+    <svg className="" xmlns="http://www.w3.org/2000/svg" width="1.8em" height="1.8em" viewBox="0 0 256 256"> <defs><linearGradient id="logosNextjsIcon0" x1="55.633%" x2="83.228%" y1="56.385%" y2="96.08%"><stop offset="0%" stopColor="#FFF"/><stop offset="100%" stopColor="#FFF" stopOpacity="0"/></linearGradient><linearGradient id="logosNextjsIcon1" x1="50%" x2="49.953%" y1="0%" y2="73.438%"><stop offset="0%" stopColor="#FFF"/><stop offset="100%" stopColor="#FFF" stopOpacity="0"/></linearGradient><circle id="logosNextjsIcon2" cx="128" cy="128" r="128"/></defs><mask id="logosNextjsIcon3" fill="#fff"><use href="#logosNextjsIcon2"/></mask><g mask="url(#logosNextjsIcon3)"><circle cx="128" cy="128" r="128"/><path fill="url(#logosNextjsIcon0)" d="M212.634 224.028L98.335 76.8H76.8v102.357h17.228V98.68L199.11 234.446a128 128 0 0 0 13.524-10.418"/><path fill="url(#logosNextjsIcon1)" d="M163.556 76.8h17.067v102.4h-17.067z"/></g></svg>
+
+    </div>
+    <div className="w-full h-full border border-[#e7e7e715] flex items-center justify-center">
+    <svg xmlns="http://www.w3.org/2000/svg" width="3.5em" height="1.2em" viewBox="0 0 512 214"><path fill="#635BFF" d="M512 110.08c0-36.409-17.636-65.138-51.342-65.138c-33.85 0-54.33 28.73-54.33 64.854c0 42.808 24.179 64.426 58.88 64.426c16.925 0 29.725-3.84 39.396-9.244v-28.445c-9.67 4.836-20.764 7.823-34.844 7.823c-13.796 0-26.027-4.836-27.591-21.618h69.547c0-1.85.284-9.245.284-12.658m-70.258-13.511c0-16.071 9.814-22.756 18.774-22.756c8.675 0 17.92 6.685 17.92 22.756zm-90.31-51.627c-13.939 0-22.899 6.542-27.876 11.094l-1.85-8.818h-31.288v165.83l35.555-7.537l.143-40.249c5.12 3.698 12.657 8.96 25.173 8.96c25.458 0 48.64-20.48 48.64-65.564c-.142-41.245-23.609-63.716-48.498-63.716m-8.534 97.991c-8.391 0-13.37-2.986-16.782-6.684l-.143-52.765c3.698-4.124 8.818-6.968 16.925-6.968c12.942 0 21.902 14.506 21.902 33.137c0 19.058-8.818 33.28-21.902 33.28M241.493 36.551l35.698-7.68V0l-35.698 7.538zm0 10.809h35.698v124.444h-35.698zm-38.257 10.524L200.96 47.36h-30.72v124.444h35.556V87.467c8.39-10.951 22.613-8.96 27.022-7.396V47.36c-4.551-1.707-21.191-4.836-29.582 10.524m-71.112-41.386l-34.702 7.395l-.142 113.92c0 21.05 15.787 36.551 36.836 36.551c11.662 0 20.195-2.133 24.888-4.693V140.8c-4.55 1.849-27.022 8.391-27.022-12.658V77.653h27.022V47.36h-27.022zM35.982 83.484c0-5.546 4.551-7.68 12.09-7.68c10.808 0 24.461 3.272 35.27 9.103V51.484c-11.804-4.693-23.466-6.542-35.27-6.542C19.2 44.942 0 60.018 0 85.192c0 39.252 54.044 32.995 54.044 49.92c0 6.541-5.688 8.675-13.653 8.675c-11.804 0-26.88-4.836-38.827-11.378v33.849c13.227 5.689 26.596 8.106 38.827 8.106c29.582 0 49.92-14.648 49.92-40.106c-.142-42.382-54.329-34.845-54.329-50.774"></path></svg>
+    </div>
+    <div className="w-full h-full border border-[#e7e7e715] flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="3em" height="2.2em" viewBox="0 0 512 228"> <defs><linearGradient id="logosSqlite0" x1="57.662%" x2="57.662%" y1="2.046%" y2="94.439%"><stop offset="0%" stopColor="#97D9F6"></stop><stop offset="92.024%" stopColor="#0F80CC"></stop><stop offset="100%" stopColor="#0F80CC"></stop></linearGradient></defs><path fill="#003B57" d="M194.52 112.044c-6.821 0-12.368 2.02-16.62 6.055c-4.251 4.04-6.408 9.335-6.408 15.824c0 3.362.535 6.428 1.59 9.237c1.056 2.815 2.699 5.423 4.907 7.78s6.628 5.561 13.215 9.635c8.084 4.934 13.373 8.939 15.912 12.066c2.54 3.124 3.801 6.398 3.801 9.812c0 4.57-1.504 8.219-4.597 10.961c-3.097 2.744-7.24 4.11-12.375 4.11c-5.417 0-10.136-1.909-14.188-5.7c-4.052-3.798-6.098-8.821-6.144-15.117h-2.52v22.851h2.52c.77-2.164 1.834-3.27 3.227-3.27c.67 0 2.24.461 4.685 1.325c5.949 2.117 10.834 3.138 14.674 3.138c6.617 0 12.266-2.317 16.972-7.027c4.7-4.708 7.072-10.387 7.072-17.017c0-5.14-1.566-9.715-4.64-13.701c-3.075-3.992-9.054-8.635-17.99-13.967c-7.689-4.62-12.68-8.382-14.983-11.315c-2.307-2.929-3.492-6.169-3.492-9.724c0-3.845 1.413-6.934 4.199-9.238c2.786-2.305 6.437-3.447 11.006-3.447c5.14 0 9.426 1.526 12.817 4.597c3.388 3.076 5.347 7.339 5.923 12.817h2.52v-19.8h-2.343c-.287 1.009-.552 1.654-.796 1.944c-.237.288-.693.442-1.37.442c-.815 0-2.268-.343-4.332-1.017c-4.42-1.488-8.495-2.254-12.243-2.254m82.342 0c-8.311 0-15.857 1.96-22.674 5.879c-6.828 3.912-12.233 9.345-16.221 16.265S232 148.456 232 156.288c0 10.52 3.444 19.894 10.387 28.11c6.946 8.21 15.27 13.326 24.928 15.293c2.208 1.15 5.367 4.12 9.503 8.928c4.66 5.425 8.603 9.338 11.845 11.668a35.6 35.6 0 0 0 10.43 5.172c3.7 1.126 7.699 1.68 12.023 1.68c5.237 0 9.925-.911 14.055-2.785l-.928-2.299c-2.397.865-4.954 1.282-7.646 1.282c-3.655 0-7.348-1.205-11.05-3.624c-3.697-2.426-8.32-7.053-13.834-13.879c-2.592-3.27-4.381-5.334-5.393-6.143c10.568-2.064 19.257-7.185 26.034-15.382c6.774-8.192 10.165-17.542 10.165-28.022c0-12.442-4.427-22.9-13.215-31.425c-8.796-8.527-19.612-12.818-32.442-12.818m51.403 0l.133 2.696c5.533 0 8.633 1.63 9.326 4.906c.258 1.173.376 3.337.397 6.453l-.044 59.625q-.07 6.68-1.9 8.53c-1.222 1.225-3.287 1.993-6.276 2.298l-.133 2.697h55.16l1.415-13.525h-2.52c-.72 3.684-2.369 6.324-4.994 7.823c-2.633 1.51-7.288 2.254-14.011 2.254h-5.216c-6.05 0-9.55-2.187-10.475-6.586c-.19-.87-.256-1.803-.265-2.828l.22-60.288c0-4.446.561-7.425 1.725-8.884c1.175-1.453 3.295-2.266 6.364-2.475l-.132-2.696zm-50.52 3.27c9.375 0 17.028 3.693 22.94 11.139c5.91 7.449 8.84 17.658 8.84 30.586c0 12.25-2.972 22.058-8.928 29.436c-5.957 7.376-13.884 11.05-23.735 11.05c-9.464 0-17.139-3.789-23.028-11.403c-5.884-7.615-8.795-17.501-8.795-29.658c0-12.492 2.947-22.492 8.884-29.967c5.933-7.466 13.878-11.182 23.823-11.182m126.852 12.819c-1.346 0-2.371.454-3.138 1.37c-.785.912-1.026 2.017-.752 3.359c.265 1.302 1 2.442 2.166 3.403c1.16.96 2.411 1.459 3.757 1.459c1.301 0 2.293-.499 3.005-1.459c.713-.96.93-2.101.663-3.403c-.274-1.342-.983-2.447-2.077-3.36c-1.107-.915-2.323-1.37-3.624-1.37m36.375 9.149c-2.286 8.794-7.241 13.553-14.85 14.32l.088 2.52h8.884l-.177 29.79c.014 5.093.17 8.484.53 10.21c.876 4.131 3.574 6.232 8.089 6.232q9.8-.002 20.552-11.934l-2.165-1.856c-5.175 5.238-9.75 7.867-13.746 7.867c-2.456 0-3.978-1.412-4.553-4.199c-.157-.677-.22-1.468-.22-2.387l.088-33.723h13.569l-.133-4.023h-13.392v-12.817zm52.464 11.226c-7.59 0-13.763 3.685-18.563 11.006c-4.775 7.333-6.253 15.458-4.376 24.398c1.105 5.236 3.306 9.294 6.674 12.154c3.363 2.86 7.629 4.288 12.73 4.288c4.748 0 11.36-1.203 14.143-3.625c2.79-2.42 5.36-6.342 7.735-11.712l-1.9-1.99c-3.788 6.968-11.43 10.476-17.194 10.476c-7.924 0-12.777-4.348-14.586-12.995a32 32 0 0 1-.53-3.536c9.427-1.492 16.571-4.135 21.392-7.955c4.818-3.823 9.655-7.875 8.752-12.155c-.538-2.544-1.858-4.544-3.89-6.055c-2.058-1.511-7.4-2.299-10.387-2.299m-82.96.31l-16.354 3.757v2.917l5.657-.707c2.74 0 4.353 1.24 4.862 3.712c.171.827.28 1.99.31 3.448l-.178 26.74c-.045 3.7-.456 5.851-1.281 6.497q-1.25.972-6.586.973l-.088 2.519h25.944l-.044-2.52c-3.605 0-5.942-.284-6.983-.84c-1.024-.55-1.73-1.555-2.033-3.093c-.235-1.108-.338-3.018-.354-5.657l.089-37.746zm78.806 4.95c1.579 0 3.104.61 4.64 1.812c1.516 1.198 2.439 2.53 2.741 3.978c1.48 7.11-4.823 12.024-19.006 14.762c-.404-5.183.494-9.89 2.785-14.143c2.274-4.25 5.235-6.409 8.84-6.409"></path><path fill="#0F80CC" d="M157.888 9.952H17.15C7.717 9.952 0 17.67 0 27.102V182.31c0 9.432 7.717 17.15 17.15 17.15h92.693c-1.052-46.122 14.698-135.63 48.045-189.508"></path><path fill="url(#logosSqlite0)" d="M152.775 14.955H17.15c-6.698 0-12.148 5.449-12.148 12.148v143.883c30.716-11.788 76.817-21.96 108.693-21.498c6.406-33.494 25.232-99.134 39.08-134.533"></path><path fill="#003B57" d="M190.715 4.872c-9.639-8.595-21.31-5.143-32.827 5.08c-1.71 1.518-3.416 3.203-5.113 5.003c-19.704 20.903-37.994 59.62-43.676 89.19c2.214 4.489 3.943 10.217 5.081 14.593c.292 1.122.555 2.176.766 3.072c.5 2.122.769 3.497.769 3.497s-.177-.668-.902-2.77c-.138-.403-.292-.843-.474-1.361a16 16 0 0 0-.304-.752c-1.285-2.988-4.84-9.294-6.405-12.04a301 301 0 0 0-3.511 10.983c4.517 8.265 7.27 22.429 7.27 22.429s-.239-.918-1.374-4.122c-1.008-2.833-6.027-11.628-7.216-13.684c-2.034 7.509-2.842 12.578-2.113 13.812c1.415 2.391 2.762 6.518 3.946 11.081c2.673 10.28 4.53 22.796 4.53 22.796s.06.83.162 2.106c-.372 8.633-.149 17.584.52 25.674c.885 10.71 2.552 19.91 4.677 24.834l1.443-.786c-3.12-9.701-4.388-22.414-3.833-37.076c.84-22.41 5.997-49.437 15.526-77.606c16.1-42.523 38.436-76.641 58.879-92.935c-18.633 16.828-43.851 71.297-51.4 91.467c-8.453 22.588-14.443 43.784-18.053 64.092c6.229-19.039 26.368-27.222 26.368-27.222s9.877-12.182 21.42-29.586c-6.914 1.577-18.268 4.277-22.071 5.875c-5.61 2.353-7.121 3.156-7.121 3.156s18.17-11.066 33.76-16.076c21.44-33.768 44.799-81.74 21.276-102.724"></path></svg>
+</div>
+    </div>
+    <div className="ml-auto w-[25%] ">
+    <TiltedLines  height={50} showIcons={false} />
+    
+
+    </div>
+  </div>
   </div>
   <div className="   w-full h-full flex">
     <div className="w-[20%] flex items-center justify-center">
@@ -666,6 +713,7 @@ Works in notebook and page formate, with tags, also works as CRM, with whiteboar
 
     </div>
   </div>
+  
 
   <div className="  w-full h-full flex border-r border-[#e7e7e715] ">
   
@@ -677,15 +725,21 @@ Works in notebook and page formate, with tags, also works as CRM, with whiteboar
 
 
   <TiltedLines  borderL={true} borderR={true}  />
+   
+ 
 
 
   <div className="w-[54%] ml-auto mr-auto h-[330px] ">
   <div className="border-b border-l  border-[#e7e7e715]  h-[330px] w-full flex">
     <div className=" w-[60%]  h-full flex flex-col justify-center items-center ">
       <div className="  w-[90%] mb-8">
-      <p className="fon text-2xl text-white">
-      Animated with Motion
-      </p>
+       
+      <div className="  w-[100%] flex items-center  ">
+          <p className="objr min-w-fit text-white  text-2xl "> Animated with </p>
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="ml-4 mr-4 w-10  text-white  inline-flex"><path d="M21.0001 12.4286L12.4287 21" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"></path><path d="M19.2857 3L3 19.2857" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"></path></svg>
+
+          <p className="w-full objr text-white  text-2xl ">Motion</p>
+          </div>
       <div className="flex">
       <p className="fonc text-md mt-2 text-[#e7e7e760]">
       Every interactive component is smoothly animated with 
@@ -708,8 +762,8 @@ Works in notebook and page formate, with tags, also works as CRM, with whiteboar
 
           <p className="w-full objr text-white  text-2xl ">Fluid Interfaces</p>
           </div>
-  {/* <p className="fon text-md">Leveraging animation tools to implement seamless transitions, engaging micro-interactions, and responsive feedback that bring designs to life and significantly improve usability.</p>
-  <p className="mt-2 fon text-md">Motion isn't just decoration; it's a crucial element for creating modern, intuitive web interactions.</p> */}
+  <p className="fon text-md">Leveraging animation tools to implement seamless transitions, engaging micro-interactions, and responsive feedback that bring designs to life and significantly improve usability.</p>
+  <p className="mt-2 fon text-md">Motion isn t just decoration; it s a crucial element for creating modern, intuitive web interactions.</p>
 
 </div>
       </div>
@@ -772,13 +826,149 @@ Every component from uipub registry is compatible with shadcn/ui CLI.</p>
 
  <CdnOpt />
 <TiltedLines  borderL={true} borderR={true}  />
-<div className="w-[54%] border-l border-r border-[#e7e7e715] h-[500px] ml-auto mr-auto"></div>
+
+<div className="w-[54%] ml-auto mr-auto border-l   border-r border-[#e7e7e715] h-[700px] ">
+
+<div className="w-full ml-auto mr-auto   h-[300px] flex border-b border-[#e7e7e715] ">
+<div className="w-[60%] items-center justify-center ml-auto mr-auto border-r border-[#e7e7e715]   h-[300px] flex ">
+
+<div className="ml-auto mr-auto w-[80%] items-center justify-center ">
+      <div className="  w-[100%] flex items-center mb-5">
+          <p className="objr text-white  text-2xl ">Design  </p>
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="ml-4 mr-4 w-10  text-white  inline-flex"><path d="M21.0001 12.4286L12.4287 21" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"></path><path d="M19.2857 3L3 19.2857" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"></path></svg>
+
+          <p className="w-full objr text-white  text-2xl "> </p>
+          </div>
+  <p className="fon text-md">Crafting interfaces that resonate, adapt, and perform flawlessly across all devices.</p>
+  <p className="mt-2 fon text-md">Capable of designing diverse UI styles and visual representations to evoke specific user effects upon visit. </p>
+
+</div>
+
+</div><div className="w-[40%] ml-auto mr-auto   h-[300px] flex items-center justify-center">
+<div className="ml-auto mr-auto w-[80%] items-center justify-center ">
+      <div className="  w-[100%] flex items-center mb-5">
+          <p className="objr text-white  text-2xl ">Tailored User Experiences  </p>
+          
+          
+          </div>
+  <p className="fon text-md"></p>
+  <p className="mt-2 fon text-md">Custom components from scratch, ensuring designs are not only aesthetically pleasing but also technically feasible and perfectly aligned with project requirements.</p>
+
+</div>
+
+</div>
+
+</div>
+<div className="w-full ml-auto mr-auto   h-[400px] flex  ">
+
+
+<div className="w-[60%] items-center justify-center ml-auto mr-auto border-r border-[#e7e7e715]   h-[400px] flex ">
+
+<div className="ml-auto mr-auto w-[80%] items-center justify-center ">
+      <div className="  w-[100%] flex items-center mb-5">
+          <p className="objr text-white  text-2xl ">Architecture   </p>
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="ml-4 mr-4 w-10  text-white  inline-flex"><path d="M21.0001 12.4286L12.4287 21" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"></path><path d="M19.2857 3L3 19.2857" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"></path></svg>
+
+          <p className="w-full objr text-white  text-2xl "> </p>
+          </div>
+  <p className="fon text-md">Engineering robust, scalable, and cost-effective systems from backend logic to cloud deployment.</p>
+  <p className="mt-2 fon text-md">Adept at designing application architectures for new projects or integrating seamlessly with existing systems, always considering specific requirements and budget constraints.</p>
+
+</div>
+
+</div><div className="w-[40%] ml-auto mr-auto   h-[400px] flex items-center justify-center">
+<div className="ml-auto mr-auto w-[80%] items-center justify-center ">
+      <div className="  w-[100%] flex items-center mb-5">
+          <p className="objr text-white  text-2xl "> End-to-End Optimized Solutions</p>
+          
+          
+          </div>
+  <p className="fon text-md">Proficient with core AWS and GCP services to leverage the cloud for maximum organizational advantage in terms of both development time and financial efficiency.</p>
+  <p className="mt-2 fon text-md">Expertise covers building and consuming APIs, developing microservices, managing various databases, and handling deployment.</p>
+
+</div>
+
+</div>
+
+</div></div>
+<TiltedLines  borderL={true} borderR={true}  />
+<div   className="w-[54%] border-l border-r border-[#e7e7e715] h-[600px] ml-auto mr-auto">
+
+<ThreeDMarqueeDemo />
+
+
+{/* <Maysoori /> */}
+</div>
 <TiltedLines  borderL={true} borderR={true}  />
 
+<div className="w-[54%] ml-auto mr-auto    border-r items-center border-l  h-[600px] border-[#e7e7e715]  ">
 
+ <div className="w-[100%] h-fit flex items-start  ">
+   <div className="w-full">
+    <div className="w-full">
+    <img src="/svf/1.svg"  className="m-2 w-[96%] "  alt="" />
+   </div>
+   <div className="w-full">
+    <img src="/svf/.svg"  className="m-2 w-[96%] "  alt="" />
+   </div>
+   <div className="w-full ">
+    <img src="/svf/10.svg"  className="m-4 w-[96%] "  alt="" />
+   </div>
+   
+   <div className="w-full">
+    <img src="/svf/5.svg"  className="m-2 w-[96%] "  alt="" />
+   </div>
+   
+    
+   </div>
+   
+<div className="w-full">
+  <img src="/svf/2.svg"  className="mt-2 mr-2 w-full h-[65%] "  alt="" />
+  <div className="w-full">
+    <img src="/svf/11.svg"  className="m-2 w-[96%] "  alt="" />
+   </div>
+  
+</div>
+  
 
-<div className="w-[54%] ml-auto mr-auto h-[270px]  ">
-  <div className="border-b border-r border-l  border-[#e7e7e715]  h-[270px] w-full flex">
+    
+  
+  
+   <div className="w-[70%]">
+    <div className="w-full">
+    <img src="/svf/4.svg"  className="m-2 w-[96%] "  alt="" />
+   </div>
+   <div className="w-full">
+    <img src="/svf/7.svg"  className="m-2 w-[96%] "  alt="" />
+   </div>
+   <div className="w-full">
+    <img src="/svf/8.svg"  className="m-2 w-[96%] "  alt="" />
+   </div>
+   <div className="w-full">
+    <img src="/svf/6.svg"  className="m-2 w-[96%] "  alt="" />
+   </div>
+   </div>
+ </div>
+ <br />
+    <img src="/svf/13.svg"  className="m-2 w-[100%] "  alt="" />
+<br />
+ <div className="w-full flex">
+    <img src="/svf/12.svg"  className="m-2 w-[98%] ml-auto mr-auto "  alt="" />
+
+   </div>
+
+</div>
+<TiltedLines  borderL={true} borderR={true}  />
+
+<div className="w-[54%] ml-auto mr-auto   border-r border-l   border-[#e7e7e715]  ">
+
+ <div className=" pt-10 border-l   border-[#e7e7e715]  ">
+ <div className="   w-[55%] ml-auto mr-auto  ">
+  <SplineComponent scene="/cube.splinecode" />
+  </div>
+ </div>
+
+   <div className="border-b border-r border-l  border-[#e7e7e715]  h-[270px] w-full flex">
     <div className=" w-[100%] h-full justify-center flex items-center ">
       <div className="w-[90%] h-[60%] ">
       <div className="  w-[100%] flex items-center mb-7">
@@ -790,15 +980,17 @@ Every component from uipub registry is compatible with shadcn/ui CLI.</p>
         
         <p className="fon text-md">Combining various technologies effectively to engineer tailored web solutions. </p>
          
-        {/* <p className="fon text-md mt-2"> This involves selecting and integrating the right tools for each project's needs – from UI/UX design implementation  and data handling  to performance optimization and specific features like real-time updates or data scraping.</p> <br /> */}
+        <p className="fon text-md mt-2"> This involves selecting and integrating the right tools for each projects needs from UI/UX design implementation  and data handling  to performance optimization and specific features like real-time updates or data scraping.</p> 
 
       </div>
 
     </div>
   
   </div>
+
   <div className="h-[75px]  w-full flex">
-  <div className="w-[20%]">
+    
+  <div className="w-[20%] bg">
   <TiltedLines height={75}  showIcons={false}  widthx={100} />
   
 
@@ -841,15 +1033,70 @@ Every component from uipub registry is compatible with shadcn/ui CLI.</p>
 
   </div>
   </div>
+
 </div>
-<div className="w-[54%] ml-auto mr-auto h-[250px] ">
-  <div className="border-b  border-r border-l  border-[#e7e7e715]  h-[250px] w-full flex">
+
+<div className="w-[54%] ml-auto mr-auto    ">
+  <div className=" w-full flex">
     <div className=" w-[100%] h-full flex items-center ">
-      
+
+ <div className="    border-r border-l   border-[#e7e7e715]  h-[270px] w-full flex">
+    <div className=" w-[100%] h-full justify-center flex items-center ">
+      <div className="w-[90%] h-[60%] ">
+      <div className="  w-[100%] flex items-center mb-7">
+          <p className="objr text-white  text-2xl ">Ecosystem  </p>
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="ml-4 mr-4 w-10  text-white  inline-flex"><path d="M21.0001 12.4286L12.4287 21" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"></path><path d="M19.2857 3L3 19.2857" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"></path></svg>
+
+          <p className="w-full objr text-white  text-2xl ">Integrated Tech Stack Approach</p>
+          </div>
+        
+        <p className="fon text-md">Combining various technologies effectively to engineer tailored web solutions. </p>
+         
+        <p className="fon text-md mt-2"> This involves selecting and integrating the right tools for each projects needs from UI/UX design implementation  and data handling  to performance optimization and specific features like real-time updates or data scraping.</p> 
+
+      </div>
 
     </div>
   
   </div>
+
+    </div>
+  
+  </div>
+<div className="  border-l border-r border-[#e7e7e715] flex h-[100px]">
+
+<div className="w-[33.33%] border-t   border-r flex items-center justify-center border-[#e7e7e715] ">
+
+<svg xmlns="http://www.w3.org/2000/svg" width="148.95" height="32" viewBox="0 0 512 110"><path fill="#D97757" d="m21.564 73.123l21.62-12.132l.361-1.057l-.361-.584h-1.058l-3.617-.223l-12.354-.334l-10.712-.445l-10.379-.556l-2.615-.557L0 54.007l.25-1.613l2.199-1.475l3.144.278l6.956.473l10.434.724l7.568.445l11.214 1.168h1.78l.25-.723l-.611-.445l-.473-.445l-10.796-7.318l-11.687-7.735l-6.12-4.452l-3.312-2.254l-1.67-2.115l-.723-4.619l3.005-3.31l4.035.277l1.03.279l4.09 3.144l8.736 6.761l11.408 8.403l1.67 1.391l.668-.473l.083-.333l-.751-1.253l-6.205-11.213l-6.622-11.408l-2.95-4.73l-.779-2.838c-.278-1.169-.473-2.143-.473-3.34L28.771.613L30.663 0l4.563.612l1.92 1.67l2.838 6.483l4.591 10.211l7.123 13.885l2.087 4.118l1.113 3.812l.417 1.168h.724v-.667l.584-7.819l1.085-9.6l1.058-12.354l.361-3.478l1.725-4.173l3.423-2.254l2.67 1.28l2.2 3.144l-.307 2.031l-1.308 8.487l-2.56 13.3l-1.67 8.904h.975l1.113-1.113l4.507-5.983l7.569-9.46l3.339-3.756l3.895-4.146l2.504-1.976h4.73l3.478 5.176l-1.558 5.342l-4.869 6.177l-4.035 5.231l-5.787 7.79l-3.617 6.234l.334.5l.862-.083l13.078-2.782l7.067-1.28l8.431-1.447l3.812 1.78l.417 1.81l-1.502 3.7l-9.015 2.226l-10.574 2.114l-15.748 3.729l-.195.139l.222.278l7.096.668l3.033.167h7.429l13.829 1.03l3.617 2.392l2.17 2.922l-.362 2.226l-5.565 2.838l-7.512-1.78l-17.53-4.174l-6.01-1.503h-.835v.5l5.009 4.898l9.182 8.292L97.776 88.12l.584 2.644l-1.475 2.087l-1.558-.223l-10.1-7.596l-3.896-3.423l-8.82-7.429h-.584v.78l2.03 2.977l10.741 16.138l.556 4.953l-.779 1.613l-2.782.974l-3.06-.556l-6.29-8.82l-6.482-9.934l-5.231-8.904l-.64.362l-3.089 33.25l-1.447 1.698l-3.339 1.28l-2.782-2.115l-1.475-3.423l1.475-6.76l1.78-8.821l1.448-7.012l1.307-8.71l.78-2.893l-.056-.195l-.64.084l-6.567 9.015l-9.989 13.495l-7.902 8.459l-1.892.75l-3.283-1.697l.306-3.032l1.836-2.7l10.935-13.912l6.595-8.625l4.257-4.98l-.028-.724h-.25L18.92 85.06l-5.175.668l-2.226-2.087l.279-3.423l1.057-1.113l8.737-6.01z"/><path d="M179.413 93.351c-13.968 0-23.512-7.79-28.02-19.783a53.4 53.4 0 0 1-3.422-19.56c0-20.118 9.015-34.086 28.938-34.086c13.383 0 21.647 5.844 26.35 19.784h5.731l-.779-19.227c-8.013-5.175-18.03-7.791-30.217-7.791c-17.168 0-31.776 7.68-39.9 21.536a46.66 46.66 0 0 0-6.178 24.068c0 15.387 7.263 29.022 20.897 36.59a48.7 48.7 0 0 0 24.29 5.732c13.3 0 23.846-2.532 33.195-6.956l2.42-21.203h-5.842c-3.506 9.683-7.68 15.498-14.608 18.587c-3.395 1.53-7.68 2.31-12.855 2.31m60.24-73.429l.557-9.46h-3.952l-17.585 5.287v2.866l7.791 3.617V88.4c0 4.507-2.31 5.509-8.347 6.26v4.842h29.911V94.66c-6.065-.751-8.347-1.753-8.347-6.26V19.95zm118.95 80.692h2.31l20.228-3.84V91.82l-2.838-.222c-4.73-.446-5.955-1.42-5.955-5.287V51.03l.557-11.324h-3.2L350.59 42.46v4.842l1.864.334c5.175.75 6.706 2.198 6.706 5.815v31.442c-4.953 3.84-9.683 6.26-15.304 6.26c-6.233 0-10.1-3.172-10.1-10.573V51.058l.556-11.325h-3.283l-19.143 2.755v4.842l1.975.333c5.176.752 6.706 2.199 6.706 5.816v29.02c0 12.3 6.956 18.142 18.03 18.142c8.459 0 15.387-4.507 20.59-10.768l-.556 10.768zm-55.593-39.15c0-15.72-8.348-21.758-23.429-21.758c-13.3 0-22.955 5.509-22.955 14.635c0 2.727.974 4.814 2.95 6.26l10.128-1.335c-.446-3.06-.668-4.925-.668-5.704c0-5.175 2.754-7.79 8.347-7.79c8.264 0 12.438 5.815 12.438 15.164v3.06l-20.869 6.261c-6.956 1.892-10.907 3.534-13.55 7.374a13.9 13.9 0 0 0-1.948 7.79c0 8.904 6.121 15.193 16.583 15.193c7.569 0 14.275-3.423 20.118-9.906c2.087 6.483 5.286 9.906 10.99 9.906c4.62 0 8.793-1.865 12.521-5.51l-1.113-3.84a17.8 17.8 0 0 1-4.813.668c-3.2 0-4.73-2.532-4.73-7.484zM276.298 91.71c-5.704 0-9.238-3.311-9.238-9.127c0-3.95 1.865-6.26 5.843-7.596l16.918-5.37v16.25c-5.398 4.09-8.57 5.843-13.523 5.843m176.13 5.064V91.82l-2.866-.222c-4.73-.446-5.927-1.42-5.927-5.287v-66.39l.557-9.46h-3.98l-17.585 5.287v2.866l7.791 3.617V43.99a24.57 24.57 0 0 0-14.941-4.285c-17.474 0-31.108 13.3-31.108 33.194c0 16.39 9.794 27.714 25.932 27.714c8.348 0 15.61-4.063 20.117-10.351l-.556 10.35h2.337zM415.81 46.3c8.348 0 14.608 4.842 14.608 13.745v25.043a20.03 20.03 0 0 1-14.496 5.843c-11.965 0-18.03-9.46-18.03-22.093c0-14.19 6.928-22.538 17.918-22.538m79.384 12.521c-1.558-7.346-6.066-11.52-12.326-11.52c-9.35 0-15.833 7.04-15.833 17.14c0 14.943 7.903 24.625 20.674 24.625a23.93 23.93 0 0 0 20.563-12.103L512 77.964c-1.67 12.967-13.411 22.65-27.825 22.65c-16.917 0-28.575-12.521-28.575-30.33c0-17.946 12.66-30.578 29.577-30.578c12.632 0 21.536 7.596 24.402 20.785l-44.074 13.522V68.06l29.689-9.21z"/></svg>
+
+  </div>
+
+  <div className="w-[33.33%] pt-[1px] border-t  border-b  border-[#e7e7e715] flex items-center justify-center">
+
+    <div className="w-full h-full  border-[#e7e7e715] flex items-center justify-center">
+     <svg className="-mt-2.5" xmlns="http://www.w3.org/2000/svg" width="87.15" height="32" viewBox="0 0 512 188"><defs><radialGradient id="logosGoogleGemini0" cx="85.738%" cy="25.354%" r="103.154%" fx="85.738%" fy="25.354%" gradientTransform="matrix(-.86887 .47915 -.39276 -.66723 1.702 .012)"><stop offset="0%" stopColor="#5BAEFF"/><stop offset="100%" stopColor="#9CBFFF"/></radialGradient><radialGradient id="logosGoogleGemini1" cx="61.879%" cy="26.683%" r="80.612%" fx="61.879%" fy="26.683%" gradientTransform="scale(-1 -.9195)rotate(-81.526 -.323 .706)"><stop offset="0%" stopColor="#409DFF"/><stop offset="100%" stopColor="#64B0FF"/></radialGradient><radialGradient id="logosGoogleGemini2" cx="53.184%" cy="19.021%" r="110.789%" fx="53.184%" fy="19.021%" gradientTransform="scale(-.6801 -1)rotate(-76.197 -.368 .838)"><stop offset="0%" stopColor="#177CFF"/><stop offset="100%" stopColor="#4DA4FF"/></radialGradient><radialGradient id="logosGoogleGemini3" cx="-182.665%" cy="10.869%" r="521.404%" fx="-182.665%" fy="10.869%" gradientTransform="scale(1 .1796)rotate(65.413 -2.213 .357)"><stop offset="0%" stopColor="#1C7AFF"/><stop offset="100%" stopColor="#76A9FF"/><stop offset="100%" stopColor="#8FB9FF"/></radialGradient><linearGradient id="logosGoogleGemini4" x1="48.887%" x2="48.887%" y1="8.809%" y2="100%"><stop offset="0%" stopColor="#076EFF"/><stop offset="100%" stopColor="#3E93FF"/></linearGradient><linearGradient id="logosGoogleGemini5" x1="13.217%" x2="78.598%" y1="0%" y2="94.201%"><stop offset="0%" stopColor="#076EFF"/><stop offset="100%" stopColor="#69A3FF"/></linearGradient></defs><path fill="url(#logosGoogleGemini0)" d="M125.939 126.64q0 26.094-15.482 41.575q-17.395 18.438-45.748 18.438q-27.135 0-45.923-18.786Q0 149.08 0 121.597q0-27.485 18.786-46.27Q37.573 56.54 64.71 56.54q13.741 0 25.918 4.87t20.004 13.742l-11.48 11.48q-5.74-6.957-14.873-10.871t-19.57-3.914q-20.351 0-34.441 14.09q-13.916 14.264-13.916 35.66t13.916 35.659q14.09 14.09 34.442 14.09q18.613 0 30.963-10.437t14.263-28.702H64.71v-14.96h60.36q.87 4.872.87 9.394"/><path fill="url(#logosGoogleGemini1)" d="M176.17 96.205q19.152 0 30.485 12.387q11.334 12.388 11.334 34.703l-.176 1.757h-67.648q.352 12.651 8.434 20.382q8.083 7.73 19.328 7.73q15.462 0 24.248-15.461l14.408 7.028q-5.799 10.894-16.077 17.044t-23.282 6.15q-18.976 0-31.276-13.003t-12.299-32.857q0-19.68 11.948-32.77t30.573-13.09m-.351 14.76q-9.137 0-15.726 5.622q-6.59 5.623-8.698 15.11h49.374q-.702-8.96-7.292-14.846t-17.658-5.887"/><path fill="url(#logosGoogleGemini2)" d="M244.493 184.843h-16.116V99.008h15.416v11.912h.7q3.68-6.306 11.299-10.51q7.62-4.206 15.153-4.205q9.459 0 16.641 4.38q7.182 4.379 10.51 12.086q10.687-16.466 29.605-16.466q14.89 0 22.948 9.11q8.058 9.108 8.058 25.925v53.603h-16.116v-51.15q0-12.088-4.38-17.43q-4.379-5.343-14.714-5.343q-9.285 0-15.59 7.883q-6.307 7.882-6.307 18.568v47.472h-16.116v-51.15q0-12.088-4.38-17.43q-4.379-5.343-14.714-5.343q-9.285 0-15.59 7.883q-6.307 7.882-6.307 18.568z"/><path fill="url(#logosGoogleGemini4)" d="M393.263 69.216q0 4.737-3.334 8.07q-3.334 3.335-8.071 3.335t-8.071-3.334t-3.334-8.071q0-4.738 3.334-8.071q3.334-3.334 8.07-3.334q4.74 0 8.072 3.334q3.334 3.334 3.334 8.07m-3.334 29.652v85.975h-16.142V98.868z"/><path fill="url(#logosGoogleGemini3)" d="M512 69.216q0 4.737-3.334 8.07q-3.334 3.335-8.07 3.335q-4.74 0-8.072-3.334q-3.333-3.334-3.334-8.071q0-4.738 3.334-8.071q3.334-3.334 8.071-3.334t8.071 3.334t3.334 8.07m-3.334 29.652v85.975h-16.142V98.868z"/><path fill="url(#logosGoogleGemini5)" d="M404.004 99.008h15.415v11.912h.7q3.68-6.306 11.3-10.51q7.62-4.206 15.853-4.205q15.765 0 24.261 9.022q8.496 9.02 8.496 25.663v53.953h-16.116v-52.902q-.526-21.021-21.196-21.021q-9.634 0-16.116 7.795t-6.481 18.656v47.472h-16.116z"/><path fill="#076EFF" d="M348.374 72.76c-2.846-18.788-17.592-33.533-36.38-36.38c18.788-2.847 33.534-17.593 36.38-36.38c2.847 18.787 17.593 33.533 36.38 36.38c-18.787 2.847-33.533 17.592-36.38 36.38"/></svg>
+      </div>
+     
+    <div className="w-full h-full  border-r flex items-center justify-center border-[#e7e7e715]">
+
+    <svg className="fill-white" xmlns="http://www.w3.org/2000/svg" width="39.39" height="32" viewBox="0 0 256 208"><path d="M205.28 31.36c14.096 14.88 20.016 35.2 22.512 63.68c6.626 0 12.805 1.47 16.976 7.152l7.792 10.56A17.55 17.55 0 0 1 256 123.2v28.688c-.008 3.704-1.843 7.315-4.832 9.504C215.885 187.222 172.35 208 128 208c-49.066 0-98.19-28.273-123.168-46.608c-2.989-2.189-4.825-5.8-4.832-9.504V123.2c0-3.776 1.2-7.424 3.424-10.464l7.792-10.544c4.173-5.657 10.38-7.152 16.992-7.152c2.496-28.48 8.4-48.8 22.512-63.68C77.331 3.165 112.567.06 127.552 0H128c14.72 0 50.4 2.88 77.28 31.36m-77.264 47.376c-3.04 0-6.544.176-10.272.544c-1.312 4.896-3.248 9.312-6.08 12.128c-11.2 11.2-24.704 12.928-31.936 12.928c-6.802 0-13.927-1.42-19.744-5.088c-5.502 1.808-10.786 4.415-11.136 10.912c-.586 12.28-.637 24.55-.688 36.824c-.026 6.16-.05 12.322-.144 18.488c.024 3.579 2.182 6.903 5.44 8.384C79.936 185.92 104.976 192 128.016 192c23.008 0 48.048-6.08 74.512-18.144c3.258-1.48 5.415-4.805 5.44-8.384c.317-18.418.062-36.912-.816-55.312h.016c-.342-6.534-5.648-9.098-11.168-10.912c-5.82 3.652-12.927 5.088-19.728 5.088c-7.232 0-20.72-1.728-31.936-12.928c-2.832-2.816-4.768-7.232-6.08-12.128a106 106 0 0 0-10.24-.544m-26.941 43.93c5.748 0 10.408 4.66 10.408 10.409v19.183c0 5.749-4.66 10.409-10.408 10.409s-10.408-4.66-10.408-10.409v-19.183c0-5.748 4.66-10.408 10.408-10.408m53.333 0c5.749 0 10.409 4.66 10.409 10.409v19.183c0 5.749-4.66 10.409-10.409 10.409c-5.748 0-10.408-4.66-10.408-10.409v-19.183c0-5.748 4.66-10.408 10.408-10.408M81.44 28.32c-11.2 1.12-20.64 4.8-25.44 9.92c-10.4 11.36-8.16 40.16-2.24 46.24c4.32 4.32 12.48 7.2 21.28 7.2c6.72 0 19.52-1.44 30.08-12.16c4.64-4.48 7.52-15.68 7.2-27.04c-.32-9.12-2.88-16.64-6.72-19.84c-4.16-3.68-13.6-5.28-24.16-4.32m68.96 4.32c-3.84 3.2-6.4 10.72-6.72 19.84c-.32 11.36 2.56 22.56 7.2 27.04c10.56 10.72 23.36 12.16 30.08 12.16c8.8 0 16.96-2.88 21.28-7.2c5.92-6.08 8.16-34.88-2.24-46.24c-4.8-5.12-14.24-8.8-25.44-9.92c-10.56-.96-20 .64-24.16 4.32M128 56c-2.56 0-5.6.16-8.96.48c.32 1.76.48 3.68.64 5.76c0 1.44 0 2.88-.16 4.48c3.2-.32 5.92-.32 8.48-.32s5.28 0 8.48.32c-.16-1.6-.16-3.04-.16-4.48c.16-2.08.32-4 .64-5.76c-3.36-.32-6.4-.48-8.96-.48"/></svg>
+
+    </div>
+
+
+
+  </div> 
+
+  <div className="w-[33.33%] border-t   border-[#e7e7e715] flex items-center justify-center">
+  <svg className="fill-white" xmlns="http://www.w3.org/2000/svg" width="130.04" height="32" viewBox="0 0 512 126"><path d="M365.131 49.074c-7.537 0-12.917 2.575-15.557 7.45l-1.42 2.64v-8.819H335.89v53.61h12.901V72.06c0-7.62 4.142-11.991 11.356-11.991c6.88 0 10.825 4.256 10.825 11.674v32.211h12.907V69.442c0-12.764-7.007-20.368-18.747-20.368m-62.565 0c-15.224 0-24.652 9.5-24.652 24.789v7.527c0 14.703 9.538 23.835 24.893 23.835c10.271 0 17.47-3.763 22-11.504l-7.998-4.602c-3.347 4.465-8.694 7.231-13.997 7.231c-7.773 0-12.413-4.798-12.413-12.84v-2.131h36.008v-8.891c0-14.243-9.352-23.414-23.83-23.414zm12.1 23.638h-24.311v-1.287c0-8.825 4.333-13.695 12.2-13.695c7.576 0 12.101 4.798 12.101 12.84zM512 41.52V31.265h-44.625V41.52h15.646v52.157h-15.646v10.255H512V93.677h-15.651V41.52zM173.638 29.786c-19.93 0-32.32 12.419-32.32 32.42v10.813c0 19.995 12.385 32.42 32.32 32.42s32.321-12.425 32.321-32.42V62.205c-.005-20.022-12.408-32.42-32.321-32.42m18.987 43.973c0 13.279-6.919 20.893-18.987 20.893s-18.982-7.614-18.982-20.893V61.46c0-13.279 6.925-20.893 18.988-20.893S192.63 48.18 192.63 61.46zm53.856-24.685c-6.771 0-12.633 2.805-15.69 7.5l-1.386 2.136v-8.365h-12.27V122.4h12.906V96.3l1.38 2.049c2.904 4.306 8.574 6.875 15.17 6.875c11.125 0 22.35-7.27 22.35-23.518v-9.115c0-11.707-6.919-23.518-22.46-23.518m9.554 32.003c0 8.64-5.04 14.008-13.148 14.008c-7.56 0-12.835-5.675-12.835-13.794v-8.064c0-8.217 5.319-14.002 12.945-14.002c8.047 0 13.048 5.363 13.048 14.002zM419.54 31.27l-26.037 72.684h13.109l4.985-15.58h29.932l.05.154l4.93 15.426h13.104l-26.082-72.69zm-4.744 46.855l11.745-36.748l11.625 36.748zM116.085 51.561a31.37 31.37 0 0 0-2.695-25.774a31.77 31.77 0 0 0-34.184-15.224A31.4 31.4 0 0 0 55.536.001a31.74 31.74 0 0 0-30.278 21.99A31.4 31.4 0 0 0 4.282 37.213a31.77 31.77 0 0 0 3.906 37.218a31.4 31.4 0 0 0 2.695 25.748a31.77 31.77 0 0 0 34.21 15.256a31.4 31.4 0 0 0 23.644 10.562a31.74 31.74 0 0 0 30.278-21.99a31.4 31.4 0 0 0 20.97-15.223a31.73 31.73 0 0 0-3.9-37.224m-47.348 66.22a23.52 23.52 0 0 1-15.108-5.478c.186-.104.548-.285.756-.422l25.09-14.484a4.07 4.07 0 0 0 2.06-3.567V58.453l10.6 6.119a.37.37 0 0 1 .208.296v29.28c0 13.041-10.564 23.618-23.606 23.633M18.015 96.12a23.56 23.56 0 0 1-2.82-15.821c.185.115.514.312.744.443l25.096 14.49a4.08 4.08 0 0 0 4.12 0L75.77 77.528v12.238a.37.37 0 0 1-.148.328L50.26 104.732c-11.292 6.502-25.716 2.637-32.245-8.64zm-6.573-54.782a23.5 23.5 0 0 1 12.287-10.354v29.823a4.08 4.08 0 0 0 2.06 3.567l30.623 17.683l-10.639 6.141a.37.37 0 0 1-.356.033L20.059 73.589c-11.282-6.527-15.148-20.957-8.64-32.25zm87.102 20.27L67.92 43.924l10.59-6.125a.38.38 0 0 1 .355-.033l25.359 14.643a23.61 23.61 0 0 1-3.649 42.598V65.191a4.08 4.08 0 0 0-2.049-3.583zM109.1 45.721a30 30 0 0 0-.745-.444L83.26 30.788a4.08 4.08 0 0 0-4.12 0L48.517 48.466V36.233a.4.4 0 0 1 .154-.328l25.358-14.638a23.61 23.61 0 0 1 35.06 24.46zM42.738 67.546l-10.605-6.119a.4.4 0 0 1-.203-.295V31.85a23.605 23.605 0 0 1 38.714-18.155c-.186.105-.52.285-.756.422l-25.09 14.484a4.08 4.08 0 0 0-2.06 3.567zm5.758-12.418l13.64-7.878l13.635 7.878v15.744l-13.64 7.877l-13.64-7.877z"/></svg>
+    </div> 
+
+
+</div>
+
+
+
+ 
   
 </div>
 <TiltedLines  borderL={true} borderR={true}  />
@@ -909,40 +1156,48 @@ Every component from uipub registry is compatible with shadcn/ui CLI.</p>
 </div>
 <div className="  w-[54%] ml-auto mr-auto  h-[50px]   ">
 <br />
-<div className="w-[95%]    ml-auto mr-auto  h-full flex items-center justify-between">
+<div className="w-[95%]    ml-auto mr-auto  h-full flex  items-center justify-between">
 
     <div className="flex flex-col items-center justify-center h-full  ">
       <p className="text-xs fonc text-[#e7e7e750]"> Total Views</p>
       <p className="text-sm fonc text-[#e7e7e750]"> 1600</p>
 
     </div>
+    <Separator orientation="vertical" className={"bg-[#e7e7e715]"} />
 
     <div className="flex flex-col items-center justify-center h-full  ">
       <p className="text-xs fonc text-[#e7e7e750]"> Views This Month</p>
       <p className="text-sm fonc text-[#e7e7e750]"> 125</p>
 
     </div>
+    <Separator orientation="vertical" className={"bg-[#e7e7e715]"} />
+
     <div className="flex flex-col items-center justify-center h-full  ">
       <p className="text-xs fonc text-[#e7e7e750]"> Avg. Time Spent</p>
       <p className="text-sm fonc text-[#e7e7e750]"> 56 S</p>
 
     </div>
+    <Separator orientation="vertical" className={"bg-[#e7e7e715]"} />
+
     <div className="flex flex-col items-center justify-center h-full  ">
       <p className="text-xs fonc text-[#e7e7e750]"> Scroll Percentage</p>
       <p className="text-sm fonc text-[#e7e7e750]"> 67%</p>
 
     </div>
+    <Separator orientation="vertical" className={"bg-[#e7e7e715]"} />
     <div className="flex flex-col items-center justify-center h-full  ">
       <p className="text-xs fonc text-[#e7e7e750]"> Call On Actions</p>
       <p className="text-sm fonc text-[#e7e7e750]"> 375</p>
 
     </div>
+    <Separator orientation="vertical" className={"bg-[#e7e7e715]"} />
 
     <div className="flex flex-col items-center justify-center h-full  ">
       <p className="text-xs fonc text-[#e7e7e750]"> CDN Requests </p>
       <p className="text-sm fonc text-[#e7e7e750]"> 3758</p>
 
     </div>
+    <Separator orientation="vertical" className={"bg-[#e7e7e715]"} />
 
     <div className="flex flex-col items-center justify-center h-full  ">
       <p className="text-xs fonc text-[#e7e7e750]"> Bounces</p>

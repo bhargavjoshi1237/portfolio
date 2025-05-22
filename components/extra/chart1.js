@@ -89,15 +89,16 @@ export default function Chart1({ data = defaultData, centerLabel = null }) {
 
   return (
     <Card className="flex  flex-col bg-[#161616] border-none text-white">
-      <CardContent className="flex-1 pb-0">
+      <CardContent className="flex-1 pb-0 text-white">
         <ChartContainer
           config={chartConfig}
           className="mx-auto aspect-square h-[200px] text-white"
         >
-          <PieChart key={dataKey}>
+          <PieChart key={dataKey} className="text-white">
             <ChartTooltip
               cursor={false}
-              content={<CustomTooltip />}
+              content={<CustomTooltip  className="text-white" />}
+              className="text-white"
             />
             <Pie
               data={chartData}
@@ -115,16 +116,16 @@ export default function Chart1({ data = defaultData, centerLabel = null }) {
                   if (viewBox && "cx" in viewBox && "cy" in viewBox) {
                     return (
                       <text
-                      className="fon "
+                      className="fon text-white"
                         x={viewBox.cx}
                         y={viewBox.cy}
                         textAnchor="middle"
                         dominantBaseline="middle"
-                      >
+                      > 
                         <tspan
                           x={viewBox.cx}
                           y={viewBox.cy}
-                          className=" text-white text-3xl font-bold"
+                          className=" text-white text-3xl  "
                         >
                           {centerLabel || totalTime}
                         </tspan>
@@ -135,7 +136,11 @@ export default function Chart1({ data = defaultData, centerLabel = null }) {
                         >
                           ms
                         </tspan>
-                      </text>
+                        <p className="fon ">
+                        {centerLabel || totalTime}
+                        </p>
+                        </text>
+                      
                     )
                   }
                 }}
