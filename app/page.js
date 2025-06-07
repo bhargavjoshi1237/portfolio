@@ -9,15 +9,19 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator"
 import { ThreeDMarqueeDemo } from "@/components/marq";
 import dynamic from 'next/dynamic';
-import Dashboard from "@/components/Dashboard";
+import LampDemo from "@/components/ui/lamp";
+import { motion } from "motion/react";
+import { LampContainer } from "@/components/ui/lamp";
+// import LampDemo from "@/components/lamp";
+ import Spline from '@splinetool/react-spline';
 
 // Dynamically import Spline with error boundary
-const SplineComponent = dynamic(() => import('@splinetool/react-spline'), {
-  ssr: false,
-  loading: () => <div className="w-full h-full flex items-center justify-center">
-    <p className="text-sm text-[#e7e7e780]">Loading 3D scene...</p>
-  </div>
-});
+// const SplineComponent = dynamic(() => import('@splinetool/react-spline/dist/react-spline'), {
+//   ssr: false,
+//   loading: () => <div className="w-full h-full flex items-center justify-center">
+//     <p className="text-sm text-[#e7e7e780]">Loading 3D scene...</p>
+//   </div>
+// });
 
 
 export default function Home() {
@@ -25,30 +29,30 @@ export default function Home() {
     <>
     <style>{` 
       .glow-green {
-        box-shadow: 0 0 20px 8px #22c55e, 0 0 36px 14px #22c55e55;
+        box-shadow: 0 0 20px 8px #c42121, 0 0 36px 14px #c42121;
         animation: glow-pulse 1.1s cubic-bezier(0.4,0,0.2,1) infinite;
       }
       @keyframes glow-pulse {
         0% {
           transform: scale(1);
-          box-shadow: 0 0 6px 2px #22c55e, 0 0 12px 4px #22c55e55;
+          box-shadow: 0 0 6px 2px #c42121, 0 0 12px 4px #c42121;
           opacity: 0.7;
         }
         50% {
           transform: scale(1.2);
-          box-shadow: 0 0 32px 12px #22c55e, 0 0 64px 24px #22c55e88;
+          box-shadow: 0 0 32px 12px #c42121, 0 0 64px 24px #c42121;
           opacity: 1;
         }
         100% {
           transform: scale(1);
-          box-shadow: 0 0 6px 2px #22c55e, 0 0 12px 4px #22c55e55;
+          box-shadow: 0 0 6px 2px #c42121, 0 0 12px 4px #c42121;
           opacity: 0.7;
         }
       }
     `}</style>
-    <div className="w-full h-full min-h-screen bg-[#161616] ">
+    <div className="w-full h-full min-h-screen bg-[#161616] overflow-x-hidden">
       <div className="h-[50px]  w-full flex">
-      <div className="min-w-[23%] h-full flex  border-r border-[#e7e7e715]   items-end  justify-end">
+      <div className="w-[5%] md:min-w-[23%]    h-full flex  border-r border-[#e7e7e715]   items-end  justify-end">
       
 
     
@@ -56,8 +60,8 @@ export default function Home() {
 
       </div>
 
-      <div className="min-w-[54%]  border-r border-b border-[#e7e7e715]  "></div>
-      <div className="min-w-[23%] h-full ">
+      <div className="w-full ml-auto mr-auto  border-r   border-[#e7e7e715]  "></div>
+      <div className="w-[5%] md:min-w-[23%]   h-full ">
       
 
     
@@ -66,7 +70,7 @@ export default function Home() {
 
       </div>
       <div className="h-[50px]   w-full flex">
-      <div className="min-w-[23%] h-full tilted-lines border border-[#e7e7e715] flex   items-end  justify-end">
+      <div className="w-[5%] md:min-w-[23%]  h-full tilted-linesx border border-[#e7e7e715] flex   items-end  justify-end">
         
       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-[#e7e7e740] -mr-3.5 -mb-3" aria-hidden="true">
     <path d="M5 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
@@ -75,8 +79,8 @@ export default function Home() {
 
 
       </div>
-      <div className=" min-w-[54%] flex items-center justify-center   text-sm   "><p className="fon lit">Current Status: On Internship Under Amazon Hydrabad 6M </p> <div className="  h-[10px] w-[10px] ml-4 bg-green-500 rounded-full glow-green"></div></div>
-      <div className="min-w-[23%] h-full tilted-lines border border-[#e7e7e715] flex   items-end  justify-start">
+      <div className="w-full md:min-w-[54%] flex items-center justify-center   text-sm  border-[#e7e7e715] border-t border-b "><p className="fon lit">Current Status: No Intership or Job</p> <div className="  h-[10px] w-[10px] ml-4 bg-red-500 rounded-full glow-green"></div></div>
+      <div className="w-[5%] md:min-w-[23%]  h-full tilted-linesx border border-[#e7e7e715] flex   items-end  justify-start">
       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-[#e7e7e740] -ml-3 -mb-3" aria-hidden="true">
       <path d="M5 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
       <path d="M12 5V19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
@@ -85,12 +89,13 @@ export default function Home() {
 
       </div>
 
-      <div className="flex">
-        <div className="min-w-[23%] h-full "></div>
-        <div className="min-w-[54%]  flex border-l border-r  border-[#e7e7e730] ">
+      <div className="flex  md:h-full h-[700px] ">
+        <div className="min-w-[23%] h-full md:block  hidden"></div>
+        <div className="w-[5%]   ml-auto mr-auto tilted-linesx"></div>
+        <div className="min-w-[54%]  w-[90%] flex border-l border-r  border-[#e7e7e730] ">
           
         <svg 
-            className="  -mt-[100%] inset-0 pointer-events-none  text-[#e7e7e730]" 
+            className="-mt-0  md:-mt-[100%] inset-0 pointer-events-none  text-[#e7e7e730]" 
             viewBox="0 0 210 340" 
             fill="none" 
             xmlns="http://www.w3.org/2000/svg"
@@ -117,33 +122,33 @@ export default function Home() {
             </defs>
           </svg>
   
-          <div className=" absolute z-20 w-[54%] flex  h-[67%]">
+          <div className=" absolute z-20 w-full md:w-[54%]  flex md:flex-row flex-col md:h-[67%]">
             
-          <div className="w-[61.5%] flex flex-col items-center justify-center mr-auto  h-full">
+          <div className="w-full md:w-[61.5%] flex flex-col items-center justify-center mr-auto  h-full">
 
-          <div className="w-[85%] h-[35%]  -mt-10 ">
-            <div className=" w-full h-[10%] flex items-end pb-4 justify-start ">
+          <div className="w-[85%] h-[35%]  md:-mt-10 mt-10">
+            <div className=" w-full h-[10%] flex items-end pb-4 justify-start md:block hidden">
           <p className="text-sm fonc mb-2 text-[#e7e7e780] ">In The Pixel Perfection Era</p>
 
             </div>
           <div className="w-full flex items-center justify-center">
-            <p className="text-6xl objr text-[#e7e7e7]  ">Perfect solutions to build next-gen experiences</p>
+            <p className="text-4xl md:text-6xl objr text-[#e7e7e7] w-full md:-ml-0 -ml-10">Perfect solutions to build next-gen experiences</p>
           </div>
          
           
           </div>
-          <div className="h-[35%] w-[85%] "> 
-          <p className="fonc text-md mt-5 text-[#e7e7e770]">
+          <div className="h-[35%] w-[75%] md:w-[85%] "> 
+          <p className="fonc text-md mt-5 text-[#e7e7e770]  md:-ml-0 -ml-10">
           A passionate Full-Stack Developer focused on building high-performance, scalable web applications. transform complex ideas into robust, user-centric digital experiences.
           </p>
-          <div className="flex mt-10">
+          <div className="flex mt-10 md:block hidden">
           <p className="fonc  text-[#e7e7e770] mr-1.5"> For the </p><p className="fon">Pixel Perfection.</p>
           </div>
           <Button variant="secondary"
           onClick={() => {
             toast("Contact Info")
         }}
-          className={"px-6 mt-10"}>Contact Info</Button>
+          className={"px-6 mt-10  md:-ml-0 -ml-10"}>Contact Info</Button>
           {/* <button 
                 
                 className="w-[180px] h-[40px] mt-4 mx-auto bg-[#1a1a1a] text-white rounded-md
@@ -156,13 +161,13 @@ export default function Home() {
           </div>
           </div>
 
-          <div className="w-[38.5%]   ">
-          <div className="w-full h-[38%]   flex">
+          <div className="w-full mt-10 md:mt-0 md:w-[38.5%]  flex flex-col items-end ">
+          <div className="w-full h-[38%]   flex  ">
            <div className="w-[37%]   h-full items-end flex" >
             
             
 
-           <div className="w-[68%] h-[40%]" >
+           <div className="w-[68%] h-[40%] " >
             
             </div> 
             <div className="w-[33%]   h-[40%]" >
@@ -181,14 +186,14 @@ export default function Home() {
             
             </div> 
           </div>
-          <div className="w-full h-[61%]  flex items-center justify-center   ">
+          <div className="w-full md:h-[61%]     flex items-center justify-center   ">
             
-  <div className="w-[75%] h-[80%] ">
-  <div className="w-full h-[25px]  flex items-center justify-center">
+  <div className="w-full  ml-auto mr-auto    md:w-[75%] h-[80%]  mt-2 md:mt-0">
+  <div className="w-full h-[25px]  flex items-center justify-center md:block hidden">
     <p className="fonc  text-[#e7e7e775] text-md">Build using industry standard tools</p>
   </div>
-  <div className="w-full h-full  flex items-center">
-            <div className=" w-full h-[90%] flex gap-2 flex-col items-center justify-center">
+  <div className="w-full h-full  flex items-center md:mt-0 mt-15">
+            <div className=" w-full h-[90%] flex  gap-2 flex-col items-center justify-center">
 
             <div className="w-[80%]     h-full   flex items-center justify-center ">
             <svg xmlns="http://www.w3.org/2000/svg" height="2.2em" width="2.2em" viewBox="0 0 256 256"><defs><linearGradient id="logosNextjsIcon0" x1="55.633%" x2="83.228%" y1="56.385%" y2="96.08%"><stop offset="0%" stopColor="#FFF"></stop><stop offset="100%" stopColor="#FFF" stopOpacity="0"></stop></linearGradient><linearGradient id="logosNextjsIcon1" x1="50%" x2="49.953%" y1="0%" y2="73.438%"><stop offset="0%" stopColor="#FFF"></stop><stop offset="100%" stopColor="#FFF" stopOpacity="0"></stop></linearGradient><circle id="logosNextjsIcon2" cx="128" cy="128" r="128"></circle></defs><mask id="logosNextjsIcon3" fill="#fff"><use href="#logosNextjsIcon2"></use></mask><g mask="url(#logosNextjsIcon3)"><circle cx="128" cy="128" r="128"></circle><path fill="url(#logosNextjsIcon0)" d="M212.634 224.028L98.335 76.8H76.8v102.357h17.228V98.68L199.11 234.446a128 128 0 0 0 13.524-10.418"></path><path fill="url(#logosNextjsIcon1)" d="M163.556 76.8h17.067v102.4h-17.067z"></path></g></svg>
@@ -223,23 +228,23 @@ export default function Home() {
             </div>
 
             <div className="w-[80%]    h-full   flex items-center justify-center ">
-            <svg xmlns="http://www.w3.org/2000/svg" width="1.3em" height="1.3em" viewBox="0 0 256 384"> <path fill="#0ACF83" d="M64 384c35.328 0 64-28.672 64-64v-64H64c-35.328 0-64 28.672-64 64s28.672 64 64 64"></path><path fill="#A259FF" d="M0 192c0-35.328 28.672-64 64-64h64v128H64c-35.328 0-64-28.672-64-64"></path><path fill="#F24E1E" d="M0 64C0 28.672 28.672 0 64 0h64v128H64C28.672 128 0 99.328 0 64"></path><path fill="#FF7262" d="M128 0h64c35.328 0 64 28.672 64 64s-28.672 64-64 64h-64z"></path><path fill="#1ABCFE" d="M256 192c0 35.328-28.672 64-64 64s-64-28.672-64-64s28.672-64 64-64s64 28.672 64 64"></path></svg>
+           <div className="flex items-center w-full">  <svg xmlns="http://www.w3.org/2000/svg" width="1.3em" height="1.3em" viewBox="0 0 256 384"> <path fill="#0ACF83" d="M64 384c35.328 0 64-28.672 64-64v-64H64c-35.328 0-64 28.672-64 64s28.672 64 64 64"></path><path fill="#A259FF" d="M0 192c0-35.328 28.672-64 64-64h64v128H64c-35.328 0-64-28.672-64-64"></path><path fill="#F24E1E" d="M0 64C0 28.672 28.672 0 64 0h64v128H64C28.672 128 0 99.328 0 64"></path><path fill="#FF7262" d="M128 0h64c35.328 0 64 28.672 64 64s-28.672 64-64 64h-64z"></path><path fill="#1ABCFE" d="M256 192c0 35.328-28.672 64-64 64s-64-28.672-64-64s28.672-64 64-64s64 28.672 64 64"></path></svg>
              <div className="w-full b  flex items-start justify-center">
-            <p className="text-sm w-[70%]     text-[#e7e7e795] fonc ml-2">Figma</p>
+            <p className="text-sm w-[70%]     text-[#e7e7e795] fonc ml-2">Figma</p></div>
             </div>
             </div>
 
-            <div className="w-[80%]    h-full   flex items-center justify-center ">
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" className="-ml-1" viewBox="0 0 256 256"> <path fill="#112B49" d="M160.227 178.519h27.63L143.75 64.049h-30.549l-44.107 114.47h27.632l7.208-19.39h41.675l-7.544-21.456h-27.44l17.85-49.254zm91.112-84.751a6.64 6.64 0 0 0-8.185-4.627a6.65 6.65 0 0 0-4.628 8.183A114.7 114.7 0 0 1 242.704 128c0 63.248-51.456 114.702-114.704 114.702S13.297 191.248 13.297 128C13.297 64.751 64.752 13.296 128 13.296c26.793 0 52.718 9.518 73.179 26.456a15.9 15.9 0 0 0-1.238 6.173c0 8.835 7.162 15.997 15.997 15.997s15.997-7.162 15.997-15.997s-7.162-15.997-15.997-15.997c-1.701 0-3.338.271-4.876.763C188.022 11.056 158.513 0 128 0C57.421 0 0 57.42 0 128c0 70.579 57.421 127.999 128 127.999S256 198.579 256 128a128 128 0 0 0-4.661-34.232"/></svg>
+            <div className="w-[80%]    h-full   flex items-center justify-center  md:block hidden">
+             <div className="flex items-center w-full"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" className="-ml-1" viewBox="0 0 256 256"> <path fill="#112B49" d="M160.227 178.519h27.63L143.75 64.049h-30.549l-44.107 114.47h27.632l7.208-19.39h41.675l-7.544-21.456h-27.44l17.85-49.254zm91.112-84.751a6.64 6.64 0 0 0-8.185-4.627a6.65 6.65 0 0 0-4.628 8.183A114.7 114.7 0 0 1 242.704 128c0 63.248-51.456 114.702-114.704 114.702S13.297 191.248 13.297 128C13.297 64.751 64.752 13.296 128 13.296c26.793 0 52.718 9.518 73.179 26.456a15.9 15.9 0 0 0-1.238 6.173c0 8.835 7.162 15.997 15.997 15.997s15.997-7.162 15.997-15.997s-7.162-15.997-15.997-15.997c-1.701 0-3.338.271-4.876.763C188.022 11.056 158.513 0 128 0C57.421 0 0 57.42 0 128c0 70.579 57.421 127.999 128 127.999S256 198.579 256 128a128 128 0 0 0-4.661-34.232"/></svg>
              <div className="w-full -ml-2 flex items-start justify-center">
-            <p className="text-sm w-[70%]     text-[#e7e7e795] fonc ml-2">Apollo QL</p>
+            <p className="text-sm w-[70%]     text-[#e7e7e795] fonc ml-2">Apollo QL</p></div>
             </div>
             </div>
 
-            <div className="w-[80%]    h-full   flex items-center justify-center ">
-            <svg xmlns="http://www.w3.org/2000/svg" width="5.25em" height="2.2em" viewBox="0 0 512 228"> <defs><linearGradient id="logosSqlite0" x1="57.662%" x2="57.662%" y1="2.046%" y2="94.439%"><stop offset="0%" stopColor="#97D9F6"></stop><stop offset="92.024%" stopColor="#0F80CC"></stop><stop offset="100%" stopColor="#0F80CC"></stop></linearGradient></defs><path fill="#003B57" d="M194.52 112.044c-6.821 0-12.368 2.02-16.62 6.055c-4.251 4.04-6.408 9.335-6.408 15.824c0 3.362.535 6.428 1.59 9.237c1.056 2.815 2.699 5.423 4.907 7.78s6.628 5.561 13.215 9.635c8.084 4.934 13.373 8.939 15.912 12.066c2.54 3.124 3.801 6.398 3.801 9.812c0 4.57-1.504 8.219-4.597 10.961c-3.097 2.744-7.24 4.11-12.375 4.11c-5.417 0-10.136-1.909-14.188-5.7c-4.052-3.798-6.098-8.821-6.144-15.117h-2.52v22.851h2.52c.77-2.164 1.834-3.27 3.227-3.27c.67 0 2.24.461 4.685 1.325c5.949 2.117 10.834 3.138 14.674 3.138c6.617 0 12.266-2.317 16.972-7.027c4.7-4.708 7.072-10.387 7.072-17.017c0-5.14-1.566-9.715-4.64-13.701c-3.075-3.992-9.054-8.635-17.99-13.967c-7.689-4.62-12.68-8.382-14.983-11.315c-2.307-2.929-3.492-6.169-3.492-9.724c0-3.845 1.413-6.934 4.199-9.238c2.786-2.305 6.437-3.447 11.006-3.447c5.14 0 9.426 1.526 12.817 4.597c3.388 3.076 5.347 7.339 5.923 12.817h2.52v-19.8h-2.343c-.287 1.009-.552 1.654-.796 1.944c-.237.288-.693.442-1.37.442c-.815 0-2.268-.343-4.332-1.017c-4.42-1.488-8.495-2.254-12.243-2.254m82.342 0c-8.311 0-15.857 1.96-22.674 5.879c-6.828 3.912-12.233 9.345-16.221 16.265S232 148.456 232 156.288c0 10.52 3.444 19.894 10.387 28.11c6.946 8.21 15.27 13.326 24.928 15.293c2.208 1.15 5.367 4.12 9.503 8.928c4.66 5.425 8.603 9.338 11.845 11.668a35.6 35.6 0 0 0 10.43 5.172c3.7 1.126 7.699 1.68 12.023 1.68c5.237 0 9.925-.911 14.055-2.785l-.928-2.299c-2.397.865-4.954 1.282-7.646 1.282c-3.655 0-7.348-1.205-11.05-3.624c-3.697-2.426-8.32-7.053-13.834-13.879c-2.592-3.27-4.381-5.334-5.393-6.143c10.568-2.064 19.257-7.185 26.034-15.382c6.774-8.192 10.165-17.542 10.165-28.022c0-12.442-4.427-22.9-13.215-31.425c-8.796-8.527-19.612-12.818-32.442-12.818m51.403 0l.133 2.696c5.533 0 8.633 1.63 9.326 4.906c.258 1.173.376 3.337.397 6.453l-.044 59.625q-.07 6.68-1.9 8.53c-1.222 1.225-3.287 1.993-6.276 2.298l-.133 2.697h55.16l1.415-13.525h-2.52c-.72 3.684-2.369 6.324-4.994 7.823c-2.633 1.51-7.288 2.254-14.011 2.254h-5.216c-6.05 0-9.55-2.187-10.475-6.586c-.19-.87-.256-1.803-.265-2.828l.22-60.288c0-4.446.561-7.425 1.725-8.884c1.175-1.453 3.295-2.266 6.364-2.475l-.132-2.696zm-50.52 3.27c9.375 0 17.028 3.693 22.94 11.139c5.91 7.449 8.84 17.658 8.84 30.586c0 12.25-2.972 22.058-8.928 29.436c-5.957 7.376-13.884 11.05-23.735 11.05c-9.464 0-17.139-3.789-23.028-11.403c-5.884-7.615-8.795-17.501-8.795-29.658c0-12.492 2.947-22.492 8.884-29.967c5.933-7.466 13.878-11.182 23.823-11.182m126.852 12.819c-1.346 0-2.371.454-3.138 1.37c-.785.912-1.026 2.017-.752 3.359c.265 1.302 1 2.442 2.166 3.403c1.16.96 2.411 1.459 3.757 1.459c1.301 0 2.293-.499 3.005-1.459c.713-.96.93-2.101.663-3.403c-.274-1.342-.983-2.447-2.077-3.36c-1.107-.915-2.323-1.37-3.624-1.37m36.375 9.149c-2.286 8.794-7.241 13.553-14.85 14.32l.088 2.52h8.884l-.177 29.79c.014 5.093.17 8.484.53 10.21c.876 4.131 3.574 6.232 8.089 6.232q9.8-.002 20.552-11.934l-2.165-1.856c-5.175 5.238-9.75 7.867-13.746 7.867c-2.456 0-3.978-1.412-4.553-4.199c-.157-.677-.22-1.468-.22-2.387l.088-33.723h13.569l-.133-4.023h-13.392v-12.817zm52.464 11.226c-7.59 0-13.763 3.685-18.563 11.006c-4.775 7.333-6.253 15.458-4.376 24.398c1.105 5.236 3.306 9.294 6.674 12.154c3.363 2.86 7.629 4.288 12.73 4.288c4.748 0 11.36-1.203 14.143-3.625c2.79-2.42 5.36-6.342 7.735-11.712l-1.9-1.99c-3.788 6.968-11.43 10.476-17.194 10.476c-7.924 0-12.777-4.348-14.586-12.995a32 32 0 0 1-.53-3.536c9.427-1.492 16.571-4.135 21.392-7.955c4.818-3.823 9.655-7.875 8.752-12.155c-.538-2.544-1.858-4.544-3.89-6.055c-2.058-1.511-7.4-2.299-10.387-2.299m-82.96.31l-16.354 3.757v2.917l5.657-.707c2.74 0 4.353 1.24 4.862 3.712c.171.827.28 1.99.31 3.448l-.178 26.74c-.045 3.7-.456 5.851-1.281 6.497q-1.25.972-6.586.973l-.088 2.519h25.944l-.044-2.52c-3.605 0-5.942-.284-6.983-.84c-1.024-.55-1.73-1.555-2.033-3.093c-.235-1.108-.338-3.018-.354-5.657l.089-37.746zm78.806 4.95c1.579 0 3.104.61 4.64 1.812c1.516 1.198 2.439 2.53 2.741 3.978c1.48 7.11-4.823 12.024-19.006 14.762c-.404-5.183.494-9.89 2.785-14.143c2.274-4.25 5.235-6.409 8.84-6.409"></path><path fill="#0F80CC" d="M157.888 9.952H17.15C7.717 9.952 0 17.67 0 27.102V182.31c0 9.432 7.717 17.15 17.15 17.15h92.693c-1.052-46.122 14.698-135.63 48.045-189.508"></path><path fill="url(#logosSqlite0)" d="M152.775 14.955H17.15c-6.698 0-12.148 5.449-12.148 12.148v143.883c30.716-11.788 76.817-21.96 108.693-21.498c6.406-33.494 25.232-99.134 39.08-134.533"></path><path fill="#003B57" d="M190.715 4.872c-9.639-8.595-21.31-5.143-32.827 5.08c-1.71 1.518-3.416 3.203-5.113 5.003c-19.704 20.903-37.994 59.62-43.676 89.19c2.214 4.489 3.943 10.217 5.081 14.593c.292 1.122.555 2.176.766 3.072c.5 2.122.769 3.497.769 3.497s-.177-.668-.902-2.77c-.138-.403-.292-.843-.474-1.361a16 16 0 0 0-.304-.752c-1.285-2.988-4.84-9.294-6.405-12.04a301 301 0 0 0-3.511 10.983c4.517 8.265 7.27 22.429 7.27 22.429s-.239-.918-1.374-4.122c-1.008-2.833-6.027-11.628-7.216-13.684c-2.034 7.509-2.842 12.578-2.113 13.812c1.415 2.391 2.762 6.518 3.946 11.081c2.673 10.28 4.53 22.796 4.53 22.796s.06.83.162 2.106c-.372 8.633-.149 17.584.52 25.674c.885 10.71 2.552 19.91 4.677 24.834l1.443-.786c-3.12-9.701-4.388-22.414-3.833-37.076c.84-22.41 5.997-49.437 15.526-77.606c16.1-42.523 38.436-76.641 58.879-92.935c-18.633 16.828-43.851 71.297-51.4 91.467c-8.453 22.588-14.443 43.784-18.053 64.092c6.229-19.039 26.368-27.222 26.368-27.222s9.877-12.182 21.42-29.586c-6.914 1.577-18.268 4.277-22.071 5.875c-5.61 2.353-7.121 3.156-7.121 3.156s18.17-11.066 33.76-16.076c21.44-33.768 44.799-81.74 21.276-102.724"></path></svg>
+            <div className="w-[80%]    h-full   flex items-center justify-center  md:block hidden">
+             <div className="flex items-center w-full"><svg xmlns="http://www.w3.org/2000/svg" width="5.25em" height="2.2em" viewBox="0 0 512 228"> <defs><linearGradient id="logosSqlite0" x1="57.662%" x2="57.662%" y1="2.046%" y2="94.439%"><stop offset="0%" stopColor="#97D9F6"></stop><stop offset="92.024%" stopColor="#0F80CC"></stop><stop offset="100%" stopColor="#0F80CC"></stop></linearGradient></defs><path fill="#003B57" d="M194.52 112.044c-6.821 0-12.368 2.02-16.62 6.055c-4.251 4.04-6.408 9.335-6.408 15.824c0 3.362.535 6.428 1.59 9.237c1.056 2.815 2.699 5.423 4.907 7.78s6.628 5.561 13.215 9.635c8.084 4.934 13.373 8.939 15.912 12.066c2.54 3.124 3.801 6.398 3.801 9.812c0 4.57-1.504 8.219-4.597 10.961c-3.097 2.744-7.24 4.11-12.375 4.11c-5.417 0-10.136-1.909-14.188-5.7c-4.052-3.798-6.098-8.821-6.144-15.117h-2.52v22.851h2.52c.77-2.164 1.834-3.27 3.227-3.27c.67 0 2.24.461 4.685 1.325c5.949 2.117 10.834 3.138 14.674 3.138c6.617 0 12.266-2.317 16.972-7.027c4.7-4.708 7.072-10.387 7.072-17.017c0-5.14-1.566-9.715-4.64-13.701c-3.075-3.992-9.054-8.635-17.99-13.967c-7.689-4.62-12.68-8.382-14.983-11.315c-2.307-2.929-3.492-6.169-3.492-9.724c0-3.845 1.413-6.934 4.199-9.238c2.786-2.305 6.437-3.447 11.006-3.447c5.14 0 9.426 1.526 12.817 4.597c3.388 3.076 5.347 7.339 5.923 12.817h2.52v-19.8h-2.343c-.287 1.009-.552 1.654-.796 1.944c-.237.288-.693.442-1.37.442c-.815 0-2.268-.343-4.332-1.017c-4.42-1.488-8.495-2.254-12.243-2.254m82.342 0c-8.311 0-15.857 1.96-22.674 5.879c-6.828 3.912-12.233 9.345-16.221 16.265S232 148.456 232 156.288c0 10.52 3.444 19.894 10.387 28.11c6.946 8.21 15.27 13.326 24.928 15.293c2.208 1.15 5.367 4.12 9.503 8.928c4.66 5.425 8.603 9.338 11.845 11.668a35.6 35.6 0 0 0 10.43 5.172c3.7 1.126 7.699 1.68 12.023 1.68c5.237 0 9.925-.911 14.055-2.785l-.928-2.299c-2.397.865-4.954 1.282-7.646 1.282c-3.655 0-7.348-1.205-11.05-3.624c-3.697-2.426-8.32-7.053-13.834-13.879c-2.592-3.27-4.381-5.334-5.393-6.143c10.568-2.064 19.257-7.185 26.034-15.382c6.774-8.192 10.165-17.542 10.165-28.022c0-12.442-4.427-22.9-13.215-31.425c-8.796-8.527-19.612-12.818-32.442-12.818m51.403 0l.133 2.696c5.533 0 8.633 1.63 9.326 4.906c.258 1.173.376 3.337.397 6.453l-.044 59.625q-.07 6.68-1.9 8.53c-1.222 1.225-3.287 1.993-6.276 2.298l-.133 2.697h55.16l1.415-13.525h-2.52c-.72 3.684-2.369 6.324-4.994 7.823c-2.633 1.51-7.288 2.254-14.011 2.254h-5.216c-6.05 0-9.55-2.187-10.475-6.586c-.19-.87-.256-1.803-.265-2.828l.22-60.288c0-4.446.561-7.425 1.725-8.884c1.175-1.453 3.295-2.266 6.364-2.475l-.132-2.696zm-50.52 3.27c9.375 0 17.028 3.693 22.94 11.139c5.91 7.449 8.84 17.658 8.84 30.586c0 12.25-2.972 22.058-8.928 29.436c-5.957 7.376-13.884 11.05-23.735 11.05c-9.464 0-17.139-3.789-23.028-11.403c-5.884-7.615-8.795-17.501-8.795-29.658c0-12.492 2.947-22.492 8.884-29.967c5.933-7.466 13.878-11.182 23.823-11.182m126.852 12.819c-1.346 0-2.371.454-3.138 1.37c-.785.912-1.026 2.017-.752 3.359c.265 1.302 1 2.442 2.166 3.403c1.16.96 2.411 1.459 3.757 1.459c1.301 0 2.293-.499 3.005-1.459c.713-.96.93-2.101.663-3.403c-.274-1.342-.983-2.447-2.077-3.36c-1.107-.915-2.323-1.37-3.624-1.37m36.375 9.149c-2.286 8.794-7.241 13.553-14.85 14.32l.088 2.52h8.884l-.177 29.79c.014 5.093.17 8.484.53 10.21c.876 4.131 3.574 6.232 8.089 6.232q9.8-.002 20.552-11.934l-2.165-1.856c-5.175 5.238-9.75 7.867-13.746 7.867c-2.456 0-3.978-1.412-4.553-4.199c-.157-.677-.22-1.468-.22-2.387l.088-33.723h13.569l-.133-4.023h-13.392v-12.817zm52.464 11.226c-7.59 0-13.763 3.685-18.563 11.006c-4.775 7.333-6.253 15.458-4.376 24.398c1.105 5.236 3.306 9.294 6.674 12.154c3.363 2.86 7.629 4.288 12.73 4.288c4.748 0 11.36-1.203 14.143-3.625c2.79-2.42 5.36-6.342 7.735-11.712l-1.9-1.99c-3.788 6.968-11.43 10.476-17.194 10.476c-7.924 0-12.777-4.348-14.586-12.995a32 32 0 0 1-.53-3.536c9.427-1.492 16.571-4.135 21.392-7.955c4.818-3.823 9.655-7.875 8.752-12.155c-.538-2.544-1.858-4.544-3.89-6.055c-2.058-1.511-7.4-2.299-10.387-2.299m-82.96.31l-16.354 3.757v2.917l5.657-.707c2.74 0 4.353 1.24 4.862 3.712c.171.827.28 1.99.31 3.448l-.178 26.74c-.045 3.7-.456 5.851-1.281 6.497q-1.25.972-6.586.973l-.088 2.519h25.944l-.044-2.52c-3.605 0-5.942-.284-6.983-.84c-1.024-.55-1.73-1.555-2.033-3.093c-.235-1.108-.338-3.018-.354-5.657l.089-37.746zm78.806 4.95c1.579 0 3.104.61 4.64 1.812c1.516 1.198 2.439 2.53 2.741 3.978c1.48 7.11-4.823 12.024-19.006 14.762c-.404-5.183.494-9.89 2.785-14.143c2.274-4.25 5.235-6.409 8.84-6.409"></path><path fill="#0F80CC" d="M157.888 9.952H17.15C7.717 9.952 0 17.67 0 27.102V182.31c0 9.432 7.717 17.15 17.15 17.15h92.693c-1.052-46.122 14.698-135.63 48.045-189.508"></path><path fill="url(#logosSqlite0)" d="M152.775 14.955H17.15c-6.698 0-12.148 5.449-12.148 12.148v143.883c30.716-11.788 76.817-21.96 108.693-21.498c6.406-33.494 25.232-99.134 39.08-134.533"></path><path fill="#003B57" d="M190.715 4.872c-9.639-8.595-21.31-5.143-32.827 5.08c-1.71 1.518-3.416 3.203-5.113 5.003c-19.704 20.903-37.994 59.62-43.676 89.19c2.214 4.489 3.943 10.217 5.081 14.593c.292 1.122.555 2.176.766 3.072c.5 2.122.769 3.497.769 3.497s-.177-.668-.902-2.77c-.138-.403-.292-.843-.474-1.361a16 16 0 0 0-.304-.752c-1.285-2.988-4.84-9.294-6.405-12.04a301 301 0 0 0-3.511 10.983c4.517 8.265 7.27 22.429 7.27 22.429s-.239-.918-1.374-4.122c-1.008-2.833-6.027-11.628-7.216-13.684c-2.034 7.509-2.842 12.578-2.113 13.812c1.415 2.391 2.762 6.518 3.946 11.081c2.673 10.28 4.53 22.796 4.53 22.796s.06.83.162 2.106c-.372 8.633-.149 17.584.52 25.674c.885 10.71 2.552 19.91 4.677 24.834l1.443-.786c-3.12-9.701-4.388-22.414-3.833-37.076c.84-22.41 5.997-49.437 15.526-77.606c16.1-42.523 38.436-76.641 58.879-92.935c-18.633 16.828-43.851 71.297-51.4 91.467c-8.453 22.588-14.443 43.784-18.053 64.092c6.229-19.039 26.368-27.222 26.368-27.222s9.877-12.182 21.42-29.586c-6.914 1.577-18.268 4.277-22.071 5.875c-5.61 2.353-7.121 3.156-7.121 3.156s18.17-11.066 33.76-16.076c21.44-33.768 44.799-81.74 21.276-102.724"></path></svg>
              <div className="w-full b  flex items-start justify-center">
-            <p className="text-sm w-[70%]     text-[#e7e7e795] fonc -ml-3">SQLite</p>
+            <p className="text-sm w-[70%]     text-[#e7e7e795] fonc -ml-3">SQLite</p></div>
             </div>
             </div>
 
@@ -281,24 +286,24 @@ export default function Home() {
 </div>
 </div>
 
-<div className="w-[80%]    h-full   flex items-center justify-center ">
-<svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="2em" viewBox="0 0 256 231">  <defs><linearGradient id="logosCloudflareWorkersIcon0" x1="50%" x2="25.7%" y1="100%" y2="8.7%"><stop offset="0%" stopColor="#EB6F07"></stop><stop offset="100%" stopColor="#FAB743"></stop></linearGradient><linearGradient id="logosCloudflareWorkersIcon1" x1="81%" x2="40.5%" y1="83.7%" y2="29.5%"><stop offset="0%" stopColor="#D96504"></stop><stop offset="100%" stopColor="#D96504" stopOpacity="0"></stop></linearGradient><linearGradient id="logosCloudflareWorkersIcon2" x1="42%" x2="84%" y1="8.7%" y2="79.9%"><stop offset="0%" stopColor="#EB6F07"></stop><stop offset="100%" stopColor="#EB720A" stopOpacity="0"></stop></linearGradient><linearGradient id="logosCloudflareWorkersIcon3" x1="50%" x2="25.7%" y1="100%" y2="8.7%"><stop offset="0%" stopColor="#EE6F05"></stop><stop offset="100%" stopColor="#FAB743"></stop></linearGradient><linearGradient id="logosCloudflareWorkersIcon4" x1="-33.2%" x2="91.7%" y1="100%" y2="0%"><stop offset="0%" stopColor="#D96504" stopOpacity=".8"></stop><stop offset="49.8%" stopColor="#D96504" stopOpacity=".2"></stop><stop offset="100%" stopColor="#D96504" stopOpacity="0"></stop></linearGradient><linearGradient id="logosCloudflareWorkersIcon5" x1="50%" x2="25.7%" y1="100%" y2="8.7%"><stop offset="0%" stopColor="#FFA95F"></stop><stop offset="100%" stopColor="#FFEBC8"></stop></linearGradient><linearGradient id="logosCloudflareWorkersIcon6" x1="8.1%" x2="96.5%" y1="1.1%" y2="48.8%"><stop offset="0%" stopColor="#FFF" stopOpacity=".5"></stop><stop offset="100%" stopColor="#FFF" stopOpacity=".1"></stop></linearGradient><linearGradient id="logosCloudflareWorkersIcon7" x1="-13.7%" x2="100%" y1="104.2%" y2="46.2%"><stop offset="0%" stopColor="#FFF" stopOpacity=".5"></stop><stop offset="100%" stopColor="#FFF" stopOpacity=".1"></stop></linearGradient></defs><path fill="url(#logosCloudflareWorkersIcon0)" d="m65.82 3.324l30.161 54.411l-27.698 49.857a16 16 0 0 0 0 15.573l27.698 49.98l-30.16 54.411a32 32 0 0 1-13.542-12.74L4.27 131.412a32.13 32.13 0 0 1 0-32.007l48.01-83.403a32 32 0 0 1 13.542-12.68"></path><path fill="url(#logosCloudflareWorkersIcon1)" d="M68.283 107.654a16 16 0 0 0 0 15.51l27.698 49.98l-30.16 54.412a32 32 0 0 1-13.542-12.74L4.27 131.412c-3.816-6.586 17.542-14.465 64.014-23.698z" opacity=".7"></path><path fill="url(#logosCloudflareWorkersIcon2)" d="m68.898 8.802l27.083 48.933l-4.493 7.818l-23.882-40.44c-6.894-11.264-17.42-5.416-30.591 17.358l1.97-3.386l13.294-23.082a32 32 0 0 1 13.419-12.68l3.139 5.479z" opacity=".5"></path><path fill="url(#logosCloudflareWorkersIcon3)" d="m203.696 16.003l48.01 83.403c5.725 9.848 5.725 22.159 0 32.007l-48.01 83.402a32.01 32.01 0 0 1-27.698 16.004h-48.01l59.705-107.654a16 16 0 0 0 0-15.511L127.988 0h48.01a32.01 32.01 0 0 1 27.698 16.003"></path><path fill="url(#logosCloudflareWorkersIcon4)" d="m173.536 230.45l-47.395.43l57.367-108.208a16.62 16.62 0 0 0 0-15.634L126.14 0h10.834l60.197 106.546a16.62 16.62 0 0 1-.062 16.496a9617 9617 0 0 0-38.592 67.707c-11.695 20.558-6.648 33.791 15.018 39.7"></path><path fill="url(#logosCloudflareWorkersIcon5)" d="M79.978 230.819c-4.924 0-9.849-1.17-14.157-3.263l59.212-106.792a11.05 11.05 0 0 0 0-10.71L65.821 3.324A32 32 0 0 1 79.978 0h48.01l59.705 107.654a16 16 0 0 1 0 15.51L127.988 230.82z"></path><path fill="url(#logosCloudflareWorkersIcon6)" d="M183.508 110.054L122.448 0h5.54l59.705 107.654a16 16 0 0 1 0 15.51L127.988 230.82h-5.54l61.06-110.055a11.05 11.05 0 0 0 0-10.71" opacity=".6"></path><path fill="url(#logosCloudflareWorkersIcon7)" d="M125.033 110.054L65.821 3.324c1.846-.985 4.062-1.724 6.155-2.34c13.049 23.452 32.315 59.029 57.859 106.67a16 16 0 0 1 0 15.51L71.053 229.589c-2.093-.616-3.201-1.047-5.17-1.97l59.089-106.792a11.05 11.05 0 0 0 0-10.71z" opacity=".6"></path></svg>
+<div className="w-[80%]    h-full   flex items-center justify-center  ">
+ <div className="flex items-center w-full"><svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="2em" viewBox="0 0 256 231">  <defs><linearGradient id="logosCloudflareWorkersIcon0" x1="50%" x2="25.7%" y1="100%" y2="8.7%"><stop offset="0%" stopColor="#EB6F07"></stop><stop offset="100%" stopColor="#FAB743"></stop></linearGradient><linearGradient id="logosCloudflareWorkersIcon1" x1="81%" x2="40.5%" y1="83.7%" y2="29.5%"><stop offset="0%" stopColor="#D96504"></stop><stop offset="100%" stopColor="#D96504" stopOpacity="0"></stop></linearGradient><linearGradient id="logosCloudflareWorkersIcon2" x1="42%" x2="84%" y1="8.7%" y2="79.9%"><stop offset="0%" stopColor="#EB6F07"></stop><stop offset="100%" stopColor="#EB720A" stopOpacity="0"></stop></linearGradient><linearGradient id="logosCloudflareWorkersIcon3" x1="50%" x2="25.7%" y1="100%" y2="8.7%"><stop offset="0%" stopColor="#EE6F05"></stop><stop offset="100%" stopColor="#FAB743"></stop></linearGradient><linearGradient id="logosCloudflareWorkersIcon4" x1="-33.2%" x2="91.7%" y1="100%" y2="0%"><stop offset="0%" stopColor="#D96504" stopOpacity=".8"></stop><stop offset="49.8%" stopColor="#D96504" stopOpacity=".2"></stop><stop offset="100%" stopColor="#D96504" stopOpacity="0"></stop></linearGradient><linearGradient id="logosCloudflareWorkersIcon5" x1="50%" x2="25.7%" y1="100%" y2="8.7%"><stop offset="0%" stopColor="#FFA95F"></stop><stop offset="100%" stopColor="#FFEBC8"></stop></linearGradient><linearGradient id="logosCloudflareWorkersIcon6" x1="8.1%" x2="96.5%" y1="1.1%" y2="48.8%"><stop offset="0%" stopColor="#FFF" stopOpacity=".5"></stop><stop offset="100%" stopColor="#FFF" stopOpacity=".1"></stop></linearGradient><linearGradient id="logosCloudflareWorkersIcon7" x1="-13.7%" x2="100%" y1="104.2%" y2="46.2%"><stop offset="0%" stopColor="#FFF" stopOpacity=".5"></stop><stop offset="100%" stopColor="#FFF" stopOpacity=".1"></stop></linearGradient></defs><path fill="url(#logosCloudflareWorkersIcon0)" d="m65.82 3.324l30.161 54.411l-27.698 49.857a16 16 0 0 0 0 15.573l27.698 49.98l-30.16 54.411a32 32 0 0 1-13.542-12.74L4.27 131.412a32.13 32.13 0 0 1 0-32.007l48.01-83.403a32 32 0 0 1 13.542-12.68"></path><path fill="url(#logosCloudflareWorkersIcon1)" d="M68.283 107.654a16 16 0 0 0 0 15.51l27.698 49.98l-30.16 54.412a32 32 0 0 1-13.542-12.74L4.27 131.412c-3.816-6.586 17.542-14.465 64.014-23.698z" opacity=".7"></path><path fill="url(#logosCloudflareWorkersIcon2)" d="m68.898 8.802l27.083 48.933l-4.493 7.818l-23.882-40.44c-6.894-11.264-17.42-5.416-30.591 17.358l1.97-3.386l13.294-23.082a32 32 0 0 1 13.419-12.68l3.139 5.479z" opacity=".5"></path><path fill="url(#logosCloudflareWorkersIcon3)" d="m203.696 16.003l48.01 83.403c5.725 9.848 5.725 22.159 0 32.007l-48.01 83.402a32.01 32.01 0 0 1-27.698 16.004h-48.01l59.705-107.654a16 16 0 0 0 0-15.511L127.988 0h48.01a32.01 32.01 0 0 1 27.698 16.003"></path><path fill="url(#logosCloudflareWorkersIcon4)" d="m173.536 230.45l-47.395.43l57.367-108.208a16.62 16.62 0 0 0 0-15.634L126.14 0h10.834l60.197 106.546a16.62 16.62 0 0 1-.062 16.496a9617 9617 0 0 0-38.592 67.707c-11.695 20.558-6.648 33.791 15.018 39.7"></path><path fill="url(#logosCloudflareWorkersIcon5)" d="M79.978 230.819c-4.924 0-9.849-1.17-14.157-3.263l59.212-106.792a11.05 11.05 0 0 0 0-10.71L65.821 3.324A32 32 0 0 1 79.978 0h48.01l59.705 107.654a16 16 0 0 1 0 15.51L127.988 230.82z"></path><path fill="url(#logosCloudflareWorkersIcon6)" d="M183.508 110.054L122.448 0h5.54l59.705 107.654a16 16 0 0 1 0 15.51L127.988 230.82h-5.54l61.06-110.055a11.05 11.05 0 0 0 0-10.71" opacity=".6"></path><path fill="url(#logosCloudflareWorkersIcon7)" d="M125.033 110.054L65.821 3.324c1.846-.985 4.062-1.724 6.155-2.34c13.049 23.452 32.315 59.029 57.859 106.67a16 16 0 0 1 0 15.51L71.053 229.589c-2.093-.616-3.201-1.047-5.17-1.97l59.089-106.792a11.05 11.05 0 0 0 0-10.71z" opacity=".6"></path></svg>
  <div className="w-full b  flex items-start justify-center">
-<p className="text-sm w-[70%]     text-[#e7e7e795] fonc ml-2">CF Worker</p>
+<p className="text-sm w-[70%]     text-[#e7e7e795] fonc ml-2">CF Worker</p></div>
 </div>
 </div>
 
-<div className="w-[80%]    h-full   flex items-center justify-center ">
-<svg xmlns="http://www.w3.org/2000/svg" width="2em" height="1.3em" viewBox="0 0 256 185"> <path fill="#2396ED" d="M250.716 70.497c-5.765-4-18.976-5.5-29.304-3.5c-1.2-10-6.725-18.749-16.333-26.499l-5.524-4l-3.844 5.75c-4.803 7.5-7.205 18-6.485 28c.24 3.499 1.441 9.749 5.044 15.249c-3.362 2-10.328 4.5-19.455 4.5H1.155l-.48 2c-1.682 9.999-1.682 41.248 18.014 65.247c14.892 18.249 36.99 27.499 66.053 27.499c62.93 0 109.528-30.25 131.386-84.997c8.647.25 27.142 0 36.51-18.75c.24-.5.72-1.5 2.401-5.249l.961-2zM139.986 0h-26.42v24.999h26.42zm0 29.999h-26.42v24.999h26.42zm-31.225 0h-26.42v24.999h26.42zm-31.225 0H51.115v24.999h26.421zM46.311 59.998H19.89v24.999h26.42zm31.225 0H51.115v24.999h26.421zm31.225 0h-26.42v24.999h26.42zm31.226 0h-26.422v24.999h26.422zm31.225 0H144.79v24.999h26.422z"></path></svg>
+<div className="w-[80%]    h-full   flex items-center justify-center  md:block hidden">
+ <div className="flex items-center w-full"><svg xmlns="http://www.w3.org/2000/svg" width="2em" height="1.3em" viewBox="0 0 256 185"> <path fill="#2396ED" d="M250.716 70.497c-5.765-4-18.976-5.5-29.304-3.5c-1.2-10-6.725-18.749-16.333-26.499l-5.524-4l-3.844 5.75c-4.803 7.5-7.205 18-6.485 28c.24 3.499 1.441 9.749 5.044 15.249c-3.362 2-10.328 4.5-19.455 4.5H1.155l-.48 2c-1.682 9.999-1.682 41.248 18.014 65.247c14.892 18.249 36.99 27.499 66.053 27.499c62.93 0 109.528-30.25 131.386-84.997c8.647.25 27.142 0 36.51-18.75c.24-.5.72-1.5 2.401-5.249l.961-2zM139.986 0h-26.42v24.999h26.42zm0 29.999h-26.42v24.999h26.42zm-31.225 0h-26.42v24.999h26.42zm-31.225 0H51.115v24.999h26.421zM46.311 59.998H19.89v24.999h26.42zm31.225 0H51.115v24.999h26.421zm31.225 0h-26.42v24.999h26.42zm31.226 0h-26.422v24.999h26.422zm31.225 0H144.79v24.999h26.422z"></path></svg>
 <div className="w-full -ml-2 flex items-start justify-center">
-<p className="text-sm w-[70%]     text-[#e7e7e795] fonc ml-2">Docker  </p>
+<p className="text-sm w-[70%]     text-[#e7e7e795] fonc ml-2">Docker  </p></div>
 </div>
 </div>
 
-<div className="w-[80%]    h-full   flex items-center justify-center ">
-<svg xmlns="http://www.w3.org/2000/svg" width="3.5em" className="-ml-3" height="2em" viewBox="0 0 512 192"> <path fill="#00ACD7" d="m292.533 13.295l1.124.75c13.212 8.725 22.685 20.691 28.917 35.15c1.496 2.243.499 3.49-2.493 4.237l-5.063 1.296c-11.447 2.949-20.53 5.429-31.827 8.378l-6.443 1.678c-2.32.574-2.96.333-5.428-2.477l-.348-.399c-3.519-3.988-6.155-6.652-10.817-9.03l-.899-.443c-15.705-7.727-30.911-5.484-45.12 3.74c-16.952 10.968-25.677 27.172-25.428 47.364c.25 19.942 13.96 36.395 33.654 39.137c16.951 2.244 31.16-3.739 42.378-16.452c2.244-2.743 4.238-5.734 6.73-9.224h-48.11c-5.235 0-6.481-3.24-4.736-7.478l.864-2.035c3.204-7.454 8.173-18.168 11.4-24.294l.704-1.319c.862-1.494 2.612-3.513 5.977-3.513h80.224c3.603-11.415 9.449-22.201 17.246-32.407c18.198-23.931 40.135-36.396 69.8-41.63c25.427-4.488 49.359-1.995 71.046 12.713c19.694 13.461 31.909 31.66 35.15 55.59c4.237 33.654-5.485 61.075-28.668 84.508c-16.453 16.702-36.645 27.172-59.829 31.908c-6.73 1.247-13.461 1.496-19.942 2.244c-22.685-.499-43.376-6.98-60.826-21.937c-12.273-10.61-20.727-23.648-24.928-38.828a105 105 0 0 1-10.47 16.89c-17.949 23.683-41.381 38.39-71.046 42.38c-24.43 3.24-47.115-1.497-67.058-16.454c-18.447-13.96-28.917-32.407-31.66-55.34c-3.24-27.173 4.737-51.603 21.19-73.041c17.7-23.184 41.132-37.891 69.8-43.126c22.999-4.16 45.037-1.595 64.936 11.464M411.12 49.017l-.798.178c-23.183 5.235-38.14 19.942-43.624 43.375c-4.488 19.444 4.985 39.138 22.934 47.115c13.71 5.983 27.421 5.235 40.633-1.496c19.694-10.22 30.413-26.175 31.66-47.613c-.25-3.24-.25-5.734-.749-8.227c-4.436-24.401-26.664-38.324-50.056-33.332M116.416 94.564c.997 0 1.496.748 1.496 1.745l-.499 5.983c0 .997-.997 1.745-1.745 1.745l-54.344-.249c-.997 0-1.246-.748-.748-1.496l3.49-6.232c.499-.748 1.496-1.496 2.493-1.496zM121.9 71.63c.997 0 1.496.748 1.247 1.496l-1.995 5.983c-.249.997-1.246 1.495-2.243 1.495l-117.912.25c-.997 0-1.246-.499-.748-1.247l5.235-6.73c.499-.748 1.745-1.247 2.742-1.247zm12.963-22.934c.997 0 1.246.748.748 1.496l-4.238 6.481c-.499.748-1.745 1.496-2.493 1.496l-90.24-.25c-.998 0-1.247-.498-.749-1.246l5.235-6.73c.499-.748 1.745-1.247 2.742-1.247z"></path></svg>
+<div className="w-[80%]    h-full   flex items-center justify-center  md:block hidden">
+ <div className="flex items-center w-full"><svg xmlns="http://www.w3.org/2000/svg" width="3.5em" className="-ml-3" height="2em" viewBox="0 0 512 192"> <path fill="#00ACD7" d="m292.533 13.295l1.124.75c13.212 8.725 22.685 20.691 28.917 35.15c1.496 2.243.499 3.49-2.493 4.237l-5.063 1.296c-11.447 2.949-20.53 5.429-31.827 8.378l-6.443 1.678c-2.32.574-2.96.333-5.428-2.477l-.348-.399c-3.519-3.988-6.155-6.652-10.817-9.03l-.899-.443c-15.705-7.727-30.911-5.484-45.12 3.74c-16.952 10.968-25.677 27.172-25.428 47.364c.25 19.942 13.96 36.395 33.654 39.137c16.951 2.244 31.16-3.739 42.378-16.452c2.244-2.743 4.238-5.734 6.73-9.224h-48.11c-5.235 0-6.481-3.24-4.736-7.478l.864-2.035c3.204-7.454 8.173-18.168 11.4-24.294l.704-1.319c.862-1.494 2.612-3.513 5.977-3.513h80.224c3.603-11.415 9.449-22.201 17.246-32.407c18.198-23.931 40.135-36.396 69.8-41.63c25.427-4.488 49.359-1.995 71.046 12.713c19.694 13.461 31.909 31.66 35.15 55.59c4.237 33.654-5.485 61.075-28.668 84.508c-16.453 16.702-36.645 27.172-59.829 31.908c-6.73 1.247-13.461 1.496-19.942 2.244c-22.685-.499-43.376-6.98-60.826-21.937c-12.273-10.61-20.727-23.648-24.928-38.828a105 105 0 0 1-10.47 16.89c-17.949 23.683-41.381 38.39-71.046 42.38c-24.43 3.24-47.115-1.497-67.058-16.454c-18.447-13.96-28.917-32.407-31.66-55.34c-3.24-27.173 4.737-51.603 21.19-73.041c17.7-23.184 41.132-37.891 69.8-43.126c22.999-4.16 45.037-1.595 64.936 11.464M411.12 49.017l-.798.178c-23.183 5.235-38.14 19.942-43.624 43.375c-4.488 19.444 4.985 39.138 22.934 47.115c13.71 5.983 27.421 5.235 40.633-1.496c19.694-10.22 30.413-26.175 31.66-47.613c-.25-3.24-.25-5.734-.749-8.227c-4.436-24.401-26.664-38.324-50.056-33.332M116.416 94.564c.997 0 1.496.748 1.496 1.745l-.499 5.983c0 .997-.997 1.745-1.745 1.745l-54.344-.249c-.997 0-1.246-.748-.748-1.496l3.49-6.232c.499-.748 1.496-1.496 2.493-1.496zM121.9 71.63c.997 0 1.496.748 1.247 1.496l-1.995 5.983c-.249.997-1.246 1.495-2.243 1.495l-117.912.25c-.997 0-1.246-.499-.748-1.247l5.235-6.73c.499-.748 1.745-1.247 2.742-1.247zm12.963-22.934c.997 0 1.246.748.748 1.496l-4.238 6.481c-.499.748-1.745 1.496-2.493 1.496l-90.24-.25c-.998 0-1.247-.498-.749-1.246l5.235-6.73c.499-.748 1.745-1.247 2.742-1.247z"></path></svg>
  <div className="w-full b  flex items-start justify-center">
-<p className="text-sm w-[70%]     text-[#e7e7e795] fonc -ml-3">Go</p>
+<p className="text-sm w-[70%]     text-[#e7e7e795] fonc -ml-3">Go</p></div>
 </div>
 </div>
 
@@ -318,8 +323,8 @@ export default function Home() {
           
 
         </div>
-        
-        <div className="min-w-[23.25%]  ">
+       <div className="w-[5%]   ml-auto mr-auto tilted-linesx"></div>
+        <div className="min-w-[23.25%] md:block hidden">
 
           
         </div>
@@ -359,16 +364,16 @@ export default function Home() {
 <TiltedLines height={100} borderL={true} borderR={true} />
  {/* </div> */}
 
-<div className="h-[300px] w-[54%] flex  ml-auto mr-auto -mt-[1px] -mb-[1px] border-l border-[#373737]">
+<div className="h-[350px] md:h-[300px] w-full md:w-[54%] flex md:flex-row flex-col ml-auto mr-auto -mt-[1px] -mb-[1px] border-l border-[#373737]">
 
-    <div className=" w-[60%] flex">
+    <div className=" w-full md:w-[60%] flex">
       <div className="w-[85%]  flex ml-auto mr-auto items-center justify-center">
         <div className="h-[70%]  ml-auto mr-auto w-full items-center justify-center">
           <div className="  w-[100%] flex items-center mb-9">
-          <p className="objr text-white  text-2xl ">Approach  </p>
+          <p className="objr text-white   text-xl  md:text-2xl  ">Approach  </p>
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="ml-4 mr-4 w-10  text-white  inline-flex"><path d="M21.0001 12.4286L12.4287 21" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"></path><path d="M19.2857 3L3 19.2857" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"></path></svg>
 
-          <p className="w-full objr text-white  text-2xl ">Full-Spectrum Development</p>
+          <p className="w-full objr text-white  text-xl ">Full-Spectrum Development</p>
           </div>
           <p className="fon text-md">Building cohesive web experiences from the ground up. </p>
            <p className="mt-2 fon text-md">Expertise spans from crafting pixel-perfect, responsive user interfaces with React/Next.js to engineering robust backend logic, APIs, and database solutions for seamless integration and performance.</p>
@@ -377,9 +382,8 @@ export default function Home() {
           </div>
       </div>
     </div>
-    <div className=" w-[40%]  bg-[#161616] border-l border-t border-r border-[#e7e7e715] ">
-  
-
+    <div className=" w-[40%]  bg-[#161616] border-l border-t border-b border-r border-[#e7e7e715] md:block hidden ">
+   
 
     </div>
 
@@ -388,48 +392,25 @@ export default function Home() {
 
 
 
-<div className="tilted-lines border flex items-center justify-center border-[#e7e7e715] h-[100px]">
- <div className="border border-[#e7e7e715] w-[54%] h-full">
-    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 -ml-3 -mt-3.5 text-[#e7e7e740] -mr-3.5 -mb-3" aria-hidden="true">
-      <path d="M5 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
-    <path d="M12 5V19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
-    </svg>
-    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-6 float-end h-6 -ml-4 -mt-3 text-[#e7e7e740] -mr-3 -mb-3" aria-hidden="true">
-    <path d="M5 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
-    <path d="M12 5V19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
-    </svg>
-    <div className="h-full flex items-end justify-end">
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 -ml-3.5  text-[#e7e7e740] -mr-3.5 -mb-4" aria-hidden="true">
-        <path d="M5 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
-        <path d="M12 5V19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
-      </svg>
-    </div>
-    <div className="h-full flex ">
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 -ml-3 -mt-2  text-[#e7e7e740] " aria-hidden="true">
-        <path d="M5 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
-        <path d="M12 5V19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
-      </svg>
-    </div>
-  </div>
-</div>
+<TiltedLines height={100} borderL={true} borderR={true} />
 
 
 
 
 
 
-<div className="w-[54%] ml-auto mr-auto h-[550px] ">
-  <div className="border-l  border-[#e7e7e715]  h-[550px] w-full flex">
-    <div className=" w-[60%] h-full flex items-center ">
+<div className="w-full md:w-[54%] ml-auto mr-auto  h-[400px] md:h-[550px] ">
+  <div className="border-l  border-[#e7e7e715] h-[400px] md:h-[550px] w-full flex">
+    <div className=" w-full md:w-[60%] h-full flex items-center ">
       
 <div className=" w-[100%] flex ">
       <div className="w-[85%]  flex ml-auto mr-auto items-center justify-center">
         <div className="  ml-auto mr-auto w-full items-center justify-center">
         <div className="  w-[100%] flex items-center mb-9">
-          <p className="objr text-white  text-2xl ">Showcase  </p>
+          <p className="objr text-white   text-xl  md:text-2xl  ">Showcase  </p>
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="ml-4 mr-4 w-10  text-white  inline-flex"><path d="M21.0001 12.4286L12.4287 21" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"></path><path d="M19.2857 3L3 19.2857" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"></path></svg>
 
-          <p className="w-full objr text-white  text-2xl ">From Concept to Application</p>
+          <p className="w-full objr text-white  text-xl ">From Concept to Application</p>
           </div>
           <p className="fon text-md">Exploring different facets of web development through tangible projects. </p>
            <p className="mt-2 fon text-md">Selected works illustrating the development journey. These projects represent dedicated effort in design, architecture, coding, and optimization, leveraging modern day tools.</p>
@@ -438,8 +419,8 @@ export default function Home() {
       </div>
     </div>
     </div>
-  <div className="w-[40%] border-l border-r border-[#e7e7e715] ">
-    <SplineComponent className="-mt-7" scene="/cube.splinecode" />
+  <div className="w-full md:w-[40%] border-l border-r border-[#e7e7e715] md:block hidden ">
+     <Spline className="-mt-7"  scene="/cube.splinecode"   />
   </div>
   </div>
   {/* <div className="border border-[#e7e7e715]  h-[200px] w-full flex">
@@ -448,7 +429,7 @@ export default function Home() {
 <div className=" w-[100%] flex ">
       <div className="w-[85%]  flex ml-auto mr-auto items-center justify-center">
         <div className="h-[70%]  ml-auto mr-auto w-full items-center justify-center">
-          <p className="fon text-2xl mb-4">Inspired by Epic Games</p>
+          <p className="fon text-xl mb-4">Inspired by Epic Games</p>
           <p className="fon text-sm">shadcn/ui changed the game, by setting new standards for Web UI tooling, component composition and distribution.
 
 We’re huge fans of the shadcn/ui approach and are proud to build upon its foundation.
@@ -465,7 +446,7 @@ Every component from uipub registry is compatible with shadcn/ui CLI.</p>
 
 
 
-<div className="w-[54%] ml-auto mr-auto">
+<div className="w-full md:w-[54%] ml-auto mr-auto">
 
 <TiltedLines width={100} showIcons={true} height={50}   widthx={100} />
 
@@ -493,8 +474,8 @@ Every component from uipub registry is compatible with shadcn/ui CLI.</p>
     style={{ pointerEvents: "none" }}
   />
 </div>
-<div className=" h-[300px] w-[54%] ml-auto mr-auto flex">
-    <div className=" w-[33.33%] h-full flex items-center border-[#e7e7e715] border-l">
+<div className="h-[1000px] md:flex-row flex-col md:h-[300px] w-full md:w-[54%] ml-auto mr-auto flex ">
+    <div className="  w-[100%] md:w-[33.33%] h-full flex  items-center border-[#e7e7e715]  border-l">
 
         <div className="w-[80%] ml-auto mr-auto h-[80%]">
          <div className="  w-[100%] h-[50px] items-center justify-start flex">
@@ -507,40 +488,7 @@ Every component from uipub registry is compatible with shadcn/ui CLI.</p>
 
         </div>
     </div>
-    
-    <div className=" w-[33.33%] border-l  border-[#e7e7e715] h-full flex items-center ">
-    <div className="w-[80%] ml-auto mr-auto h-[80%]">
-    <div className="  w-[100%] h-[50px] items-center justify-start flex">
-         <p className="text-2xl fon ">Manga Fusion</p>
-         <img src="/mf.png" className="ml-auto end-0" alt="" />
-         </div>
-          <p className="text-sm fon mt-5">Compares manga prices across major online stores, allowing users to track specific volumes, receive email alerts for price drops.</p>
-
-
-        </div>
-
-    </div>
-    <div className=" w-[33.33%] border-l border-r  h-full flex items-center border-[#e7e7e715]">
-      
-    <div className="w-[80%] ml-auto mr-auto h-[80%]">
-    <div className="  w-[100%] h-[50px] items-center justify-start flex">
-         <p className="text-2xl fon ">0ms - LAS </p>
-         <img src="/ms.png" className="ml-auto end-0" alt="" />
-         </div>
-         <p className="text-sm fon ">Latency Intelligence SaaS</p>
-
-          <p className="text-sm fon mt-5">Provides real-time performance monitoring for digital infrastructure, including databases, APIs, and edge networks, complete with customizable alerts, historical analytics, and stress testing capabilities.
-
- </p>
-
-        </div>
-
-    </div>
-   
-  </div>
-  <div className="w-[54%] ml-auto mr-auto border-t border-[#e7e7e715]  flex items-center justify-center h-[50px]"> 
-
-  <div className="   w-full h-full flex">
+    <div className=" blocked md:hidden  w-full h-[50px] flex">
     <div className="w-[20%] flex items-center justify-center">
     <TiltedLines  height={50} showIcons={false} />
 
@@ -564,7 +512,111 @@ Every component from uipub registry is compatible with shadcn/ui CLI.</p>
 
     </div>
   </div>
-  <div className="  w-full h-full flex">
+    
+    <div className="  w-[100%] md:w-[33.33%] h-full flex  items-center border-[#e7e7e715] border-l">
+    <div className="w-[80%] ml-auto mr-auto h-[80%]">
+    <div className="  w-[100%] h-[50px] items-center justify-start flex">
+         <p className="text-2xl fon ">Manga Fusion</p>
+         <img src="/mf.png" className="ml-auto end-0" alt="" />
+         </div>
+          <p className="text-sm fon mt-5">Compares manga prices across major online stores, allowing users to track specific volumes, receive email alerts for price drops.</p>
+
+
+        </div>
+
+    </div>
+    <div className=" blocked md:hidden  w-full h-[50px] flex">
+    <div className="w-[20%] flex items-center justify-center">
+    <TiltedLines  height={50} showIcons={false} />
+
+    </div>
+    <div className=" w-full flex items-center  justify-center h-full">
+    <div className="w-full h-full border border-[#e7e7e715] flex items-center justify-center">
+    <svg className="" xmlns="http://www.w3.org/2000/svg" width="1.8em" height="1.8em" viewBox="0 0 256 256"> <defs><linearGradient id="logosNextjsIcon0" x1="55.633%" x2="83.228%" y1="56.385%" y2="96.08%"><stop offset="0%" stopColor="#FFF"/><stop offset="100%" stopColor="#FFF" stopOpacity="0"/></linearGradient><linearGradient id="logosNextjsIcon1" x1="50%" x2="49.953%" y1="0%" y2="73.438%"><stop offset="0%" stopColor="#FFF"/><stop offset="100%" stopColor="#FFF" stopOpacity="0"/></linearGradient><circle id="logosNextjsIcon2" cx="128" cy="128" r="128"/></defs><mask id="logosNextjsIcon3" fill="#fff"><use href="#logosNextjsIcon2"/></mask><g mask="url(#logosNextjsIcon3)"><circle cx="128" cy="128" r="128"/><path fill="url(#logosNextjsIcon0)" d="M212.634 224.028L98.335 76.8H76.8v102.357h17.228V98.68L199.11 234.446a128 128 0 0 0 13.524-10.418"/><path fill="url(#logosNextjsIcon1)" d="M163.556 76.8h17.067v102.4h-17.067z"/></g></svg>
+
+    </div>
+    <div className="w-full h-full border border-[#e7e7e715] flex items-center justify-center">
+    <svg className="" xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 256 263"> <defs><linearGradient id="logosSupabaseIcon0" x1="20.862%" x2="63.426%" y1="20.687%" y2="44.071%"><stop offset="0%" stopColor="#249361"></stop><stop offset="100%" stopColor="#3ECF8E"></stop></linearGradient><linearGradient id="logosSupabaseIcon1" x1="1.991%" x2="21.403%" y1="-13.158%" y2="34.708%"><stop offset="0%"></stop><stop offset="100%" stopOpacity="0"></stop></linearGradient></defs><path fill="url(#logosSupabaseIcon0)" d="M149.602 258.579c-6.718 8.46-20.338 3.824-20.5-6.977l-2.367-157.984h106.229c19.24 0 29.971 22.223 18.007 37.292z"></path><path fill="url(#logosSupabaseIcon1)" fillOpacity=".2" d="M149.602 258.579c-6.718 8.46-20.338 3.824-20.5-6.977l-2.367-157.984h106.229c19.24 0 29.971 22.223 18.007 37.292z"></path><path fill="#3ECF8E" d="M106.399 4.37c6.717-8.461 20.338-3.826 20.5 6.976l1.037 157.984H23.037c-19.241 0-29.973-22.223-18.008-37.292z"></path></svg>
+
+    </div>
+    <div className="w-full h-full border border-[#e7e7e715] flex items-center justify-center">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1.65em" height="1.65em" viewBox="0 0 256 351"><defs><filter id="logosFirebase0" width="200%" height="200%" x="-50%" y="-50%" filterUnits="objectBoundingBox"><feGaussianBlur in="SourceAlpha" result="shadowBlurInner1" stdDeviation="17.5"></feGaussianBlur><feOffset in="shadowBlurInner1" result="shadowOffsetInner1"></feOffset><feComposite in="shadowOffsetInner1" in2="SourceAlpha" k2="-1" k3="1" operator="arithmetic" result="shadowInnerInner1"></feComposite><feColorMatrix in="shadowInnerInner1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0"></feColorMatrix></filter><filter id="logosFirebase1" width="200%" height="200%" x="-50%" y="-50%" filterUnits="objectBoundingBox"><feGaussianBlur in="SourceAlpha" result="shadowBlurInner1" stdDeviation="3.5"></feGaussianBlur><feOffset dx="1" dy="-9" in="shadowBlurInner1" result="shadowOffsetInner1"></feOffset><feComposite in="shadowOffsetInner1" in2="SourceAlpha" k2="-1" k3="1" operator="arithmetic" result="shadowInnerInner1"></feComposite><feColorMatrix in="shadowInnerInner1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.09 0"></feColorMatrix></filter><path id="logosFirebase2" d="m1.253 280.732l1.605-3.131l99.353-188.518l-44.15-83.475C54.392-1.283 45.074.474 43.87 8.188z"></path><path id="logosFirebase3" d="m134.417 148.974l32.039-32.812l-32.039-61.007c-3.042-5.791-10.433-6.398-13.443-.59l-17.705 34.109l-.53 1.744z"></path></defs><path fill="#FFC24A" d="m0 282.998l2.123-2.972L102.527 89.512l.212-2.017L58.48 4.358C54.77-2.606 44.33-.845 43.114 6.951z"></path><use fill="#FFA712" fillRule="evenodd" href="#logosFirebase2"></use><use filter="url(#logosFirebase0)" href="#logosFirebase2"></use><path fill="#F4BD62" d="m135.005 150.38l32.955-33.75l-32.965-62.93c-3.129-5.957-11.866-5.975-14.962 0L102.42 87.287v2.86z"></path><use fill="#FFA50E" fillRule="evenodd" href="#logosFirebase3"></use><use filter="url(#logosFirebase1)" href="#logosFirebase3"></use><path fill="#F6820C" d="m0 282.998l.962-.968l3.496-1.42l128.477-128l1.628-4.431l-32.05-61.074z"></path><path fill="#FDE068" d="m139.121 347.551l116.275-64.847l-33.204-204.495c-1.039-6.398-8.888-8.927-13.468-4.34L0 282.998l115.608 64.548a24.13 24.13 0 0 0 23.513.005"></path><path fill="#FCCA3F" d="M254.354 282.16L221.402 79.218c-1.03-6.35-7.558-8.977-12.103-4.424L1.29 282.6l114.339 63.908a23.94 23.94 0 0 0 23.334.006z"></path><path fill="#EEAB37" d="M139.12 345.64a24.13 24.13 0 0 1-23.512-.005L.931 282.015l-.93.983l115.607 64.548a24.13 24.13 0 0 0 23.513.005l116.275-64.847l-.285-1.752z"></path></svg>
+    </div>
+    </div>
+    <div className="ml-auto w-[25%] ">
+    <TiltedLines  height={50} showIcons={false} />
+    
+
+    </div>
+  </div>
+  <div className="  w-[100%] md:w-[33.33%] h-full flex  items-center border-[#e7e7e715] border-l border-r">
+      
+    <div className="w-[80%] ml-auto mr-auto h-[80%]">
+    <div className="  w-[100%] h-[50px] items-center justify-start flex">
+         <p className="text-2xl fon ">0ms - LAS </p>
+         <img src="/ms.png" className="ml-auto end-0" alt="" />
+         </div>
+         <p className="text-sm fon ">Latency Intelligence SaaS</p>
+
+          <p className="text-sm fon mt-5">Provides real-time performance monitoring for digital infrastructure, including databases, APIs, and edge networks, complete with customizable alerts, historical analytics, and stress testing capabilities.
+
+ </p>
+
+        </div>
+
+    </div>
+   <div className=" blocked md:hidden  w-full h-[50px] flex ">
+    <div className="w-[20%] flex items-center justify-center">
+    <TiltedLines  height={50} showIcons={false} />
+
+    </div>
+    <div className=" w-full flex items-center  justify-center h-full">
+    <div className="w-full h-full border border-[#e7e7e715] flex items-center justify-center">
+    <svg className="" xmlns="http://www.w3.org/2000/svg" width="1.8em" height="1.8em" viewBox="0 0 256 256"> <defs><linearGradient id="logosNextjsIcon0" x1="55.633%" x2="83.228%" y1="56.385%" y2="96.08%"><stop offset="0%" stopColor="#FFF"/><stop offset="100%" stopColor="#FFF" stopOpacity="0"/></linearGradient><linearGradient id="logosNextjsIcon1" x1="50%" x2="49.953%" y1="0%" y2="73.438%"><stop offset="0%" stopColor="#FFF"/><stop offset="100%" stopColor="#FFF" stopOpacity="0"/></linearGradient><circle id="logosNextjsIcon2" cx="128" cy="128" r="128"/></defs><mask id="logosNextjsIcon3" fill="#fff"><use href="#logosNextjsIcon2"/></mask><g mask="url(#logosNextjsIcon3)"><circle cx="128" cy="128" r="128"/><path fill="url(#logosNextjsIcon0)" d="M212.634 224.028L98.335 76.8H76.8v102.357h17.228V98.68L199.11 234.446a128 128 0 0 0 13.524-10.418"/><path fill="url(#logosNextjsIcon1)" d="M163.556 76.8h17.067v102.4h-17.067z"/></g></svg>
+
+    </div>
+    <div className="w-full h-full border border-[#e7e7e715] flex items-center justify-center">
+    <svg className="" xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 256 263"> <defs><linearGradient id="logosSupabaseIcon0" x1="20.862%" x2="63.426%" y1="20.687%" y2="44.071%"><stop offset="0%" stopColor="#249361"></stop><stop offset="100%" stopColor="#3ECF8E"></stop></linearGradient><linearGradient id="logosSupabaseIcon1" x1="1.991%" x2="21.403%" y1="-13.158%" y2="34.708%"><stop offset="0%"></stop><stop offset="100%" stopOpacity="0"></stop></linearGradient></defs><path fill="url(#logosSupabaseIcon0)" d="M149.602 258.579c-6.718 8.46-20.338 3.824-20.5-6.977l-2.367-157.984h106.229c19.24 0 29.971 22.223 18.007 37.292z"></path><path fill="url(#logosSupabaseIcon1)" fillOpacity=".2" d="M149.602 258.579c-6.718 8.46-20.338 3.824-20.5-6.977l-2.367-157.984h106.229c19.24 0 29.971 22.223 18.007 37.292z"></path><path fill="#3ECF8E" d="M106.399 4.37c6.717-8.461 20.338-3.826 20.5 6.976l1.037 157.984H23.037c-19.241 0-29.973-22.223-18.008-37.292z"></path></svg>
+
+    </div>
+    <div className="w-full h-full border border-[#e7e7e715] flex items-center justify-center">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1.65em" height="1.65em" viewBox="0 0 256 351"><defs><filter id="logosFirebase0" width="200%" height="200%" x="-50%" y="-50%" filterUnits="objectBoundingBox"><feGaussianBlur in="SourceAlpha" result="shadowBlurInner1" stdDeviation="17.5"></feGaussianBlur><feOffset in="shadowBlurInner1" result="shadowOffsetInner1"></feOffset><feComposite in="shadowOffsetInner1" in2="SourceAlpha" k2="-1" k3="1" operator="arithmetic" result="shadowInnerInner1"></feComposite><feColorMatrix in="shadowInnerInner1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0"></feColorMatrix></filter><filter id="logosFirebase1" width="200%" height="200%" x="-50%" y="-50%" filterUnits="objectBoundingBox"><feGaussianBlur in="SourceAlpha" result="shadowBlurInner1" stdDeviation="3.5"></feGaussianBlur><feOffset dx="1" dy="-9" in="shadowBlurInner1" result="shadowOffsetInner1"></feOffset><feComposite in="shadowOffsetInner1" in2="SourceAlpha" k2="-1" k3="1" operator="arithmetic" result="shadowInnerInner1"></feComposite><feColorMatrix in="shadowInnerInner1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.09 0"></feColorMatrix></filter><path id="logosFirebase2" d="m1.253 280.732l1.605-3.131l99.353-188.518l-44.15-83.475C54.392-1.283 45.074.474 43.87 8.188z"></path><path id="logosFirebase3" d="m134.417 148.974l32.039-32.812l-32.039-61.007c-3.042-5.791-10.433-6.398-13.443-.59l-17.705 34.109l-.53 1.744z"></path></defs><path fill="#FFC24A" d="m0 282.998l2.123-2.972L102.527 89.512l.212-2.017L58.48 4.358C54.77-2.606 44.33-.845 43.114 6.951z"></path><use fill="#FFA712" fillRule="evenodd" href="#logosFirebase2"></use><use filter="url(#logosFirebase0)" href="#logosFirebase2"></use><path fill="#F4BD62" d="m135.005 150.38l32.955-33.75l-32.965-62.93c-3.129-5.957-11.866-5.975-14.962 0L102.42 87.287v2.86z"></path><use fill="#FFA50E" fillRule="evenodd" href="#logosFirebase3"></use><use filter="url(#logosFirebase1)" href="#logosFirebase3"></use><path fill="#F6820C" d="m0 282.998l.962-.968l3.496-1.42l128.477-128l1.628-4.431l-32.05-61.074z"></path><path fill="#FDE068" d="m139.121 347.551l116.275-64.847l-33.204-204.495c-1.039-6.398-8.888-8.927-13.468-4.34L0 282.998l115.608 64.548a24.13 24.13 0 0 0 23.513.005"></path><path fill="#FCCA3F" d="M254.354 282.16L221.402 79.218c-1.03-6.35-7.558-8.977-12.103-4.424L1.29 282.6l114.339 63.908a23.94 23.94 0 0 0 23.334.006z"></path><path fill="#EEAB37" d="M139.12 345.64a24.13 24.13 0 0 1-23.512-.005L.931 282.015l-.93.983l115.607 64.548a24.13 24.13 0 0 0 23.513.005l116.275-64.847l-.285-1.752z"></path></svg>
+    </div>
+    </div>
+    <div className="ml-auto w-[25%] ">
+    <TiltedLines  height={50} showIcons={false} />
+    
+
+    </div>
+  </div>
+  </div>
+  <div className="w-[54%] ml-auto mr-auto border-t border-[#e7e7e715]  flex   items-center justify-center h-[50px]  hidden md:flex"> 
+
+  <div className="   w-[33.33%] h-full flex  ">
+    <div className="w-[20%] flex items-center justify-center">
+    <TiltedLines  height={50} showIcons={false} />
+
+    </div>
+    <div className=" w-full flex items-center  justify-center h-full">
+    <div className="w-full h-full border border-[#e7e7e715] flex items-center justify-center">
+    <svg className="" xmlns="http://www.w3.org/2000/svg" width="1.8em" height="1.8em" viewBox="0 0 256 256"> <defs><linearGradient id="logosNextjsIcon0" x1="55.633%" x2="83.228%" y1="56.385%" y2="96.08%"><stop offset="0%" stopColor="#FFF"/><stop offset="100%" stopColor="#FFF" stopOpacity="0"/></linearGradient><linearGradient id="logosNextjsIcon1" x1="50%" x2="49.953%" y1="0%" y2="73.438%"><stop offset="0%" stopColor="#FFF"/><stop offset="100%" stopColor="#FFF" stopOpacity="0"/></linearGradient><circle id="logosNextjsIcon2" cx="128" cy="128" r="128"/></defs><mask id="logosNextjsIcon3" fill="#fff"><use href="#logosNextjsIcon2"/></mask><g mask="url(#logosNextjsIcon3)"><circle cx="128" cy="128" r="128"/><path fill="url(#logosNextjsIcon0)" d="M212.634 224.028L98.335 76.8H76.8v102.357h17.228V98.68L199.11 234.446a128 128 0 0 0 13.524-10.418"/><path fill="url(#logosNextjsIcon1)" d="M163.556 76.8h17.067v102.4h-17.067z"/></g></svg>
+
+    </div>
+    <div className="w-full h-full border border-[#e7e7e715] flex items-center justify-center">
+    <svg className="" xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 256 263"> <defs><linearGradient id="logosSupabaseIcon0" x1="20.862%" x2="63.426%" y1="20.687%" y2="44.071%"><stop offset="0%" stopColor="#249361"></stop><stop offset="100%" stopColor="#3ECF8E"></stop></linearGradient><linearGradient id="logosSupabaseIcon1" x1="1.991%" x2="21.403%" y1="-13.158%" y2="34.708%"><stop offset="0%"></stop><stop offset="100%" stopOpacity="0"></stop></linearGradient></defs><path fill="url(#logosSupabaseIcon0)" d="M149.602 258.579c-6.718 8.46-20.338 3.824-20.5-6.977l-2.367-157.984h106.229c19.24 0 29.971 22.223 18.007 37.292z"></path><path fill="url(#logosSupabaseIcon1)" fillOpacity=".2" d="M149.602 258.579c-6.718 8.46-20.338 3.824-20.5-6.977l-2.367-157.984h106.229c19.24 0 29.971 22.223 18.007 37.292z"></path><path fill="#3ECF8E" d="M106.399 4.37c6.717-8.461 20.338-3.826 20.5 6.976l1.037 157.984H23.037c-19.241 0-29.973-22.223-18.008-37.292z"></path></svg>
+
+    </div>
+    <div className="w-full h-full border border-[#e7e7e715] flex items-center justify-center">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1.65em" height="1.65em" viewBox="0 0 256 351"><defs><filter id="logosFirebase0" width="200%" height="200%" x="-50%" y="-50%" filterUnits="objectBoundingBox"><feGaussianBlur in="SourceAlpha" result="shadowBlurInner1" stdDeviation="17.5"></feGaussianBlur><feOffset in="shadowBlurInner1" result="shadowOffsetInner1"></feOffset><feComposite in="shadowOffsetInner1" in2="SourceAlpha" k2="-1" k3="1" operator="arithmetic" result="shadowInnerInner1"></feComposite><feColorMatrix in="shadowInnerInner1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0"></feColorMatrix></filter><filter id="logosFirebase1" width="200%" height="200%" x="-50%" y="-50%" filterUnits="objectBoundingBox"><feGaussianBlur in="SourceAlpha" result="shadowBlurInner1" stdDeviation="3.5"></feGaussianBlur><feOffset dx="1" dy="-9" in="shadowBlurInner1" result="shadowOffsetInner1"></feOffset><feComposite in="shadowOffsetInner1" in2="SourceAlpha" k2="-1" k3="1" operator="arithmetic" result="shadowInnerInner1"></feComposite><feColorMatrix in="shadowInnerInner1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.09 0"></feColorMatrix></filter><path id="logosFirebase2" d="m1.253 280.732l1.605-3.131l99.353-188.518l-44.15-83.475C54.392-1.283 45.074.474 43.87 8.188z"></path><path id="logosFirebase3" d="m134.417 148.974l32.039-32.812l-32.039-61.007c-3.042-5.791-10.433-6.398-13.443-.59l-17.705 34.109l-.53 1.744z"></path></defs><path fill="#FFC24A" d="m0 282.998l2.123-2.972L102.527 89.512l.212-2.017L58.48 4.358C54.77-2.606 44.33-.845 43.114 6.951z"></path><use fill="#FFA712" fillRule="evenodd" href="#logosFirebase2"></use><use filter="url(#logosFirebase0)" href="#logosFirebase2"></use><path fill="#F4BD62" d="m135.005 150.38l32.955-33.75l-32.965-62.93c-3.129-5.957-11.866-5.975-14.962 0L102.42 87.287v2.86z"></path><use fill="#FFA50E" fillRule="evenodd" href="#logosFirebase3"></use><use filter="url(#logosFirebase1)" href="#logosFirebase3"></use><path fill="#F6820C" d="m0 282.998l.962-.968l3.496-1.42l128.477-128l1.628-4.431l-32.05-61.074z"></path><path fill="#FDE068" d="m139.121 347.551l116.275-64.847l-33.204-204.495c-1.039-6.398-8.888-8.927-13.468-4.34L0 282.998l115.608 64.548a24.13 24.13 0 0 0 23.513.005"></path><path fill="#FCCA3F" d="M254.354 282.16L221.402 79.218c-1.03-6.35-7.558-8.977-12.103-4.424L1.29 282.6l114.339 63.908a23.94 23.94 0 0 0 23.334.006z"></path><path fill="#EEAB37" d="M139.12 345.64a24.13 24.13 0 0 1-23.512-.005L.931 282.015l-.93.983l115.607 64.548a24.13 24.13 0 0 0 23.513.005l116.275-64.847l-.285-1.752z"></path></svg>
+    </div>
+    </div>
+    <div className="ml-auto w-[25%] ">
+    <TiltedLines  height={50} showIcons={false} />
+    
+
+    </div>
+  </div>
+  <div className="     w-[33.33%]  h-full flex">
   <div className="w-[20%]">
     <TiltedLines  height={50} showIcons={false} />
     </div>
@@ -583,7 +635,7 @@ Every component from uipub registry is compatible with shadcn/ui CLI.</p>
     <TiltedLines  height={50} showIcons={false} />
     </div>
   </div>
-  <div className="  w-full  h-full flex">
+  <div className="     w-[33.33%]   h-full flex">
   <div className="w-[20%]">
     <TiltedLines  height={50} showIcons={false} />
     </div>
@@ -610,8 +662,8 @@ Every component from uipub registry is compatible with shadcn/ui CLI.</p>
 
 
 
-  <div className=" h-[300px] w-[54%] ml-auto mr-auto flex">
-    <div className=" w-[33.33%] h-full flex items-center border-[#e7e7e715] border-l relative">
+  <div className="h-[1000px] md:h-[300px] w-full md:w-[54%] ml-auto mr-auto flex md:flex-row flex-col ">
+   <div className="  w-[100%] md:w-[33.33%] h-full flex  items-center border-[#e7e7e715] border-l">
      
     <div className="w-[80%] ml-auto mr-auto h-[80%]">
     <div className="  w-[100%] h-[50px] items-center justify-start flex">
@@ -630,8 +682,31 @@ Works in Folders and page formate, with tags.
         </div>
         
     </div>
+     <div className=" blocked md:hidden  w-full h-[50px] flex">
+    <div className="w-[20%] flex items-center justify-center">
+    <TiltedLines  height={50} showIcons={false} />
+
+    </div>
+    <div className=" w-full flex items-center  justify-center h-full">
+    <div className="w-full h-full border border-[#e7e7e715] flex items-center justify-center">
+    <svg className="" xmlns="http://www.w3.org/2000/svg" width="1.8em" height="1.8em" viewBox="0 0 256 256"> <defs><linearGradient id="logosNextjsIcon0" x1="55.633%" x2="83.228%" y1="56.385%" y2="96.08%"><stop offset="0%" stopColor="#FFF"/><stop offset="100%" stopColor="#FFF" stopOpacity="0"/></linearGradient><linearGradient id="logosNextjsIcon1" x1="50%" x2="49.953%" y1="0%" y2="73.438%"><stop offset="0%" stopColor="#FFF"/><stop offset="100%" stopColor="#FFF" stopOpacity="0"/></linearGradient><circle id="logosNextjsIcon2" cx="128" cy="128" r="128"/></defs><mask id="logosNextjsIcon3" fill="#fff"><use href="#logosNextjsIcon2"/></mask><g mask="url(#logosNextjsIcon3)"><circle cx="128" cy="128" r="128"/><path fill="url(#logosNextjsIcon0)" d="M212.634 224.028L98.335 76.8H76.8v102.357h17.228V98.68L199.11 234.446a128 128 0 0 0 13.524-10.418"/><path fill="url(#logosNextjsIcon1)" d="M163.556 76.8h17.067v102.4h-17.067z"/></g></svg>
+
+    </div>
+    <div className="w-full h-full border border-[#e7e7e715] flex items-center justify-center">
+    <svg className="" xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 256 263"> <defs><linearGradient id="logosSupabaseIcon0" x1="20.862%" x2="63.426%" y1="20.687%" y2="44.071%"><stop offset="0%" stopColor="#249361"></stop><stop offset="100%" stopColor="#3ECF8E"></stop></linearGradient><linearGradient id="logosSupabaseIcon1" x1="1.991%" x2="21.403%" y1="-13.158%" y2="34.708%"><stop offset="0%"></stop><stop offset="100%" stopOpacity="0"></stop></linearGradient></defs><path fill="url(#logosSupabaseIcon0)" d="M149.602 258.579c-6.718 8.46-20.338 3.824-20.5-6.977l-2.367-157.984h106.229c19.24 0 29.971 22.223 18.007 37.292z"></path><path fill="url(#logosSupabaseIcon1)" fillOpacity=".2" d="M149.602 258.579c-6.718 8.46-20.338 3.824-20.5-6.977l-2.367-157.984h106.229c19.24 0 29.971 22.223 18.007 37.292z"></path><path fill="#3ECF8E" d="M106.399 4.37c6.717-8.461 20.338-3.826 20.5 6.976l1.037 157.984H23.037c-19.241 0-29.973-22.223-18.008-37.292z"></path></svg>
+
+    </div>
+    <div className="w-full h-full border border-[#e7e7e715] flex items-center justify-center">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1.65em" height="1.65em" viewBox="0 0 256 351"><defs><filter id="logosFirebase0" width="200%" height="200%" x="-50%" y="-50%" filterUnits="objectBoundingBox"><feGaussianBlur in="SourceAlpha" result="shadowBlurInner1" stdDeviation="17.5"></feGaussianBlur><feOffset in="shadowBlurInner1" result="shadowOffsetInner1"></feOffset><feComposite in="shadowOffsetInner1" in2="SourceAlpha" k2="-1" k3="1" operator="arithmetic" result="shadowInnerInner1"></feComposite><feColorMatrix in="shadowInnerInner1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0"></feColorMatrix></filter><filter id="logosFirebase1" width="200%" height="200%" x="-50%" y="-50%" filterUnits="objectBoundingBox"><feGaussianBlur in="SourceAlpha" result="shadowBlurInner1" stdDeviation="3.5"></feGaussianBlur><feOffset dx="1" dy="-9" in="shadowBlurInner1" result="shadowOffsetInner1"></feOffset><feComposite in="shadowOffsetInner1" in2="SourceAlpha" k2="-1" k3="1" operator="arithmetic" result="shadowInnerInner1"></feComposite><feColorMatrix in="shadowInnerInner1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.09 0"></feColorMatrix></filter><path id="logosFirebase2" d="m1.253 280.732l1.605-3.131l99.353-188.518l-44.15-83.475C54.392-1.283 45.074.474 43.87 8.188z"></path><path id="logosFirebase3" d="m134.417 148.974l32.039-32.812l-32.039-61.007c-3.042-5.791-10.433-6.398-13.443-.59l-17.705 34.109l-.53 1.744z"></path></defs><path fill="#FFC24A" d="m0 282.998l2.123-2.972L102.527 89.512l.212-2.017L58.48 4.358C54.77-2.606 44.33-.845 43.114 6.951z"></path><use fill="#FFA712" fillRule="evenodd" href="#logosFirebase2"></use><use filter="url(#logosFirebase0)" href="#logosFirebase2"></use><path fill="#F4BD62" d="m135.005 150.38l32.955-33.75l-32.965-62.93c-3.129-5.957-11.866-5.975-14.962 0L102.42 87.287v2.86z"></path><use fill="#FFA50E" fillRule="evenodd" href="#logosFirebase3"></use><use filter="url(#logosFirebase1)" href="#logosFirebase3"></use><path fill="#F6820C" d="m0 282.998l.962-.968l3.496-1.42l128.477-128l1.628-4.431l-32.05-61.074z"></path><path fill="#FDE068" d="m139.121 347.551l116.275-64.847l-33.204-204.495c-1.039-6.398-8.888-8.927-13.468-4.34L0 282.998l115.608 64.548a24.13 24.13 0 0 0 23.513.005"></path><path fill="#FCCA3F" d="M254.354 282.16L221.402 79.218c-1.03-6.35-7.558-8.977-12.103-4.424L1.29 282.6l114.339 63.908a23.94 23.94 0 0 0 23.334.006z"></path><path fill="#EEAB37" d="M139.12 345.64a24.13 24.13 0 0 1-23.512-.005L.931 282.015l-.93.983l115.607 64.548a24.13 24.13 0 0 0 23.513.005l116.275-64.847l-.285-1.752z"></path></svg>
+    </div>
+    </div>
+    <div className="ml-auto w-[25%] ">
+    <TiltedLines  height={50} showIcons={false} />
     
-    <div className=" w-[33.33%] border-l  border-[#e7e7e715] h-full flex items-center ">
+
+    </div>
+  </div>
+   <div className="  w-[100%] md:w-[33.33%] h-full flex  items-center border-[#e7e7e715] border-l">
     <div className="w-[80%] ml-auto mr-auto h-[80%]">
     <div className="  w-[100%] h-[50px] items-center justify-start flex">
          <p className="text-2xl fon ">Noteworthy</p>
@@ -649,7 +724,31 @@ Works in notebook and page formate, with tags, also works as CRM, with whiteboar
         </div>
 
     </div>
-    <div className=" w-[33.33%] border-l border-r  h-full flex items-center border-[#e7e7e715]">
+     <div className=" blocked md:hidden  w-full h-[50px] flex">
+    <div className="w-[20%] flex items-center justify-center">
+    <TiltedLines  height={50} showIcons={false} />
+
+    </div>
+    <div className=" w-full flex items-center  justify-center h-full">
+    <div className="w-full h-full border border-[#e7e7e715] flex items-center justify-center">
+    <svg className="" xmlns="http://www.w3.org/2000/svg" width="1.8em" height="1.8em" viewBox="0 0 256 256"> <defs><linearGradient id="logosNextjsIcon0" x1="55.633%" x2="83.228%" y1="56.385%" y2="96.08%"><stop offset="0%" stopColor="#FFF"/><stop offset="100%" stopColor="#FFF" stopOpacity="0"/></linearGradient><linearGradient id="logosNextjsIcon1" x1="50%" x2="49.953%" y1="0%" y2="73.438%"><stop offset="0%" stopColor="#FFF"/><stop offset="100%" stopColor="#FFF" stopOpacity="0"/></linearGradient><circle id="logosNextjsIcon2" cx="128" cy="128" r="128"/></defs><mask id="logosNextjsIcon3" fill="#fff"><use href="#logosNextjsIcon2"/></mask><g mask="url(#logosNextjsIcon3)"><circle cx="128" cy="128" r="128"/><path fill="url(#logosNextjsIcon0)" d="M212.634 224.028L98.335 76.8H76.8v102.357h17.228V98.68L199.11 234.446a128 128 0 0 0 13.524-10.418"/><path fill="url(#logosNextjsIcon1)" d="M163.556 76.8h17.067v102.4h-17.067z"/></g></svg>
+
+    </div>
+    <div className="w-full h-full border border-[#e7e7e715] flex items-center justify-center">
+    <svg className="" xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 256 263"> <defs><linearGradient id="logosSupabaseIcon0" x1="20.862%" x2="63.426%" y1="20.687%" y2="44.071%"><stop offset="0%" stopColor="#249361"></stop><stop offset="100%" stopColor="#3ECF8E"></stop></linearGradient><linearGradient id="logosSupabaseIcon1" x1="1.991%" x2="21.403%" y1="-13.158%" y2="34.708%"><stop offset="0%"></stop><stop offset="100%" stopOpacity="0"></stop></linearGradient></defs><path fill="url(#logosSupabaseIcon0)" d="M149.602 258.579c-6.718 8.46-20.338 3.824-20.5-6.977l-2.367-157.984h106.229c19.24 0 29.971 22.223 18.007 37.292z"></path><path fill="url(#logosSupabaseIcon1)" fillOpacity=".2" d="M149.602 258.579c-6.718 8.46-20.338 3.824-20.5-6.977l-2.367-157.984h106.229c19.24 0 29.971 22.223 18.007 37.292z"></path><path fill="#3ECF8E" d="M106.399 4.37c6.717-8.461 20.338-3.826 20.5 6.976l1.037 157.984H23.037c-19.241 0-29.973-22.223-18.008-37.292z"></path></svg>
+
+    </div>
+    <div className="w-full h-full border border-[#e7e7e715] flex items-center justify-center">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1.65em" height="1.65em" viewBox="0 0 256 351"><defs><filter id="logosFirebase0" width="200%" height="200%" x="-50%" y="-50%" filterUnits="objectBoundingBox"><feGaussianBlur in="SourceAlpha" result="shadowBlurInner1" stdDeviation="17.5"></feGaussianBlur><feOffset in="shadowBlurInner1" result="shadowOffsetInner1"></feOffset><feComposite in="shadowOffsetInner1" in2="SourceAlpha" k2="-1" k3="1" operator="arithmetic" result="shadowInnerInner1"></feComposite><feColorMatrix in="shadowInnerInner1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0"></feColorMatrix></filter><filter id="logosFirebase1" width="200%" height="200%" x="-50%" y="-50%" filterUnits="objectBoundingBox"><feGaussianBlur in="SourceAlpha" result="shadowBlurInner1" stdDeviation="3.5"></feGaussianBlur><feOffset dx="1" dy="-9" in="shadowBlurInner1" result="shadowOffsetInner1"></feOffset><feComposite in="shadowOffsetInner1" in2="SourceAlpha" k2="-1" k3="1" operator="arithmetic" result="shadowInnerInner1"></feComposite><feColorMatrix in="shadowInnerInner1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.09 0"></feColorMatrix></filter><path id="logosFirebase2" d="m1.253 280.732l1.605-3.131l99.353-188.518l-44.15-83.475C54.392-1.283 45.074.474 43.87 8.188z"></path><path id="logosFirebase3" d="m134.417 148.974l32.039-32.812l-32.039-61.007c-3.042-5.791-10.433-6.398-13.443-.59l-17.705 34.109l-.53 1.744z"></path></defs><path fill="#FFC24A" d="m0 282.998l2.123-2.972L102.527 89.512l.212-2.017L58.48 4.358C54.77-2.606 44.33-.845 43.114 6.951z"></path><use fill="#FFA712" fillRule="evenodd" href="#logosFirebase2"></use><use filter="url(#logosFirebase0)" href="#logosFirebase2"></use><path fill="#F4BD62" d="m135.005 150.38l32.955-33.75l-32.965-62.93c-3.129-5.957-11.866-5.975-14.962 0L102.42 87.287v2.86z"></path><use fill="#FFA50E" fillRule="evenodd" href="#logosFirebase3"></use><use filter="url(#logosFirebase1)" href="#logosFirebase3"></use><path fill="#F6820C" d="m0 282.998l.962-.968l3.496-1.42l128.477-128l1.628-4.431l-32.05-61.074z"></path><path fill="#FDE068" d="m139.121 347.551l116.275-64.847l-33.204-204.495c-1.039-6.398-8.888-8.927-13.468-4.34L0 282.998l115.608 64.548a24.13 24.13 0 0 0 23.513.005"></path><path fill="#FCCA3F" d="M254.354 282.16L221.402 79.218c-1.03-6.35-7.558-8.977-12.103-4.424L1.29 282.6l114.339 63.908a23.94 23.94 0 0 0 23.334.006z"></path><path fill="#EEAB37" d="M139.12 345.64a24.13 24.13 0 0 1-23.512-.005L.931 282.015l-.93.983l115.607 64.548a24.13 24.13 0 0 0 23.513.005l116.275-64.847l-.285-1.752z"></path></svg>
+    </div>
+    </div>
+    <div className="ml-auto w-[25%] ">
+    <TiltedLines  height={50} showIcons={false} />
+    
+
+    </div>
+  </div>
+   <div className="  w-[100%] md:w-[33.33%] h-full flex  items-center border-[#e7e7e715] border-l border-r">
       
     <div className="w-[80%] ml-auto mr-auto h-[80%]">
     <p className="text-2xl fon ">Coming Soon</p>
@@ -662,7 +761,7 @@ Works in notebook and page formate, with tags, also works as CRM, with whiteboar
   </div>
   
   
-  <div className="w-[54%] ml-auto mr-auto   border-[#e7e7e715]  flex items-center justify-center h-[50px]"> 
+<div className="w-[54%] ml-auto mr-auto border-[#e7e7e715] hidden md:flex  items-center justify-center h-[50px]   hidden md:flex">
 
   <div className=" border-l border-[#e7e7e715]   w-full h-full flex">
   <div className="   w-full h-full flex">
@@ -716,7 +815,7 @@ Works in notebook and page formate, with tags, also works as CRM, with whiteboar
   
 
   <div className="  w-full h-full flex border-r border-[#e7e7e715] ">
-  
+  <TiltedLines  height={50} showIcons={false}/>
   </div>
 
   </div>
@@ -729,16 +828,16 @@ Works in notebook and page formate, with tags, also works as CRM, with whiteboar
  
 
 
-  <div className="w-[54%] ml-auto mr-auto h-[330px] ">
-  <div className="border-b border-l  border-[#e7e7e715]  h-[330px] w-full flex">
-    <div className=" w-[60%]  h-full flex flex-col justify-center items-center ">
+ <div className=" w-full md:w-[54%] ml-auto mr-auto h-[800px] md:h-[350px] ">
+  <div className="border-b border-l  border-[#e7e7e715]  h-[800px] md:h-[350px] w-full flex flex-col md:flex-row">
+    <div className="w-full md:w-[60%] border-b border-[#e7e7e715] md:h-full h-[50%] flex flex-col justify-center items-center ">
       <div className="  w-[90%] mb-8">
        
       <div className="  w-[100%] flex items-center  ">
-          <p className="objr min-w-fit text-white  text-2xl "> Animated with </p>
+          <p className="objr min-w-fit text-white  text-xl "> Animated with </p>
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="ml-4 mr-4 w-10  text-white  inline-flex"><path d="M21.0001 12.4286L12.4287 21" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"></path><path d="M19.2857 3L3 19.2857" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"></path></svg>
 
-          <p className="w-full objr text-white  text-2xl ">Motion</p>
+          <p className="w-full objr text-white  text-xl ">Motion</p>
           </div>
       <div className="flex">
       <p className="fonc text-md mt-2 text-[#e7e7e760]">
@@ -751,16 +850,16 @@ Works in notebook and page formate, with tags, also works as CRM, with whiteboar
       </div>
      <Scrox />
     </div>
-    <div className="w-[40%] border-l border-r border-[#e7e7e715] flex items-center ">
+    <div className="w-full md:w-[40%]  md:h-full h-[50%] border-l  border-r border-[#e7e7e715] flex items-center ">
 
     <div className=" w-[100%] flex ">
       <div className="w-[85%]  flex ml-auto mr-auto items-center justify-center">
       <div className="ml-auto mr-auto w-full items-center justify-center">
       <div className="  w-[100%] flex items-center mb-5">
-          <p className="objr text-white  text-2xl ">Crafting  </p>
+          <p className="objr text-white   text-xl  md:text-2xl  ">Crafting  </p>
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="ml-4 mr-4 w-10  text-white  inline-flex"><path d="M21.0001 12.4286L12.4287 21" stroke="currentColor" strokeLinecap="3"  strokeLinejoin="round"></path><path d="M19.2857 3L3 19.2857" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"></path></svg>
 
-          <p className="w-full objr text-white  text-2xl ">Fluid Interfaces</p>
+          <p className="w-full objr text-white  text-xl ">Fluid Interfaces</p>
           </div>
   <p className="fon text-md">Leveraging animation tools to implement seamless transitions, engaging micro-interactions, and responsive feedback that bring designs to life and significantly improve usability.</p>
   <p className="mt-2 fon text-md">Motion isn t just decoration; it s a crucial element for creating modern, intuitive web interactions.</p>
@@ -778,7 +877,7 @@ Works in notebook and page formate, with tags, also works as CRM, with whiteboar
 <div className=" w-[100%] flex ">
       <div className="w-[85%]  flex ml-auto mr-auto items-center justify-center">
         <div className="h-[70%]  ml-auto mr-auto w-full items-center justify-center">
-          <p className="fon text-2xl mb-4">Inspired by Epic Games</p>
+          <p className="fon text-xl mb-4">Inspired by Epic Games</p>
           <p className="fon text-sm">shadcn/ui changed the game, by setting new standards for Web UI tooling, component composition and distribution.
 
 We’re huge fans of the shadcn/ui approach and are proud to build upon its foundation.
@@ -792,18 +891,18 @@ Every component from uipub registry is compatible with shadcn/ui CLI.</p>
     <div className="w-[40%]  border-l border-[#e7e7e715] ml-[1px]"></div>
   </div> */}
 </div> 
-<div className="w-[54%] ml-auto mr-auto h-[350px] ">
-  <div className="border-b border-l  border-[#e7e7e715]  h-[350px] w-full flex">
-    <div className=" w-[60%] h-full flex items-center ">
+<div className=" w-full md:w-[54%] ml-auto mr-auto h-[800px] md:h-[350px] ">
+  <div className="border-b border-l  border-[#e7e7e715]   h-[800px] md:h-[350px] w-full flex flex-col md:flex-row">
+    <div className="w-[100%] md:w-[60%] h-full flex items-center ">
       
 <div className=" w-[100%] flex ">
       <div className="w-[85%]  flex ml-auto mr-auto items-center justify-center">
         <div className="  ml-auto mr-auto w-full items-center justify-center">
         <div className="  w-[100%] flex items-center mb-9">
-          <p className="objr text-white  text-2xl ">Network </p>
+          <p className="objr text-white   text-xl  md:text-2xl  ">Network </p>
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="ml-4 mr-4 w-10  text-white  inline-flex"><path d="M21.0001 12.4286L12.4287 21" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"></path><path d="M19.2857 3L3 19.2857" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"></path></svg>
 
-          <p className="w-full objr text-white  text-2xl ">CDN Performance Diagnostics</p>
+          <p className="w-full objr text-white  text-xl ">CDN Performance Diagnostics</p>
           </div>
           <p className="fon text-md">A practical tool for measuring and comparing real-world content delivery network speed and latency.
            
@@ -817,7 +916,7 @@ Every component from uipub registry is compatible with shadcn/ui CLI.</p>
       </div>
     </div>
     </div>
-    <div className="w-[40%] border-l flex items-center justify-center border-r border-[#e7e7e715] ">
+    <div className="w-[100%] md:w-[40%] border-l flex items-center justify-center border-r border-[#e7e7e715] ">
     <Meeter />
     </div>
   </div>
@@ -827,64 +926,66 @@ Every component from uipub registry is compatible with shadcn/ui CLI.</p>
  <CdnOpt />
 <TiltedLines  borderL={true} borderR={true}  />
 
-<div className="w-[54%] ml-auto mr-auto border-l   border-r border-[#e7e7e715] h-[700px] ">
+<div className="w-full  md:w-[54%] ml-auto mr-auto border-l   border-r border-[#e7e7e715]  h-[1200px] md:h-[800px] ">
 
-<div className="w-full ml-auto mr-auto   h-[300px] flex border-b border-[#e7e7e715] ">
-<div className="w-[60%] items-center justify-center ml-auto mr-auto border-r border-[#e7e7e715]   h-[300px] flex ">
+<div className="w-full ml-auto mr-auto    h-[600px]  md:h-[400px]   border-[#e7e7e715] border-b flex md:flex-row flex-col ">
+
+
+<div className="w-[100%] border-b md:w-[60%] items-center justify-center ml-auto mr-auto border-r border-[#e7e7e715]   h-[600px]  md:h-[400px]  flex ">
 
 <div className="ml-auto mr-auto w-[80%] items-center justify-center ">
       <div className="  w-[100%] flex items-center mb-5">
-          <p className="objr text-white  text-2xl ">Design  </p>
+          <p className="objr text-white   text-xl  md:text-2xl  ">Design   </p>
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="ml-4 mr-4 w-10  text-white  inline-flex"><path d="M21.0001 12.4286L12.4287 21" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"></path><path d="M19.2857 3L3 19.2857" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"></path></svg>
 
-          <p className="w-full objr text-white  text-2xl "> </p>
+          <p className="w-full objr text-white  text-xl  md:text-2xl  "> </p>
           </div>
   <p className="fon text-md">Crafting interfaces that resonate, adapt, and perform flawlessly across all devices.</p>
-  <p className="mt-2 fon text-md">Capable of designing diverse UI styles and visual representations to evoke specific user effects upon visit. </p>
+  <p className="mt-2 fon text-md">Custom components from scratch, ensuring designs are not only aesthetically pleasing but also technically feasible and perfectly aligned with projec</p>
 
 </div>
 
-</div><div className="w-[40%] ml-auto mr-auto   h-[300px] flex items-center justify-center">
+</div><div className="w-[100%] md:w-[40%] ml-auto mr-auto h-[600px]  md:h-[400px] flex items-center justify-center">
 <div className="ml-auto mr-auto w-[80%] items-center justify-center ">
       <div className="  w-[100%] flex items-center mb-5">
-          <p className="objr text-white  text-2xl ">Tailored User Experiences  </p>
+          <p className="objr text-white   text-xl  md:text-2xl  "> Tailored User Experiences</p>
           
           
           </div>
-  <p className="fon text-md"></p>
-  <p className="mt-2 fon text-md">Custom components from scratch, ensuring designs are not only aesthetically pleasing but also technically feasible and perfectly aligned with project requirements.</p>
+  <p className="fon text-md">Proficient with core AWS and GCP services to leverage the cloud for maximum organizational advantage in terms of both development time and financial efficiency.</p>
+  <p className="mt-2 fon text-md">Expertise covers building and consuming APIs deployment.</p>
 
 </div>
 
 </div>
 
 </div>
-<div className="w-full ml-auto mr-auto   h-[400px] flex  ">
+<div className="w-full ml-auto mr-auto    h-[600px]  md:h-[400px]  flex md:flex-row flex-col ">
 
 
-<div className="w-[60%] items-center justify-center ml-auto mr-auto border-r border-[#e7e7e715]   h-[400px] flex ">
+<div className="w-[100%] border-b md:w-[60%] items-center justify-center ml-auto mr-auto border-r border-[#e7e7e715]   h-[600px]  md:h-[400px]  flex ">
 
 <div className="ml-auto mr-auto w-[80%] items-center justify-center ">
       <div className="  w-[100%] flex items-center mb-5">
-          <p className="objr text-white  text-2xl ">Architecture   </p>
+          <p className="objr text-white   text-xl  md:text-2xl  ">Architecture   </p>
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="ml-4 mr-4 w-10  text-white  inline-flex"><path d="M21.0001 12.4286L12.4287 21" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"></path><path d="M19.2857 3L3 19.2857" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"></path></svg>
 
-          <p className="w-full objr text-white  text-2xl "> </p>
+          <p className="w-full objr text-white  text-xl  md:text-2xl  "> </p>
           </div>
   <p className="fon text-md">Engineering robust, scalable, and cost-effective systems from backend logic to cloud deployment.</p>
   <p className="mt-2 fon text-md">Adept at designing application architectures for new projects or integrating seamlessly with existing systems, always considering specific requirements and budget constraints.</p>
 
 </div>
 
-</div><div className="w-[40%] ml-auto mr-auto   h-[400px] flex items-center justify-center">
+</div><div className="w-[100%] md:w-[40%] ml-auto mr-auto h-[600px]  md:h-[400px] flex items-center justify-center">
 <div className="ml-auto mr-auto w-[80%] items-center justify-center ">
       <div className="  w-[100%] flex items-center mb-5">
-          <p className="objr text-white  text-2xl "> End-to-End Optimized Solutions</p>
+          <p className="objr text-white   text-xl  md:text-2xl  "> End-to-End Optimized Solutions</p>
           
           
           </div>
   <p className="fon text-md">Proficient with core AWS and GCP services to leverage the cloud for maximum organizational advantage in terms of both development time and financial efficiency.</p>
-  <p className="mt-2 fon text-md">Expertise covers building and consuming APIs, developing microservices, managing various databases, and handling deployment.</p>
+  <p className="mt-2 fon text-md">Expertise covers building and consuming APIs deployment.</p>
 
 </div>
 
@@ -892,7 +993,7 @@ Every component from uipub registry is compatible with shadcn/ui CLI.</p>
 
 </div></div>
 <TiltedLines  borderL={true} borderR={true}  />
-<div   className="w-[54%] border-l border-r border-[#e7e7e715] h-[600px] ml-auto mr-auto">
+<div   className="w-full md:w-[54%] border-l border-r border-[#e7e7e715] h-[400px] md:h-[600px] ml-auto mr-auto">
 
 <ThreeDMarqueeDemo />
 
@@ -900,82 +1001,98 @@ Every component from uipub registry is compatible with shadcn/ui CLI.</p>
 {/* <Maysoori /> */}
 </div>
 <TiltedLines  borderL={true} borderR={true}  />
+<div className="  h-[500px]   md:h-[300px] border-l border-r border-[#e7e7e715] w-full md:w-[54%] ml-auto mr-auto">
+  <div className=" w-[100%] h-full justify-center flex items-center ">
+      <div className="w-[90%] h-[60%] ">
+      <div className="  w-[100%] flex items-center mb-7">
+          <p className="objr text-white text-xl  md:text-2xl "> Custom   </p>
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="ml-4 mr-4 w-10  text-white  inline-flex"><path d="M21.0001 12.4286L12.4287 21" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"></path><path d="M19.2857 3L3 19.2857" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"></path></svg>
 
-<div className="w-[54%] ml-auto mr-auto    border-r items-center border-l  h-[600px] border-[#e7e7e715]  ">
+          <p className="w-full objr text-white text-xl  md:text-2xl ">Component & Design</p>
+          </div>
+        
+        
+        <p className="fon text-md mt-6">Custom Component Design for Unique Experiences.</p>
+        <p className="fon text-md mt-2">
+          I specialize in building reusable, scalable UI components from scratch—tailored to project requirements and brand identity. Each component is engineered for accessibility, responsiveness, and seamless integration, ensuring a consistent and maintainable codebase while delivering a polished user experience.
+        </p>
 
- <div className="w-[100%] h-fit flex items-start  ">
-   <div className="w-full">
-    <div className="w-full">
-    <img src="/svf/1.svg"  className="m-2 w-[96%] "  alt="" />
-   </div>
-   <div className="w-full">
-    <img src="/svf/.svg"  className="m-2 w-[96%] "  alt="" />
-   </div>
-   <div className="w-full ">
-    <img src="/svf/10.svg"  className="m-4 w-[96%] "  alt="" />
-   </div>
-   
-   <div className="w-full">
-    <img src="/svf/5.svg"  className="m-2 w-[96%] "  alt="" />
-   </div>
-   
-    
-   </div>
-   
-<div className="w-full">
-  <img src="/svf/2.svg"  className="mt-2 mr-2 w-full h-[65%] "  alt="" />
-  <div className="w-full">
-    <img src="/svf/11.svg"  className="m-2 w-[96%] "  alt="" />
-   </div>
-  
-</div>
-  
+      </div>
 
-    
-  
-  
-   <div className="w-[70%]">
-    <div className="w-full">
-    <img src="/svf/4.svg"  className="m-2 w-[96%] "  alt="" />
-   </div>
-   <div className="w-full">
-    <img src="/svf/7.svg"  className="m-2 w-[96%] "  alt="" />
-   </div>
-   <div className="w-full">
-    <img src="/svf/8.svg"  className="m-2 w-[96%] "  alt="" />
-   </div>
-   <div className="w-full">
-    <img src="/svf/6.svg"  className="m-2 w-[96%] "  alt="" />
-   </div>
-   </div>
- </div>
- <br />
-    <img src="/svf/13.svg"  className="m-2 w-[100%] "  alt="" />
-<br />
- <div className="w-full flex">
-    <img src="/svf/12.svg"  className="m-2 w-[98%] ml-auto mr-auto "  alt="" />
-
-   </div>
-
+    </div>
 </div>
 <TiltedLines  borderL={true} borderR={true}  />
 
-<div className="w-[54%] ml-auto mr-auto   border-r border-l   border-[#e7e7e715]  ">
 
- <div className=" pt-10 border-l   border-[#e7e7e715]  ">
- <div className="   w-[55%] ml-auto mr-auto  ">
-  <SplineComponent scene="/cube.splinecode" />
+.
+<div className="w-[54%] ml-auto mr-auto py-2 border-r items-center border-l border-[#e7e7e715] 
+  md:w-[54%] md:ml-auto md:mr-auto 
+  w-full px-2
+  ">
+  <div className="w-full h-fit flex items-start mr- 
+    md:flex-row flex-col gap-2">
+    <div className="w-full mr-2 md:w-full flex flex-col">
+      <div className="w-full">
+        <img src="/svf/1.svg" className="m-3 w-[96%] max-w-full" alt="" />
+      </div>
+      <div className="w-full">
+        <img src="/svf/.svg" className="m-2 w-[96%] max-w-full" alt="" />
+      </div>
+      <div className="w-full">
+        <img src="/svf/10.svg" className="m-4 w-[96%] max-w-full" alt="" />
+      </div>
+      <div className="w-full">
+        <img src="/svf/5.svg" className="m-2 w-[96%] max-w-full" alt="" />
+      </div>
+    </div>
+    <div className="w-full mr-1 h-full md:w-full flex flex-col">
+      <img src="/svf/2.svg" className="mt-2 mr-2 w-full h-[65%] max-w-full" alt="" />
+      <div className="w-full flex items-center justify-end h-full">
+        <img src="/svf/11.svg" className="m-4 w-[96%] max-w-full" alt="" />
+      </div>
+    </div>
+    <div className="w-[70%] mr-2 md:w-[70%] w-full flex flex-col">
+      <div className="w-full">
+        <img src="/svf/4.svg" className="m-2 w-[96%] max-w-full" alt="" />
+      </div>
+      <div className="w-full">
+        <img src="/svf/7.svg" className="m-2 w-[96%] max-w-full" alt="" />
+      </div>
+      <div className="w-full">
+        <img src="/svf/8.svg" className="m-2 w-[96%] max-w-full" alt="" />
+      </div>
+      <div className="w-full">
+        <img src="/svf/6.svg" className="m-2 w-[96%] max-w-full" alt="" />
+      </div>
+    </div>
   </div>
- </div>
+  <br />
+  <div className="w-full flex flex-col md:flex-row ml-auto mr-auto ">
+    <img src="/svf/13.svg" className="m-2 w-full md:w-[50%] max-w-full" alt="" />
+    <img src="/svf/17.svg" className="m-2 w-full md:w-[50%] max-w-full" alt="" />
+  </div>
+  <br />
+   <img src="/svf/12.svg" className="m-2 -mt-2 ml-auto mr-auto  w-full" alt="" />
+ <img src="/svf/14.svg" className="m-2 ml-auto  " alt="" />
+</div>
 
-   <div className="border-b border-r border-l  border-[#e7e7e715]  h-[270px] w-full flex">
+<TiltedLines  borderL={true} borderR={true}  />
+
+<div className="w-full md:w-[54%] ml-auto mr-auto   border-r border-l   border-[#e7e7e715]  ">
+
+<div className="hidden md:block ml-auto mr-auto w-full border-[#e7e7e715] scale-75 md:scale-100">
+  <div className="w-full md:w-[55%] ml-auto mr-auto">
+     <Spline className="-mt-7"  scene="/cube.splinecode"   />
+  </div>
+</div>
+   <div className="border-b border-r border-l  border-[#e7e7e715]  md:h-[270px] py-10 w-full flex">
     <div className=" w-[100%] h-full justify-center flex items-center ">
       <div className="w-[90%] h-[60%] ">
       <div className="  w-[100%] flex items-center mb-7">
-          <p className="objr text-white  text-2xl ">Ecosystem  </p>
+          <p className="objr text-white  text-xl ">Ecosystem  </p>
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="ml-4 mr-4 w-10  text-white  inline-flex"><path d="M21.0001 12.4286L12.4287 21" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"></path><path d="M19.2857 3L3 19.2857" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"></path></svg>
 
-          <p className="w-full objr text-white  text-2xl ">Integrated Tech Stack Approach</p>
+          <p className="w-full objr text-white  text-xl ">Integrated Tech Stack Approach</p>
           </div>
         
         <p className="fon text-md">Combining various technologies effectively to engineer tailored web solutions. </p>
@@ -995,23 +1112,23 @@ Every component from uipub registry is compatible with shadcn/ui CLI.</p>
   
 
   </div>
-  <div className="w-[45%] border-b border-r flex items-center justify-center border-[#e7e7e715] ">
+  <div className="w-[40%] border-b border-r flex items-center justify-center border-[#e7e7e715] ">
 
-<svg className=" fill-[#e7e7e7]" xmlns="http://www.w3.org/2000/svg" width="157.54" height="28" viewBox="0 0 512 104"><path d="M429.543.043v16.46h-35.377V103.1h-17.69V16.504h-36.114V.043zm3.977 93.24c1.246 0 2.336.448 3.259 1.346c.936.897 1.402 1.972 1.415 3.224a4.5 4.5 0 0 1-.66 2.327a4.8 4.8 0 0 1-1.714 1.665a4.4 4.4 0 0 1-2.3.626c-1.296 0-2.398-.449-3.32-1.346c-.923-.898-1.38-1.985-1.368-3.272q-.017-1.878 1.368-3.224c.922-.898 2.024-1.346 3.32-1.346M82.916 103.1L17.69 22.028v81.03H0V0h22.111l82.406 102.329l.001-85.825l-.007-16.461h89.18v16.46h-71.484v26.48h57.488v16.461h-57.488V86.64h71.485v16.46zm167.469-43.813L261.978 73.7l-23.755 29.522h-23.215zM238.223.086l29.93 37.17L297.989.2l23.15-.035l-41.396 51.485l41.463 51.493h-23.217L215.074.086zm225.488 58.97h7.838v30.2c-.011 2.775-.612 5.148-1.785 7.145c-1.187 1.995-2.83 3.519-4.938 4.594c-2.098 1.062-4.555 1.606-7.348 1.606c-2.553 0-4.841-.46-6.879-1.358s-3.655-2.244-4.842-4.016c-1.2-1.771-1.787-3.98-1.787-6.625h7.852c.012 1.157.275 2.16.778 3a5 5 0 0 0 2.086 1.924q1.348.675 3.091.674c1.26 0 2.338-.26 3.213-.792q1.312-.78 2.014-2.338c.455-1.028.695-2.303.707-3.815zm40.09 11.81c-.19-1.83-1.03-3.26-2.492-4.275c-1.475-1.028-3.38-1.535-5.718-1.535c-1.64 0-3.055.248-4.23.732c-1.174.496-2.085 1.157-2.709 1.996c-.622.838-.934 1.795-.959 2.87c0 .897.216 1.677.635 2.326a5.2 5.2 0 0 0 1.714 1.666a11.5 11.5 0 0 0 2.398 1.145q1.33.46 2.66.78l4.087 1.004c1.643.378 3.237.885 4.759 1.535c1.521.638 2.9 1.453 4.11 2.433q1.817 1.47 2.877 3.543c.707 1.382 1.067 3 1.067 4.866c0 2.515-.647 4.724-1.954 6.637c-1.306 1.902-3.188 3.39-5.657 4.465c-2.457 1.063-5.43 1.606-8.929 1.606c-3.38 0-6.328-.52-8.81-1.559c-2.492-1.027-4.434-2.54-5.837-4.524s-2.157-4.405-2.265-7.251h7.768c.107 1.488.587 2.728 1.402 3.732c.826.992 1.905 1.724 3.224 2.22c1.33.485 2.816.733 4.458.733c1.714 0 3.224-.26 4.53-.768c1.295-.508 2.313-1.216 3.045-2.138c.743-.91 1.115-1.984 1.127-3.212c-.012-1.122-.349-2.055-.996-2.788q-.989-1.098-2.733-1.842c-1.173-.496-2.54-.945-4.098-1.334l-4.962-1.252c-3.584-.91-6.424-2.291-8.498-4.146c-2.085-1.854-3.116-4.31-3.116-7.393c0-2.527.695-4.748 2.098-6.65c1.39-1.9 3.296-3.377 5.705-4.428c2.42-1.063 5.154-1.583 8.197-1.583c3.093 0 5.801.52 8.139 1.583c2.336 1.051 4.171 2.515 5.5 4.381c1.331 1.867 2.027 4.004 2.063 6.425z"/></svg>
+<svg className=" fill-[#e7e7e7] md:w[65%] md:h-[100%] w-[50%] h-[50%] " xmlns="http://www.w3.org/2000/svg" width="157.54" height="28" viewBox="0 0 512 104"><path d="M429.543.043v16.46h-35.377V103.1h-17.69V16.504h-36.114V.043zm3.977 93.24c1.246 0 2.336.448 3.259 1.346c.936.897 1.402 1.972 1.415 3.224a4.5 4.5 0 0 1-.66 2.327a4.8 4.8 0 0 1-1.714 1.665a4.4 4.4 0 0 1-2.3.626c-1.296 0-2.398-.449-3.32-1.346c-.923-.898-1.38-1.985-1.368-3.272q-.017-1.878 1.368-3.224c.922-.898 2.024-1.346 3.32-1.346M82.916 103.1L17.69 22.028v81.03H0V0h22.111l82.406 102.329l.001-85.825l-.007-16.461h89.18v16.46h-71.484v26.48h57.488v16.461h-57.488V86.64h71.485v16.46zm167.469-43.813L261.978 73.7l-23.755 29.522h-23.215zM238.223.086l29.93 37.17L297.989.2l23.15-.035l-41.396 51.485l41.463 51.493h-23.217L215.074.086zm225.488 58.97h7.838v30.2c-.011 2.775-.612 5.148-1.785 7.145c-1.187 1.995-2.83 3.519-4.938 4.594c-2.098 1.062-4.555 1.606-7.348 1.606c-2.553 0-4.841-.46-6.879-1.358s-3.655-2.244-4.842-4.016c-1.2-1.771-1.787-3.98-1.787-6.625h7.852c.012 1.157.275 2.16.778 3a5 5 0 0 0 2.086 1.924q1.348.675 3.091.674c1.26 0 2.338-.26 3.213-.792q1.312-.78 2.014-2.338c.455-1.028.695-2.303.707-3.815zm40.09 11.81c-.19-1.83-1.03-3.26-2.492-4.275c-1.475-1.028-3.38-1.535-5.718-1.535c-1.64 0-3.055.248-4.23.732c-1.174.496-2.085 1.157-2.709 1.996c-.622.838-.934 1.795-.959 2.87c0 .897.216 1.677.635 2.326a5.2 5.2 0 0 0 1.714 1.666a11.5 11.5 0 0 0 2.398 1.145q1.33.46 2.66.78l4.087 1.004c1.643.378 3.237.885 4.759 1.535c1.521.638 2.9 1.453 4.11 2.433q1.817 1.47 2.877 3.543c.707 1.382 1.067 3 1.067 4.866c0 2.515-.647 4.724-1.954 6.637c-1.306 1.902-3.188 3.39-5.657 4.465c-2.457 1.063-5.43 1.606-8.929 1.606c-3.38 0-6.328-.52-8.81-1.559c-2.492-1.027-4.434-2.54-5.837-4.524s-2.157-4.405-2.265-7.251h7.768c.107 1.488.587 2.728 1.402 3.732c.826.992 1.905 1.724 3.224 2.22c1.33.485 2.816.733 4.458.733c1.714 0 3.224-.26 4.53-.768c1.295-.508 2.313-1.216 3.045-2.138c.743-.91 1.115-1.984 1.127-3.212c-.012-1.122-.349-2.055-.996-2.788q-.989-1.098-2.733-1.842c-1.173-.496-2.54-.945-4.098-1.334l-4.962-1.252c-3.584-.91-6.424-2.291-8.498-4.146c-2.085-1.854-3.116-4.31-3.116-7.393c0-2.527.695-4.748 2.098-6.65c1.39-1.9 3.296-3.377 5.705-4.428c2.42-1.063 5.154-1.583 8.197-1.583c3.093 0 5.801.52 8.139 1.583c2.336 1.051 4.171 2.515 5.5 4.381c1.331 1.867 2.027 4.004 2.063 6.425z"/></svg>
 
   </div>
 
-  <div className="w-[25%] pt-[1px]  border-b border-[#e7e7e715] flex items-center justify-center">
+  <div className="w-[30%] pt-[1px]  border-b border-[#e7e7e715] flex items-center justify-center">
 
-    <div className="w-full h-full  border-[#e7e7e715] flex items-center justify-center">
-      <svg xmlns="http://www.w3.org/2000/svg" width="37.24" height="22" viewBox="0 0 256 220"><path fill="#912626" d="M245.97 168.943c-13.662 7.121-84.434 36.22-99.501 44.075s-23.437 7.78-35.34 2.09c-11.902-5.69-87.216-36.112-100.783-42.597C3.566 169.271 0 166.535 0 163.951v-25.876s98.05-21.345 113.879-27.024c15.828-5.679 21.32-5.884 34.79-.95c13.472 4.936 94.018 19.468 107.331 24.344l-.006 25.51c.002 2.558-3.07 5.364-10.024 8.988"/><path fill="#C6302B" d="M245.965 143.22c-13.661 7.118-84.431 36.218-99.498 44.072c-15.066 7.857-23.436 7.78-35.338 2.09c-11.903-5.686-87.214-36.113-100.78-42.594c-13.566-6.485-13.85-10.948-.524-16.166c13.326-5.22 88.224-34.605 104.055-40.284c15.828-5.677 21.319-5.884 34.789-.948c13.471 4.934 83.819 32.935 97.13 37.81c13.316 4.881 13.827 8.9.166 16.02"/><path fill="#912626" d="M245.97 127.074c-13.662 7.122-84.434 36.22-99.501 44.078c-15.067 7.853-23.437 7.777-35.34 2.087c-11.903-5.687-87.216-36.112-100.783-42.597C3.566 127.402 0 124.67 0 122.085V96.206s98.05-21.344 113.879-27.023c15.828-5.679 21.32-5.885 34.79-.95C162.142 73.168 242.688 87.697 256 92.574l-.006 25.513c.002 2.557-3.07 5.363-10.024 8.987"/><path fill="#C6302B" d="M245.965 101.351c-13.661 7.12-84.431 36.218-99.498 44.075c-15.066 7.854-23.436 7.777-35.338 2.087c-11.903-5.686-87.214-36.112-100.78-42.594c-13.566-6.483-13.85-10.947-.524-16.167C23.151 83.535 98.05 54.148 113.88 48.47c15.828-5.678 21.319-5.884 34.789-.949c13.471 4.934 83.819 32.933 97.13 37.81c13.316 4.88 13.827 8.9.166 16.02"/><path fill="#912626" d="M245.97 83.653c-13.662 7.12-84.434 36.22-99.501 44.078c-15.067 7.854-23.437 7.777-35.34 2.087c-11.903-5.687-87.216-36.113-100.783-42.595C3.566 83.98 0 81.247 0 78.665v-25.88s98.05-21.343 113.879-27.021c15.828-5.68 21.32-5.884 34.79-.95C162.142 29.749 242.688 44.278 256 49.155l-.006 25.512c.002 2.555-3.07 5.361-10.024 8.986"/><path fill="#C6302B" d="M245.965 57.93c-13.661 7.12-84.431 36.22-99.498 44.074c-15.066 7.854-23.436 7.777-35.338 2.09C99.227 98.404 23.915 67.98 10.35 61.497S-3.5 50.55 9.825 45.331C23.151 40.113 98.05 10.73 113.88 5.05c15.828-5.679 21.319-5.883 34.789-.948s83.819 32.934 97.13 37.811c13.316 4.876 13.827 8.897.166 16.017"/><path fill="#FFF" d="m159.283 32.757l-22.01 2.285l-4.927 11.856l-7.958-13.23l-25.415-2.284l18.964-6.839l-5.69-10.498l17.755 6.944l16.738-5.48l-4.524 10.855zm-28.251 57.518L89.955 73.238l58.86-9.035zm-56.95-50.928c17.375 0 31.46 5.46 31.46 12.194c0 6.736-14.085 12.195-31.46 12.195s-31.46-5.46-31.46-12.195c0-6.734 14.085-12.194 31.46-12.194"/><path fill="#621B1C" d="m185.295 35.998l34.836 13.766l-34.806 13.753z"/><path fill="#9A2928" d="m146.755 51.243l38.54-15.245l.03 27.519l-3.779 1.478z"/></svg>
+    <div className="w-[33%] mx-1 h-full   border-[#e7e7e715] flex items-center justify-center">
+      <svg xmlns="http://www.w3.org/2000/svg" className="md:w-[50%] md:h-[100%] w-[50%] h-[50%]"   viewBox="0 0 256 220"><path fill="#912626" d="M245.97 168.943c-13.662 7.121-84.434 36.22-99.501 44.075s-23.437 7.78-35.34 2.09c-11.902-5.69-87.216-36.112-100.783-42.597C3.566 169.271 0 166.535 0 163.951v-25.876s98.05-21.345 113.879-27.024c15.828-5.679 21.32-5.884 34.79-.95c13.472 4.936 94.018 19.468 107.331 24.344l-.006 25.51c.002 2.558-3.07 5.364-10.024 8.988"/><path fill="#C6302B" d="M245.965 143.22c-13.661 7.118-84.431 36.218-99.498 44.072c-15.066 7.857-23.436 7.78-35.338 2.09c-11.903-5.686-87.214-36.113-100.78-42.594c-13.566-6.485-13.85-10.948-.524-16.166c13.326-5.22 88.224-34.605 104.055-40.284c15.828-5.677 21.319-5.884 34.789-.948c13.471 4.934 83.819 32.935 97.13 37.81c13.316 4.881 13.827 8.9.166 16.02"/><path fill="#912626" d="M245.97 127.074c-13.662 7.122-84.434 36.22-99.501 44.078c-15.067 7.853-23.437 7.777-35.34 2.087c-11.903-5.687-87.216-36.112-100.783-42.597C3.566 127.402 0 124.67 0 122.085V96.206s98.05-21.344 113.879-27.023c15.828-5.679 21.32-5.885 34.79-.95C162.142 73.168 242.688 87.697 256 92.574l-.006 25.513c.002 2.557-3.07 5.363-10.024 8.987"/><path fill="#C6302B" d="M245.965 101.351c-13.661 7.12-84.431 36.218-99.498 44.075c-15.066 7.854-23.436 7.777-35.338 2.087c-11.903-5.686-87.214-36.112-100.78-42.594c-13.566-6.483-13.85-10.947-.524-16.167C23.151 83.535 98.05 54.148 113.88 48.47c15.828-5.678 21.319-5.884 34.789-.949c13.471 4.934 83.819 32.933 97.13 37.81c13.316 4.88 13.827 8.9.166 16.02"/><path fill="#912626" d="M245.97 83.653c-13.662 7.12-84.434 36.22-99.501 44.078c-15.067 7.854-23.437 7.777-35.34 2.087c-11.903-5.687-87.216-36.113-100.783-42.595C3.566 83.98 0 81.247 0 78.665v-25.88s98.05-21.343 113.879-27.021c15.828-5.68 21.32-5.884 34.79-.95C162.142 29.749 242.688 44.278 256 49.155l-.006 25.512c.002 2.555-3.07 5.361-10.024 8.986"/><path fill="#C6302B" d="M245.965 57.93c-13.661 7.12-84.431 36.22-99.498 44.074c-15.066 7.854-23.436 7.777-35.338 2.09C99.227 98.404 23.915 67.98 10.35 61.497S-3.5 50.55 9.825 45.331C23.151 40.113 98.05 10.73 113.88 5.05c15.828-5.679 21.319-5.883 34.789-.948s83.819 32.934 97.13 37.811c13.316 4.876 13.827 8.897.166 16.017"/><path fill="#FFF" d="m159.283 32.757l-22.01 2.285l-4.927 11.856l-7.958-13.23l-25.415-2.284l18.964-6.839l-5.69-10.498l17.755 6.944l16.738-5.48l-4.524 10.855zm-28.251 57.518L89.955 73.238l58.86-9.035zm-56.95-50.928c17.375 0 31.46 5.46 31.46 12.194c0 6.736-14.085 12.195-31.46 12.195s-31.46-5.46-31.46-12.195c0-6.734 14.085-12.194 31.46-12.194"/><path fill="#621B1C" d="m185.295 35.998l34.836 13.766l-34.806 13.753z"/><path fill="#9A2928" d="m146.755 51.243l38.54-15.245l.03 27.519l-3.779 1.478z"/></svg>
     </div>
-    <div className="w-full h-full  border-[#e7e7e715] flex items-center justify-center">
-     <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 256 154"><defs><linearGradient id="logosTailwindcssIcon0" x1="-2.778%" x2="100%" y1="32%" y2="67.556%"><stop offset="0%" stopColor="#2298BD"></stop><stop offset="100%" stopColor="#0ED7B5"></stop></linearGradient></defs><path fill="url(#logosTailwindcssIcon0)" d="M128 0Q76.8 0 64 51.2Q83.2 25.6 108.8 32c9.737 2.434 16.697 9.499 24.401 17.318C145.751 62.057 160.275 76.8 192 76.8q51.2 0 64-51.2q-19.2 25.6-44.8 19.2c-9.737-2.434-16.697-9.499-24.401-17.318C174.249 14.743 159.725 0 128 0M64 76.8q-51.2 0-64 51.2q19.2-25.6 44.8-19.2c9.737 2.434 16.697 9.499 24.401 17.318C81.751 138.857 96.275 153.6 128 153.6q51.2 0 64-51.2q-19.2 25.6-44.8 19.2c-9.737-2.434-16.697-9.499-24.401-17.318C110.249 91.543 95.725 76.8 64 76.8"></path></svg>
+    <div className="w-[33%]  mx-1 h-full  border-[#e7e7e715] flex items-center justify-center">
+     <svg xmlns="http://www.w3.org/2000/svg" className="md:w-[50%] md:h-[150%] w-[50%] h-[50%]"  viewBox="0 0 256 154"><defs><linearGradient id="logosTailwindcssIcon0" x1="-2.778%" x2="100%" y1="32%" y2="67.556%"><stop offset="0%" stopColor="#2298BD"></stop><stop offset="100%" stopColor="#0ED7B5"></stop></linearGradient></defs><path fill="url(#logosTailwindcssIcon0)" d="M128 0Q76.8 0 64 51.2Q83.2 25.6 108.8 32c9.737 2.434 16.697 9.499 24.401 17.318C145.751 62.057 160.275 76.8 192 76.8q51.2 0 64-51.2q-19.2 25.6-44.8 19.2c-9.737-2.434-16.697-9.499-24.401-17.318C174.249 14.743 159.725 0 128 0M64 76.8q-51.2 0-64 51.2q19.2-25.6 44.8-19.2c9.737 2.434 16.697 9.499 24.401 17.318C81.751 138.857 96.275 153.6 128 153.6q51.2 0 64-51.2q-19.2 25.6-44.8 19.2c-9.737-2.434-16.697-9.499-24.401-17.318C110.249 91.543 95.725 76.8 64 76.8"></path></svg>
     </div>
-    <div className="w-full h-full  border-r flex items-center justify-center border-[#e7e7e715]">
+    <div className="w-[33%] mx-1 h-full  border-r flex items-center justify-center border-[#e7e7e715]">
 
-    <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 256 262"><path fill="#4285F4" d="M255.878 133.451c0-10.734-.871-18.567-2.756-26.69H130.55v48.448h71.947c-1.45 12.04-9.283 30.172-26.69 42.356l-.244 1.622l38.755 30.023l2.685.268c24.659-22.774 38.875-56.282 38.875-96.027"></path><path fill="#34A853" d="M130.55 261.1c35.248 0 64.839-11.605 86.453-31.622l-41.196-31.913c-11.024 7.688-25.82 13.055-45.257 13.055c-34.523 0-63.824-22.773-74.269-54.25l-1.531.13l-40.298 31.187l-.527 1.465C35.393 231.798 79.49 261.1 130.55 261.1"></path><path fill="#FBBC05" d="M56.281 156.37c-2.756-8.123-4.351-16.827-4.351-25.82c0-8.994 1.595-17.697 4.206-25.82l-.073-1.73L15.26 71.312l-1.335.635C5.077 89.644 0 109.517 0 130.55s5.077 40.905 13.925 58.602z"></path><path fill="#EB4335" d="M130.55 50.479c24.514 0 41.05 10.589 50.479 19.438l36.844-35.974C195.245 12.91 165.798 0 130.55 0C79.49 0 35.393 29.301 13.925 71.947l42.211 32.783c10.59-31.477 39.891-54.251 74.414-54.251"></path></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="1.5em"  className=" md:w-[50%] md:h-[100%] w-[40%] h-[40%]" height="1.5em" viewBox="0 0 256 262"><path fill="#4285F4" d="M255.878 133.451c0-10.734-.871-18.567-2.756-26.69H130.55v48.448h71.947c-1.45 12.04-9.283 30.172-26.69 42.356l-.244 1.622l38.755 30.023l2.685.268c24.659-22.774 38.875-56.282 38.875-96.027"></path><path fill="#34A853" d="M130.55 261.1c35.248 0 64.839-11.605 86.453-31.622l-41.196-31.913c-11.024 7.688-25.82 13.055-45.257 13.055c-34.523 0-63.824-22.773-74.269-54.25l-1.531.13l-40.298 31.187l-.527 1.465C35.393 231.798 79.49 261.1 130.55 261.1"></path><path fill="#FBBC05" d="M56.281 156.37c-2.756-8.123-4.351-16.827-4.351-25.82c0-8.994 1.595-17.697 4.206-25.82l-.073-1.73L15.26 71.312l-1.335.635C5.077 89.644 0 109.517 0 130.55s5.077 40.905 13.925 58.602z"></path><path fill="#EB4335" d="M130.55 50.479c24.514 0 41.05 10.589 50.479 19.438l36.844-35.974C195.245 12.91 165.798 0 130.55 0C79.49 0 35.393 29.301 13.925 71.947l42.211 32.783c10.59-31.477 39.891-54.251 74.414-54.251"></path></svg>
 
     </div>
 
@@ -1019,8 +1136,8 @@ Every component from uipub registry is compatible with shadcn/ui CLI.</p>
 
   </div> 
 
-  <div className="w-[25%] border-t border-b border-[#e7e7e715] flex items-center justify-center">
-  <svg className="fill-white" xmlns="http://www.w3.org/2000/svg" width="8.2em" height="1.5em" viewBox="0 0 512 76"><path d="M214.633 47.4h7.505v20.704h13.096v6.643h-20.6zm28.361 13.751v-.08c0-7.856 6.257-14.218 14.61-14.218c8.35 0 14.529 6.295 14.529 14.138v.08c0 7.853-6.257 14.218-14.61 14.218s-14.531-6.287-14.531-14.138zm21.49 0v-.08c0-3.948-2.82-7.384-6.96-7.384c-4.142 0-6.84 3.356-6.84 7.304v.08c0 3.945 2.816 7.384 6.92 7.384c4.1 0 6.88-3.358 6.88-7.304m16.827 1.602V47.41h7.613v15.197c0 3.945 1.965 5.815 4.982 5.815c3.014 0 4.982-1.8 4.982-5.627V47.4h7.61v15.157c0 8.832-4.983 12.69-12.673 12.69s-12.524-3.948-12.524-12.5m36.674-15.34h10.438c9.658 0 15.262 5.625 15.262 13.508v.08c0 7.882-5.685 13.747-15.42 13.747h-10.28V47.4v.01zm10.546 20.621c4.487 0 7.454-2.497 7.454-6.912v-.08c0-4.377-2.974-6.915-7.454-6.915h-3.055v13.907zM354.575 47.4h21.637v6.646h-14.145v4.643h12.79v6.287h-12.79v9.771h-7.492zm32.068 0h7.502v20.704h13.098v6.643h-20.6zm40.19-.193h7.223l11.517 27.535h-8.036l-1.978-4.884H425.12l-1.928 4.884h-7.888l11.517-27.535zm6.572 16.755l-3.016-7.773l-3.055 7.773zm21.828-16.554h12.79c4.134 0 7 1.099 8.807 2.966c1.594 1.559 2.394 3.677 2.394 6.365v.08c0 4.177-2.206 6.953-5.566 8.393l6.455 9.53h-8.659l-5.446-8.282h-3.283v8.282h-7.502V47.4l.01.01zm12.446 13.126c2.55 0 4.021-1.247 4.021-3.238v-.077c0-2.149-1.54-3.238-4.06-3.238h-4.905v6.566h4.952l-.008-.01zM490.044 47.4h21.758v6.445h-14.334v4.136h12.988v5.984h-12.988v4.337H512v6.445h-21.956zM198.212 64.356c-1.05 2.4-3.263 4.099-6.2 4.099c-4.09 0-6.916-3.439-6.916-7.384v-.083c0-3.948 2.745-7.303 6.839-7.303c3.084 0 5.436 1.917 6.435 4.535h7.898c-1.267-6.503-6.92-11.37-14.263-11.37c-8.343 0-14.61 6.365-14.61 14.219v.08c0 7.853 6.177 14.138 14.532 14.138c7.136 0 12.72-4.679 14.193-10.943h-7.918l.01.01z"></path><path fill="#FBAD41" d="M132.234 32.698c-.552 0-1.097.02-1.641.037a.8.8 0 0 0-.256.06a.92.92 0 0 0-.593.64l-2.334 8.155c-1.006 3.506-.632 6.744 1.06 9.12c1.55 2.2 4.13 3.49 7.263 3.64l12.662.768c.376.02.702.2.9.5c.211.322.258.725.129 1.089a1.61 1.61 0 0 1-1.373 1.069l-13.157.768c-7.147.331-14.838 6.164-17.536 13.277l-.948 2.51a.703.703 0 0 0 .622.958h45.312a1.205 1.205 0 0 0 1.165-.878a33 33 0 0 0 1.204-8.885c0-18.12-14.529-32.808-32.459-32.808"></path><path fill="#F6821F" d="m112.457 74.235l.838-2.949c1.009-3.506.635-6.744-1.054-9.12c-1.556-2.2-4.134-3.49-7.268-3.64l-59.395-.768a1.17 1.17 0 0 1-.939-.5a1.24 1.24 0 0 1-.13-1.089a1.61 1.61 0 0 1 1.385-1.069l59.95-.768c7.117-.329 14.807-6.164 17.505-13.277l3.419-9.035a2.3 2.3 0 0 0 .1-1.197C122.973 13.199 107.392 0 88.764 0c-17.172 0-31.741 11.199-36.97 26.767A17.37 17.37 0 0 0 39.47 23.32c-8.232.828-14.858 7.534-15.676 15.857a18 18 0 0 0 .452 6.204C10.792 45.78 0 56.92 0 70.608c0 1.238.088 2.457.266 3.647c.073.577.565 1.01 1.147 1.009h109.688a1.43 1.43 0 0 0 1.356-1.05"></path></svg> 
+  <div className="w-[20%]   border-b border-[#e7e7e715] flex items-center justify-center">
+  <svg className="fill-white  " xmlns="http://www.w3.org/2000/svg" width="8.2em" height="1.5em" viewBox="0 0 512 76"><path d="M214.633 47.4h7.505v20.704h13.096v6.643h-20.6zm28.361 13.751v-.08c0-7.856 6.257-14.218 14.61-14.218c8.35 0 14.529 6.295 14.529 14.138v.08c0 7.853-6.257 14.218-14.61 14.218s-14.531-6.287-14.531-14.138zm21.49 0v-.08c0-3.948-2.82-7.384-6.96-7.384c-4.142 0-6.84 3.356-6.84 7.304v.08c0 3.945 2.816 7.384 6.92 7.384c4.1 0 6.88-3.358 6.88-7.304m16.827 1.602V47.41h7.613v15.197c0 3.945 1.965 5.815 4.982 5.815c3.014 0 4.982-1.8 4.982-5.627V47.4h7.61v15.157c0 8.832-4.983 12.69-12.673 12.69s-12.524-3.948-12.524-12.5m36.674-15.34h10.438c9.658 0 15.262 5.625 15.262 13.508v.08c0 7.882-5.685 13.747-15.42 13.747h-10.28V47.4v.01zm10.546 20.621c4.487 0 7.454-2.497 7.454-6.912v-.08c0-4.377-2.974-6.915-7.454-6.915h-3.055v13.907zM354.575 47.4h21.637v6.646h-14.145v4.643h12.79v6.287h-12.79v9.771h-7.492zm32.068 0h7.502v20.704h13.098v6.643h-20.6zm40.19-.193h7.223l11.517 27.535h-8.036l-1.978-4.884H425.12l-1.928 4.884h-7.888l11.517-27.535zm6.572 16.755l-3.016-7.773l-3.055 7.773zm21.828-16.554h12.79c4.134 0 7 1.099 8.807 2.966c1.594 1.559 2.394 3.677 2.394 6.365v.08c0 4.177-2.206 6.953-5.566 8.393l6.455 9.53h-8.659l-5.446-8.282h-3.283v8.282h-7.502V47.4l.01.01zm12.446 13.126c2.55 0 4.021-1.247 4.021-3.238v-.077c0-2.149-1.54-3.238-4.06-3.238h-4.905v6.566h4.952l-.008-.01zM490.044 47.4h21.758v6.445h-14.334v4.136h12.988v5.984h-12.988v4.337H512v6.445h-21.956zM198.212 64.356c-1.05 2.4-3.263 4.099-6.2 4.099c-4.09 0-6.916-3.439-6.916-7.384v-.083c0-3.948 2.745-7.303 6.839-7.303c3.084 0 5.436 1.917 6.435 4.535h7.898c-1.267-6.503-6.92-11.37-14.263-11.37c-8.343 0-14.61 6.365-14.61 14.219v.08c0 7.853 6.177 14.138 14.532 14.138c7.136 0 12.72-4.679 14.193-10.943h-7.918l.01.01z"></path><path fill="#FBAD41" d="M132.234 32.698c-.552 0-1.097.02-1.641.037a.8.8 0 0 0-.256.06a.92.92 0 0 0-.593.64l-2.334 8.155c-1.006 3.506-.632 6.744 1.06 9.12c1.55 2.2 4.13 3.49 7.263 3.64l12.662.768c.376.02.702.2.9.5c.211.322.258.725.129 1.089a1.61 1.61 0 0 1-1.373 1.069l-13.157.768c-7.147.331-14.838 6.164-17.536 13.277l-.948 2.51a.703.703 0 0 0 .622.958h45.312a1.205 1.205 0 0 0 1.165-.878a33 33 0 0 0 1.204-8.885c0-18.12-14.529-32.808-32.459-32.808"></path><path fill="#F6821F" d="m112.457 74.235l.838-2.949c1.009-3.506.635-6.744-1.054-9.12c-1.556-2.2-4.134-3.49-7.268-3.64l-59.395-.768a1.17 1.17 0 0 1-.939-.5a1.24 1.24 0 0 1-.13-1.089a1.61 1.61 0 0 1 1.385-1.069l59.95-.768c7.117-.329 14.807-6.164 17.505-13.277l3.419-9.035a2.3 2.3 0 0 0 .1-1.197C122.973 13.199 107.392 0 88.764 0c-17.172 0-31.741 11.199-36.97 26.767A17.37 17.37 0 0 0 39.47 23.32c-8.232.828-14.858 7.534-15.676 15.857a18 18 0 0 0 .452 6.204C10.792 45.78 0 56.92 0 70.608c0 1.238.088 2.457.266 3.647c.073.577.565 1.01 1.147 1.009h109.688a1.43 1.43 0 0 0 1.356-1.05"></path></svg> 
     </div> 
  
 
@@ -1036,18 +1153,18 @@ Every component from uipub registry is compatible with shadcn/ui CLI.</p>
 
 </div>
 
-<div className="w-[54%] ml-auto mr-auto    ">
-  <div className=" w-full flex">
+<div className="md:w-[54%] w-[100%] ml-auto mr-auto    ">
+  <div className=" w-full flex md:mb-0 mb-22">
     <div className=" w-[100%] h-full flex items-center ">
 
  <div className="    border-r border-l   border-[#e7e7e715]  h-[270px] w-full flex">
     <div className=" w-[100%] h-full justify-center flex items-center ">
       <div className="w-[90%] h-[60%] ">
       <div className="  w-[100%] flex items-center mb-7">
-          <p className="objr text-white  text-2xl ">Ecosystem  </p>
+          <p className="objr text-white  text-xl ">Ecosystem  </p>
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="ml-4 mr-4 w-10  text-white  inline-flex"><path d="M21.0001 12.4286L12.4287 21" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"></path><path d="M19.2857 3L3 19.2857" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"></path></svg>
 
-          <p className="w-full objr text-white  text-2xl ">Integrated Tech Stack Approach</p>
+          <p className="w-full objr text-white  text-xl ">Integrated Tech Stack Approach</p>
           </div>
         
         <p className="fon text-md">Combining various technologies effectively to engineer tailored web solutions. </p>
@@ -1067,19 +1184,19 @@ Every component from uipub registry is compatible with shadcn/ui CLI.</p>
 
 <div className="w-[33.33%] border-t   border-r flex items-center justify-center border-[#e7e7e715] ">
 
-<svg xmlns="http://www.w3.org/2000/svg" width="148.95" height="32" viewBox="0 0 512 110"><path fill="#D97757" d="m21.564 73.123l21.62-12.132l.361-1.057l-.361-.584h-1.058l-3.617-.223l-12.354-.334l-10.712-.445l-10.379-.556l-2.615-.557L0 54.007l.25-1.613l2.199-1.475l3.144.278l6.956.473l10.434.724l7.568.445l11.214 1.168h1.78l.25-.723l-.611-.445l-.473-.445l-10.796-7.318l-11.687-7.735l-6.12-4.452l-3.312-2.254l-1.67-2.115l-.723-4.619l3.005-3.31l4.035.277l1.03.279l4.09 3.144l8.736 6.761l11.408 8.403l1.67 1.391l.668-.473l.083-.333l-.751-1.253l-6.205-11.213l-6.622-11.408l-2.95-4.73l-.779-2.838c-.278-1.169-.473-2.143-.473-3.34L28.771.613L30.663 0l4.563.612l1.92 1.67l2.838 6.483l4.591 10.211l7.123 13.885l2.087 4.118l1.113 3.812l.417 1.168h.724v-.667l.584-7.819l1.085-9.6l1.058-12.354l.361-3.478l1.725-4.173l3.423-2.254l2.67 1.28l2.2 3.144l-.307 2.031l-1.308 8.487l-2.56 13.3l-1.67 8.904h.975l1.113-1.113l4.507-5.983l7.569-9.46l3.339-3.756l3.895-4.146l2.504-1.976h4.73l3.478 5.176l-1.558 5.342l-4.869 6.177l-4.035 5.231l-5.787 7.79l-3.617 6.234l.334.5l.862-.083l13.078-2.782l7.067-1.28l8.431-1.447l3.812 1.78l.417 1.81l-1.502 3.7l-9.015 2.226l-10.574 2.114l-15.748 3.729l-.195.139l.222.278l7.096.668l3.033.167h7.429l13.829 1.03l3.617 2.392l2.17 2.922l-.362 2.226l-5.565 2.838l-7.512-1.78l-17.53-4.174l-6.01-1.503h-.835v.5l5.009 4.898l9.182 8.292L97.776 88.12l.584 2.644l-1.475 2.087l-1.558-.223l-10.1-7.596l-3.896-3.423l-8.82-7.429h-.584v.78l2.03 2.977l10.741 16.138l.556 4.953l-.779 1.613l-2.782.974l-3.06-.556l-6.29-8.82l-6.482-9.934l-5.231-8.904l-.64.362l-3.089 33.25l-1.447 1.698l-3.339 1.28l-2.782-2.115l-1.475-3.423l1.475-6.76l1.78-8.821l1.448-7.012l1.307-8.71l.78-2.893l-.056-.195l-.64.084l-6.567 9.015l-9.989 13.495l-7.902 8.459l-1.892.75l-3.283-1.697l.306-3.032l1.836-2.7l10.935-13.912l6.595-8.625l4.257-4.98l-.028-.724h-.25L18.92 85.06l-5.175.668l-2.226-2.087l.279-3.423l1.057-1.113l8.737-6.01z"/><path d="M179.413 93.351c-13.968 0-23.512-7.79-28.02-19.783a53.4 53.4 0 0 1-3.422-19.56c0-20.118 9.015-34.086 28.938-34.086c13.383 0 21.647 5.844 26.35 19.784h5.731l-.779-19.227c-8.013-5.175-18.03-7.791-30.217-7.791c-17.168 0-31.776 7.68-39.9 21.536a46.66 46.66 0 0 0-6.178 24.068c0 15.387 7.263 29.022 20.897 36.59a48.7 48.7 0 0 0 24.29 5.732c13.3 0 23.846-2.532 33.195-6.956l2.42-21.203h-5.842c-3.506 9.683-7.68 15.498-14.608 18.587c-3.395 1.53-7.68 2.31-12.855 2.31m60.24-73.429l.557-9.46h-3.952l-17.585 5.287v2.866l7.791 3.617V88.4c0 4.507-2.31 5.509-8.347 6.26v4.842h29.911V94.66c-6.065-.751-8.347-1.753-8.347-6.26V19.95zm118.95 80.692h2.31l20.228-3.84V91.82l-2.838-.222c-4.73-.446-5.955-1.42-5.955-5.287V51.03l.557-11.324h-3.2L350.59 42.46v4.842l1.864.334c5.175.75 6.706 2.198 6.706 5.815v31.442c-4.953 3.84-9.683 6.26-15.304 6.26c-6.233 0-10.1-3.172-10.1-10.573V51.058l.556-11.325h-3.283l-19.143 2.755v4.842l1.975.333c5.176.752 6.706 2.199 6.706 5.816v29.02c0 12.3 6.956 18.142 18.03 18.142c8.459 0 15.387-4.507 20.59-10.768l-.556 10.768zm-55.593-39.15c0-15.72-8.348-21.758-23.429-21.758c-13.3 0-22.955 5.509-22.955 14.635c0 2.727.974 4.814 2.95 6.26l10.128-1.335c-.446-3.06-.668-4.925-.668-5.704c0-5.175 2.754-7.79 8.347-7.79c8.264 0 12.438 5.815 12.438 15.164v3.06l-20.869 6.261c-6.956 1.892-10.907 3.534-13.55 7.374a13.9 13.9 0 0 0-1.948 7.79c0 8.904 6.121 15.193 16.583 15.193c7.569 0 14.275-3.423 20.118-9.906c2.087 6.483 5.286 9.906 10.99 9.906c4.62 0 8.793-1.865 12.521-5.51l-1.113-3.84a17.8 17.8 0 0 1-4.813.668c-3.2 0-4.73-2.532-4.73-7.484zM276.298 91.71c-5.704 0-9.238-3.311-9.238-9.127c0-3.95 1.865-6.26 5.843-7.596l16.918-5.37v16.25c-5.398 4.09-8.57 5.843-13.523 5.843m176.13 5.064V91.82l-2.866-.222c-4.73-.446-5.927-1.42-5.927-5.287v-66.39l.557-9.46h-3.98l-17.585 5.287v2.866l7.791 3.617V43.99a24.57 24.57 0 0 0-14.941-4.285c-17.474 0-31.108 13.3-31.108 33.194c0 16.39 9.794 27.714 25.932 27.714c8.348 0 15.61-4.063 20.117-10.351l-.556 10.35h2.337zM415.81 46.3c8.348 0 14.608 4.842 14.608 13.745v25.043a20.03 20.03 0 0 1-14.496 5.843c-11.965 0-18.03-9.46-18.03-22.093c0-14.19 6.928-22.538 17.918-22.538m79.384 12.521c-1.558-7.346-6.066-11.52-12.326-11.52c-9.35 0-15.833 7.04-15.833 17.14c0 14.943 7.903 24.625 20.674 24.625a23.93 23.93 0 0 0 20.563-12.103L512 77.964c-1.67 12.967-13.411 22.65-27.825 22.65c-16.917 0-28.575-12.521-28.575-30.33c0-17.946 12.66-30.578 29.577-30.578c12.632 0 21.536 7.596 24.402 20.785l-44.074 13.522V68.06l29.689-9.21z"/></svg>
+<svg className="w-28 md:w-35 " xmlns="http://www.w3.org/2000/svg" width="148.95" height="32" viewBox="0 0 512 110"><path fill="#D97757" d="m21.564 73.123l21.62-12.132l.361-1.057l-.361-.584h-1.058l-3.617-.223l-12.354-.334l-10.712-.445l-10.379-.556l-2.615-.557L0 54.007l.25-1.613l2.199-1.475l3.144.278l6.956.473l10.434.724l7.568.445l11.214 1.168h1.78l.25-.723l-.611-.445l-.473-.445l-10.796-7.318l-11.687-7.735l-6.12-4.452l-3.312-2.254l-1.67-2.115l-.723-4.619l3.005-3.31l4.035.277l1.03.279l4.09 3.144l8.736 6.761l11.408 8.403l1.67 1.391l.668-.473l.083-.333l-.751-1.253l-6.205-11.213l-6.622-11.408l-2.95-4.73l-.779-2.838c-.278-1.169-.473-2.143-.473-3.34L28.771.613L30.663 0l4.563.612l1.92 1.67l2.838 6.483l4.591 10.211l7.123 13.885l2.087 4.118l1.113 3.812l.417 1.168h.724v-.667l.584-7.819l1.085-9.6l1.058-12.354l.361-3.478l1.725-4.173l3.423-2.254l2.67 1.28l2.2 3.144l-.307 2.031l-1.308 8.487l-2.56 13.3l-1.67 8.904h.975l1.113-1.113l4.507-5.983l7.569-9.46l3.339-3.756l3.895-4.146l2.504-1.976h4.73l3.478 5.176l-1.558 5.342l-4.869 6.177l-4.035 5.231l-5.787 7.79l-3.617 6.234l.334.5l.862-.083l13.078-2.782l7.067-1.28l8.431-1.447l3.812 1.78l.417 1.81l-1.502 3.7l-9.015 2.226l-10.574 2.114l-15.748 3.729l-.195.139l.222.278l7.096.668l3.033.167h7.429l13.829 1.03l3.617 2.392l2.17 2.922l-.362 2.226l-5.565 2.838l-7.512-1.78l-17.53-4.174l-6.01-1.503h-.835v.5l5.009 4.898l9.182 8.292L97.776 88.12l.584 2.644l-1.475 2.087l-1.558-.223l-10.1-7.596l-3.896-3.423l-8.82-7.429h-.584v.78l2.03 2.977l10.741 16.138l.556 4.953l-.779 1.613l-2.782.974l-3.06-.556l-6.29-8.82l-6.482-9.934l-5.231-8.904l-.64.362l-3.089 33.25l-1.447 1.698l-3.339 1.28l-2.782-2.115l-1.475-3.423l1.475-6.76l1.78-8.821l1.448-7.012l1.307-8.71l.78-2.893l-.056-.195l-.64.084l-6.567 9.015l-9.989 13.495l-7.902 8.459l-1.892.75l-3.283-1.697l.306-3.032l1.836-2.7l10.935-13.912l6.595-8.625l4.257-4.98l-.028-.724h-.25L18.92 85.06l-5.175.668l-2.226-2.087l.279-3.423l1.057-1.113l8.737-6.01z"/><path d="M179.413 93.351c-13.968 0-23.512-7.79-28.02-19.783a53.4 53.4 0 0 1-3.422-19.56c0-20.118 9.015-34.086 28.938-34.086c13.383 0 21.647 5.844 26.35 19.784h5.731l-.779-19.227c-8.013-5.175-18.03-7.791-30.217-7.791c-17.168 0-31.776 7.68-39.9 21.536a46.66 46.66 0 0 0-6.178 24.068c0 15.387 7.263 29.022 20.897 36.59a48.7 48.7 0 0 0 24.29 5.732c13.3 0 23.846-2.532 33.195-6.956l2.42-21.203h-5.842c-3.506 9.683-7.68 15.498-14.608 18.587c-3.395 1.53-7.68 2.31-12.855 2.31m60.24-73.429l.557-9.46h-3.952l-17.585 5.287v2.866l7.791 3.617V88.4c0 4.507-2.31 5.509-8.347 6.26v4.842h29.911V94.66c-6.065-.751-8.347-1.753-8.347-6.26V19.95zm118.95 80.692h2.31l20.228-3.84V91.82l-2.838-.222c-4.73-.446-5.955-1.42-5.955-5.287V51.03l.557-11.324h-3.2L350.59 42.46v4.842l1.864.334c5.175.75 6.706 2.198 6.706 5.815v31.442c-4.953 3.84-9.683 6.26-15.304 6.26c-6.233 0-10.1-3.172-10.1-10.573V51.058l.556-11.325h-3.283l-19.143 2.755v4.842l1.975.333c5.176.752 6.706 2.199 6.706 5.816v29.02c0 12.3 6.956 18.142 18.03 18.142c8.459 0 15.387-4.507 20.59-10.768l-.556 10.768zm-55.593-39.15c0-15.72-8.348-21.758-23.429-21.758c-13.3 0-22.955 5.509-22.955 14.635c0 2.727.974 4.814 2.95 6.26l10.128-1.335c-.446-3.06-.668-4.925-.668-5.704c0-5.175 2.754-7.79 8.347-7.79c8.264 0 12.438 5.815 12.438 15.164v3.06l-20.869 6.261c-6.956 1.892-10.907 3.534-13.55 7.374a13.9 13.9 0 0 0-1.948 7.79c0 8.904 6.121 15.193 16.583 15.193c7.569 0 14.275-3.423 20.118-9.906c2.087 6.483 5.286 9.906 10.99 9.906c4.62 0 8.793-1.865 12.521-5.51l-1.113-3.84a17.8 17.8 0 0 1-4.813.668c-3.2 0-4.73-2.532-4.73-7.484zM276.298 91.71c-5.704 0-9.238-3.311-9.238-9.127c0-3.95 1.865-6.26 5.843-7.596l16.918-5.37v16.25c-5.398 4.09-8.57 5.843-13.523 5.843m176.13 5.064V91.82l-2.866-.222c-4.73-.446-5.927-1.42-5.927-5.287v-66.39l.557-9.46h-3.98l-17.585 5.287v2.866l7.791 3.617V43.99a24.57 24.57 0 0 0-14.941-4.285c-17.474 0-31.108 13.3-31.108 33.194c0 16.39 9.794 27.714 25.932 27.714c8.348 0 15.61-4.063 20.117-10.351l-.556 10.35h2.337zM415.81 46.3c8.348 0 14.608 4.842 14.608 13.745v25.043a20.03 20.03 0 0 1-14.496 5.843c-11.965 0-18.03-9.46-18.03-22.093c0-14.19 6.928-22.538 17.918-22.538m79.384 12.521c-1.558-7.346-6.066-11.52-12.326-11.52c-9.35 0-15.833 7.04-15.833 17.14c0 14.943 7.903 24.625 20.674 24.625a23.93 23.93 0 0 0 20.563-12.103L512 77.964c-1.67 12.967-13.411 22.65-27.825 22.65c-16.917 0-28.575-12.521-28.575-30.33c0-17.946 12.66-30.578 29.577-30.578c12.632 0 21.536 7.596 24.402 20.785l-44.074 13.522V68.06l29.689-9.21z"/></svg>
 
   </div>
 
   <div className="w-[33.33%] pt-[1px] border-t  border-b  border-[#e7e7e715] flex items-center justify-center">
 
-    <div className="w-full h-full  border-[#e7e7e715] flex items-center justify-center">
-     <svg className="-mt-2.5" xmlns="http://www.w3.org/2000/svg" width="87.15" height="32" viewBox="0 0 512 188"><defs><radialGradient id="logosGoogleGemini0" cx="85.738%" cy="25.354%" r="103.154%" fx="85.738%" fy="25.354%" gradientTransform="matrix(-.86887 .47915 -.39276 -.66723 1.702 .012)"><stop offset="0%" stopColor="#5BAEFF"/><stop offset="100%" stopColor="#9CBFFF"/></radialGradient><radialGradient id="logosGoogleGemini1" cx="61.879%" cy="26.683%" r="80.612%" fx="61.879%" fy="26.683%" gradientTransform="scale(-1 -.9195)rotate(-81.526 -.323 .706)"><stop offset="0%" stopColor="#409DFF"/><stop offset="100%" stopColor="#64B0FF"/></radialGradient><radialGradient id="logosGoogleGemini2" cx="53.184%" cy="19.021%" r="110.789%" fx="53.184%" fy="19.021%" gradientTransform="scale(-.6801 -1)rotate(-76.197 -.368 .838)"><stop offset="0%" stopColor="#177CFF"/><stop offset="100%" stopColor="#4DA4FF"/></radialGradient><radialGradient id="logosGoogleGemini3" cx="-182.665%" cy="10.869%" r="521.404%" fx="-182.665%" fy="10.869%" gradientTransform="scale(1 .1796)rotate(65.413 -2.213 .357)"><stop offset="0%" stopColor="#1C7AFF"/><stop offset="100%" stopColor="#76A9FF"/><stop offset="100%" stopColor="#8FB9FF"/></radialGradient><linearGradient id="logosGoogleGemini4" x1="48.887%" x2="48.887%" y1="8.809%" y2="100%"><stop offset="0%" stopColor="#076EFF"/><stop offset="100%" stopColor="#3E93FF"/></linearGradient><linearGradient id="logosGoogleGemini5" x1="13.217%" x2="78.598%" y1="0%" y2="94.201%"><stop offset="0%" stopColor="#076EFF"/><stop offset="100%" stopColor="#69A3FF"/></linearGradient></defs><path fill="url(#logosGoogleGemini0)" d="M125.939 126.64q0 26.094-15.482 41.575q-17.395 18.438-45.748 18.438q-27.135 0-45.923-18.786Q0 149.08 0 121.597q0-27.485 18.786-46.27Q37.573 56.54 64.71 56.54q13.741 0 25.918 4.87t20.004 13.742l-11.48 11.48q-5.74-6.957-14.873-10.871t-19.57-3.914q-20.351 0-34.441 14.09q-13.916 14.264-13.916 35.66t13.916 35.659q14.09 14.09 34.442 14.09q18.613 0 30.963-10.437t14.263-28.702H64.71v-14.96h60.36q.87 4.872.87 9.394"/><path fill="url(#logosGoogleGemini1)" d="M176.17 96.205q19.152 0 30.485 12.387q11.334 12.388 11.334 34.703l-.176 1.757h-67.648q.352 12.651 8.434 20.382q8.083 7.73 19.328 7.73q15.462 0 24.248-15.461l14.408 7.028q-5.799 10.894-16.077 17.044t-23.282 6.15q-18.976 0-31.276-13.003t-12.299-32.857q0-19.68 11.948-32.77t30.573-13.09m-.351 14.76q-9.137 0-15.726 5.622q-6.59 5.623-8.698 15.11h49.374q-.702-8.96-7.292-14.846t-17.658-5.887"/><path fill="url(#logosGoogleGemini2)" d="M244.493 184.843h-16.116V99.008h15.416v11.912h.7q3.68-6.306 11.299-10.51q7.62-4.206 15.153-4.205q9.459 0 16.641 4.38q7.182 4.379 10.51 12.086q10.687-16.466 29.605-16.466q14.89 0 22.948 9.11q8.058 9.108 8.058 25.925v53.603h-16.116v-51.15q0-12.088-4.38-17.43q-4.379-5.343-14.714-5.343q-9.285 0-15.59 7.883q-6.307 7.882-6.307 18.568v47.472h-16.116v-51.15q0-12.088-4.38-17.43q-4.379-5.343-14.714-5.343q-9.285 0-15.59 7.883q-6.307 7.882-6.307 18.568z"/><path fill="url(#logosGoogleGemini4)" d="M393.263 69.216q0 4.737-3.334 8.07q-3.334 3.335-8.071 3.335t-8.071-3.334t-3.334-8.071q0-4.738 3.334-8.071q3.334-3.334 8.07-3.334q4.74 0 8.072 3.334q3.334 3.334 3.334 8.07m-3.334 29.652v85.975h-16.142V98.868z"/><path fill="url(#logosGoogleGemini3)" d="M512 69.216q0 4.737-3.334 8.07q-3.334 3.335-8.07 3.335q-4.74 0-8.072-3.334q-3.333-3.334-3.334-8.071q0-4.738 3.334-8.071q3.334-3.334 8.071-3.334t8.071 3.334t3.334 8.07m-3.334 29.652v85.975h-16.142V98.868z"/><path fill="url(#logosGoogleGemini5)" d="M404.004 99.008h15.415v11.912h.7q3.68-6.306 11.3-10.51q7.62-4.206 15.853-4.205q15.765 0 24.261 9.022q8.496 9.02 8.496 25.663v53.953h-16.116v-52.902q-.526-21.021-21.196-21.021q-9.634 0-16.116 7.795t-6.481 18.656v47.472h-16.116z"/><path fill="#076EFF" d="M348.374 72.76c-2.846-18.788-17.592-33.533-36.38-36.38c18.788-2.847 33.534-17.593 36.38-36.38c2.847 18.787 17.593 33.533 36.38 36.38c-18.787 2.847-33.533 17.592-36.38 36.38"/></svg>
+    <div className="w-[50%]   h-full  border-[#e7e7e715] flex items-center  justify-center">
+     <svg className="-mt-2.5 w-15 h-full md:h-8 md:w-35 ml-auto mr-auto" xmlns="http://www.w3.org/2000/svg" width="87.15" height="32" viewBox="0 0 512 188"><defs><radialGradient id="logosGoogleGemini0" cx="85.738%" cy="25.354%" r="103.154%" fx="85.738%" fy="25.354%" gradientTransform="matrix(-.86887 .47915 -.39276 -.66723 1.702 .012)"><stop offset="0%" stopColor="#5BAEFF"/><stop offset="100%" stopColor="#9CBFFF"/></radialGradient><radialGradient id="logosGoogleGemini1" cx="61.879%" cy="26.683%" r="80.612%" fx="61.879%" fy="26.683%" gradientTransform="scale(-1 -.9195)rotate(-81.526 -.323 .706)"><stop offset="0%" stopColor="#409DFF"/><stop offset="100%" stopColor="#64B0FF"/></radialGradient><radialGradient id="logosGoogleGemini2" cx="53.184%" cy="19.021%" r="110.789%" fx="53.184%" fy="19.021%" gradientTransform="scale(-.6801 -1)rotate(-76.197 -.368 .838)"><stop offset="0%" stopColor="#177CFF"/><stop offset="100%" stopColor="#4DA4FF"/></radialGradient><radialGradient id="logosGoogleGemini3" cx="-182.665%" cy="10.869%" r="521.404%" fx="-182.665%" fy="10.869%" gradientTransform="scale(1 .1796)rotate(65.413 -2.213 .357)"><stop offset="0%" stopColor="#1C7AFF"/><stop offset="100%" stopColor="#76A9FF"/><stop offset="100%" stopColor="#8FB9FF"/></radialGradient><linearGradient id="logosGoogleGemini4" x1="48.887%" x2="48.887%" y1="8.809%" y2="100%"><stop offset="0%" stopColor="#076EFF"/><stop offset="100%" stopColor="#3E93FF"/></linearGradient><linearGradient id="logosGoogleGemini5" x1="13.217%" x2="78.598%" y1="0%" y2="94.201%"><stop offset="0%" stopColor="#076EFF"/><stop offset="100%" stopColor="#69A3FF"/></linearGradient></defs><path fill="url(#logosGoogleGemini0)" d="M125.939 126.64q0 26.094-15.482 41.575q-17.395 18.438-45.748 18.438q-27.135 0-45.923-18.786Q0 149.08 0 121.597q0-27.485 18.786-46.27Q37.573 56.54 64.71 56.54q13.741 0 25.918 4.87t20.004 13.742l-11.48 11.48q-5.74-6.957-14.873-10.871t-19.57-3.914q-20.351 0-34.441 14.09q-13.916 14.264-13.916 35.66t13.916 35.659q14.09 14.09 34.442 14.09q18.613 0 30.963-10.437t14.263-28.702H64.71v-14.96h60.36q.87 4.872.87 9.394"/><path fill="url(#logosGoogleGemini1)" d="M176.17 96.205q19.152 0 30.485 12.387q11.334 12.388 11.334 34.703l-.176 1.757h-67.648q.352 12.651 8.434 20.382q8.083 7.73 19.328 7.73q15.462 0 24.248-15.461l14.408 7.028q-5.799 10.894-16.077 17.044t-23.282 6.15q-18.976 0-31.276-13.003t-12.299-32.857q0-19.68 11.948-32.77t30.573-13.09m-.351 14.76q-9.137 0-15.726 5.622q-6.59 5.623-8.698 15.11h49.374q-.702-8.96-7.292-14.846t-17.658-5.887"/><path fill="url(#logosGoogleGemini2)" d="M244.493 184.843h-16.116V99.008h15.416v11.912h.7q3.68-6.306 11.299-10.51q7.62-4.206 15.153-4.205q9.459 0 16.641 4.38q7.182 4.379 10.51 12.086q10.687-16.466 29.605-16.466q14.89 0 22.948 9.11q8.058 9.108 8.058 25.925v53.603h-16.116v-51.15q0-12.088-4.38-17.43q-4.379-5.343-14.714-5.343q-9.285 0-15.59 7.883q-6.307 7.882-6.307 18.568v47.472h-16.116v-51.15q0-12.088-4.38-17.43q-4.379-5.343-14.714-5.343q-9.285 0-15.59 7.883q-6.307 7.882-6.307 18.568z"/><path fill="url(#logosGoogleGemini4)" d="M393.263 69.216q0 4.737-3.334 8.07q-3.334 3.335-8.071 3.335t-8.071-3.334t-3.334-8.071q0-4.738 3.334-8.071q3.334-3.334 8.07-3.334q4.74 0 8.072 3.334q3.334 3.334 3.334 8.07m-3.334 29.652v85.975h-16.142V98.868z"/><path fill="url(#logosGoogleGemini3)" d="M512 69.216q0 4.737-3.334 8.07q-3.334 3.335-8.07 3.335q-4.74 0-8.072-3.334q-3.333-3.334-3.334-8.071q0-4.738 3.334-8.071q3.334-3.334 8.071-3.334t8.071 3.334t3.334 8.07m-3.334 29.652v85.975h-16.142V98.868z"/><path fill="url(#logosGoogleGemini5)" d="M404.004 99.008h15.415v11.912h.7q3.68-6.306 11.3-10.51q7.62-4.206 15.853-4.205q15.765 0 24.261 9.022q8.496 9.02 8.496 25.663v53.953h-16.116v-52.902q-.526-21.021-21.196-21.021q-9.634 0-16.116 7.795t-6.481 18.656v47.472h-16.116z"/><path fill="#076EFF" d="M348.374 72.76c-2.846-18.788-17.592-33.533-36.38-36.38c18.788-2.847 33.534-17.593 36.38-36.38c2.847 18.787 17.593 33.533 36.38 36.38c-18.787 2.847-33.533 17.592-36.38 36.38"/></svg>
       </div>
      
-    <div className="w-full h-full  border-r flex items-center justify-center border-[#e7e7e715]">
+    <div className="w-[50%] h-full  border-r flex items-center justify-center border-[#e7e7e715]">
 
-    <svg className="fill-white" xmlns="http://www.w3.org/2000/svg" width="39.39" height="32" viewBox="0 0 256 208"><path d="M205.28 31.36c14.096 14.88 20.016 35.2 22.512 63.68c6.626 0 12.805 1.47 16.976 7.152l7.792 10.56A17.55 17.55 0 0 1 256 123.2v28.688c-.008 3.704-1.843 7.315-4.832 9.504C215.885 187.222 172.35 208 128 208c-49.066 0-98.19-28.273-123.168-46.608c-2.989-2.189-4.825-5.8-4.832-9.504V123.2c0-3.776 1.2-7.424 3.424-10.464l7.792-10.544c4.173-5.657 10.38-7.152 16.992-7.152c2.496-28.48 8.4-48.8 22.512-63.68C77.331 3.165 112.567.06 127.552 0H128c14.72 0 50.4 2.88 77.28 31.36m-77.264 47.376c-3.04 0-6.544.176-10.272.544c-1.312 4.896-3.248 9.312-6.08 12.128c-11.2 11.2-24.704 12.928-31.936 12.928c-6.802 0-13.927-1.42-19.744-5.088c-5.502 1.808-10.786 4.415-11.136 10.912c-.586 12.28-.637 24.55-.688 36.824c-.026 6.16-.05 12.322-.144 18.488c.024 3.579 2.182 6.903 5.44 8.384C79.936 185.92 104.976 192 128.016 192c23.008 0 48.048-6.08 74.512-18.144c3.258-1.48 5.415-4.805 5.44-8.384c.317-18.418.062-36.912-.816-55.312h.016c-.342-6.534-5.648-9.098-11.168-10.912c-5.82 3.652-12.927 5.088-19.728 5.088c-7.232 0-20.72-1.728-31.936-12.928c-2.832-2.816-4.768-7.232-6.08-12.128a106 106 0 0 0-10.24-.544m-26.941 43.93c5.748 0 10.408 4.66 10.408 10.409v19.183c0 5.749-4.66 10.409-10.408 10.409s-10.408-4.66-10.408-10.409v-19.183c0-5.748 4.66-10.408 10.408-10.408m53.333 0c5.749 0 10.409 4.66 10.409 10.409v19.183c0 5.749-4.66 10.409-10.409 10.409c-5.748 0-10.408-4.66-10.408-10.409v-19.183c0-5.748 4.66-10.408 10.408-10.408M81.44 28.32c-11.2 1.12-20.64 4.8-25.44 9.92c-10.4 11.36-8.16 40.16-2.24 46.24c4.32 4.32 12.48 7.2 21.28 7.2c6.72 0 19.52-1.44 30.08-12.16c4.64-4.48 7.52-15.68 7.2-27.04c-.32-9.12-2.88-16.64-6.72-19.84c-4.16-3.68-13.6-5.28-24.16-4.32m68.96 4.32c-3.84 3.2-6.4 10.72-6.72 19.84c-.32 11.36 2.56 22.56 7.2 27.04c10.56 10.72 23.36 12.16 30.08 12.16c8.8 0 16.96-2.88 21.28-7.2c5.92-6.08 8.16-34.88-2.24-46.24c-4.8-5.12-14.24-8.8-25.44-9.92c-10.56-.96-20 .64-24.16 4.32M128 56c-2.56 0-5.6.16-8.96.48c.32 1.76.48 3.68.64 5.76c0 1.44 0 2.88-.16 4.48c3.2-.32 5.92-.32 8.48-.32s5.28 0 8.48.32c-.16-1.6-.16-3.04-.16-4.48c.16-2.08.32-4 .64-5.76c-3.36-.32-6.4-.48-8.96-.48"/></svg>
+    <svg className="fill-white w-28 h-6 md:h-8 md:w-35" xmlns="http://www.w3.org/2000/svg" width="39.39" height="32" viewBox="0 0 256 208"><path d="M205.28 31.36c14.096 14.88 20.016 35.2 22.512 63.68c6.626 0 12.805 1.47 16.976 7.152l7.792 10.56A17.55 17.55 0 0 1 256 123.2v28.688c-.008 3.704-1.843 7.315-4.832 9.504C215.885 187.222 172.35 208 128 208c-49.066 0-98.19-28.273-123.168-46.608c-2.989-2.189-4.825-5.8-4.832-9.504V123.2c0-3.776 1.2-7.424 3.424-10.464l7.792-10.544c4.173-5.657 10.38-7.152 16.992-7.152c2.496-28.48 8.4-48.8 22.512-63.68C77.331 3.165 112.567.06 127.552 0H128c14.72 0 50.4 2.88 77.28 31.36m-77.264 47.376c-3.04 0-6.544.176-10.272.544c-1.312 4.896-3.248 9.312-6.08 12.128c-11.2 11.2-24.704 12.928-31.936 12.928c-6.802 0-13.927-1.42-19.744-5.088c-5.502 1.808-10.786 4.415-11.136 10.912c-.586 12.28-.637 24.55-.688 36.824c-.026 6.16-.05 12.322-.144 18.488c.024 3.579 2.182 6.903 5.44 8.384C79.936 185.92 104.976 192 128.016 192c23.008 0 48.048-6.08 74.512-18.144c3.258-1.48 5.415-4.805 5.44-8.384c.317-18.418.062-36.912-.816-55.312h.016c-.342-6.534-5.648-9.098-11.168-10.912c-5.82 3.652-12.927 5.088-19.728 5.088c-7.232 0-20.72-1.728-31.936-12.928c-2.832-2.816-4.768-7.232-6.08-12.128a106 106 0 0 0-10.24-.544m-26.941 43.93c5.748 0 10.408 4.66 10.408 10.409v19.183c0 5.749-4.66 10.409-10.408 10.409s-10.408-4.66-10.408-10.409v-19.183c0-5.748 4.66-10.408 10.408-10.408m53.333 0c5.749 0 10.409 4.66 10.409 10.409v19.183c0 5.749-4.66 10.409-10.409 10.409c-5.748 0-10.408-4.66-10.408-10.409v-19.183c0-5.748 4.66-10.408 10.408-10.408M81.44 28.32c-11.2 1.12-20.64 4.8-25.44 9.92c-10.4 11.36-8.16 40.16-2.24 46.24c4.32 4.32 12.48 7.2 21.28 7.2c6.72 0 19.52-1.44 30.08-12.16c4.64-4.48 7.52-15.68 7.2-27.04c-.32-9.12-2.88-16.64-6.72-19.84c-4.16-3.68-13.6-5.28-24.16-4.32m68.96 4.32c-3.84 3.2-6.4 10.72-6.72 19.84c-.32 11.36 2.56 22.56 7.2 27.04c10.56 10.72 23.36 12.16 30.08 12.16c8.8 0 16.96-2.88 21.28-7.2c5.92-6.08 8.16-34.88-2.24-46.24c-4.8-5.12-14.24-8.8-25.44-9.92c-10.56-.96-20 .64-24.16 4.32M128 56c-2.56 0-5.6.16-8.96.48c.32 1.76.48 3.68.64 5.76c0 1.44 0 2.88-.16 4.48c3.2-.32 5.92-.32 8.48-.32s5.28 0 8.48.32c-.16-1.6-.16-3.04-.16-4.48c.16-2.08.32-4 .64-5.76c-3.36-.32-6.4-.48-8.96-.48"/></svg>
 
     </div>
 
@@ -1087,9 +1204,17 @@ Every component from uipub registry is compatible with shadcn/ui CLI.</p>
 
   </div> 
 
-  <div className="w-[33.33%] border-t   border-[#e7e7e715] flex items-center justify-center">
-  <svg className="fill-white" xmlns="http://www.w3.org/2000/svg" width="130.04" height="32" viewBox="0 0 512 126"><path d="M365.131 49.074c-7.537 0-12.917 2.575-15.557 7.45l-1.42 2.64v-8.819H335.89v53.61h12.901V72.06c0-7.62 4.142-11.991 11.356-11.991c6.88 0 10.825 4.256 10.825 11.674v32.211h12.907V69.442c0-12.764-7.007-20.368-18.747-20.368m-62.565 0c-15.224 0-24.652 9.5-24.652 24.789v7.527c0 14.703 9.538 23.835 24.893 23.835c10.271 0 17.47-3.763 22-11.504l-7.998-4.602c-3.347 4.465-8.694 7.231-13.997 7.231c-7.773 0-12.413-4.798-12.413-12.84v-2.131h36.008v-8.891c0-14.243-9.352-23.414-23.83-23.414zm12.1 23.638h-24.311v-1.287c0-8.825 4.333-13.695 12.2-13.695c7.576 0 12.101 4.798 12.101 12.84zM512 41.52V31.265h-44.625V41.52h15.646v52.157h-15.646v10.255H512V93.677h-15.651V41.52zM173.638 29.786c-19.93 0-32.32 12.419-32.32 32.42v10.813c0 19.995 12.385 32.42 32.32 32.42s32.321-12.425 32.321-32.42V62.205c-.005-20.022-12.408-32.42-32.321-32.42m18.987 43.973c0 13.279-6.919 20.893-18.987 20.893s-18.982-7.614-18.982-20.893V61.46c0-13.279 6.925-20.893 18.988-20.893S192.63 48.18 192.63 61.46zm53.856-24.685c-6.771 0-12.633 2.805-15.69 7.5l-1.386 2.136v-8.365h-12.27V122.4h12.906V96.3l1.38 2.049c2.904 4.306 8.574 6.875 15.17 6.875c11.125 0 22.35-7.27 22.35-23.518v-9.115c0-11.707-6.919-23.518-22.46-23.518m9.554 32.003c0 8.64-5.04 14.008-13.148 14.008c-7.56 0-12.835-5.675-12.835-13.794v-8.064c0-8.217 5.319-14.002 12.945-14.002c8.047 0 13.048 5.363 13.048 14.002zM419.54 31.27l-26.037 72.684h13.109l4.985-15.58h29.932l.05.154l4.93 15.426h13.104l-26.082-72.69zm-4.744 46.855l11.745-36.748l11.625 36.748zM116.085 51.561a31.37 31.37 0 0 0-2.695-25.774a31.77 31.77 0 0 0-34.184-15.224A31.4 31.4 0 0 0 55.536.001a31.74 31.74 0 0 0-30.278 21.99A31.4 31.4 0 0 0 4.282 37.213a31.77 31.77 0 0 0 3.906 37.218a31.4 31.4 0 0 0 2.695 25.748a31.77 31.77 0 0 0 34.21 15.256a31.4 31.4 0 0 0 23.644 10.562a31.74 31.74 0 0 0 30.278-21.99a31.4 31.4 0 0 0 20.97-15.223a31.73 31.73 0 0 0-3.9-37.224m-47.348 66.22a23.52 23.52 0 0 1-15.108-5.478c.186-.104.548-.285.756-.422l25.09-14.484a4.07 4.07 0 0 0 2.06-3.567V58.453l10.6 6.119a.37.37 0 0 1 .208.296v29.28c0 13.041-10.564 23.618-23.606 23.633M18.015 96.12a23.56 23.56 0 0 1-2.82-15.821c.185.115.514.312.744.443l25.096 14.49a4.08 4.08 0 0 0 4.12 0L75.77 77.528v12.238a.37.37 0 0 1-.148.328L50.26 104.732c-11.292 6.502-25.716 2.637-32.245-8.64zm-6.573-54.782a23.5 23.5 0 0 1 12.287-10.354v29.823a4.08 4.08 0 0 0 2.06 3.567l30.623 17.683l-10.639 6.141a.37.37 0 0 1-.356.033L20.059 73.589c-11.282-6.527-15.148-20.957-8.64-32.25zm87.102 20.27L67.92 43.924l10.59-6.125a.38.38 0 0 1 .355-.033l25.359 14.643a23.61 23.61 0 0 1-3.649 42.598V65.191a4.08 4.08 0 0 0-2.049-3.583zM109.1 45.721a30 30 0 0 0-.745-.444L83.26 30.788a4.08 4.08 0 0 0-4.12 0L48.517 48.466V36.233a.4.4 0 0 1 .154-.328l25.358-14.638a23.61 23.61 0 0 1 35.06 24.46zM42.738 67.546l-10.605-6.119a.4.4 0 0 1-.203-.295V31.85a23.605 23.605 0 0 1 38.714-18.155c-.186.105-.52.285-.756.422l-25.09 14.484a4.08 4.08 0 0 0-2.06 3.567zm5.758-12.418l13.64-7.878l13.635 7.878v15.744l-13.64 7.877l-13.64-7.877z"/></svg>
-    </div> 
+<div className="w-[33.33%] border-t border-[#e7e7e715] flex items-center justify-center">
+  <svg
+    className="fill-white w-28 md:w-35 max-w-[100px] h-auto aspect-[512/126] mx-auto md:ml-auto ml-auto mr-auto md:mr-auto"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 512 126"
+    aria-hidden="true"
+    preserveAspectRatio="xMidYMid meet"
+  >
+    <path d="M365.131 49.074c-7.537 0-12.917 2.575-15.557 7.45l-1.42 2.64v-8.819H335.89v53.61h12.901V72.06c0-7.62 4.142-11.991 11.356-11.991c6.88 0 10.825 4.256 10.825 11.674v32.211h12.907V69.442c0-12.764-7.007-20.368-18.747-20.368m-62.565 0c-15.224 0-24.652 9.5-24.652 24.789v7.527c0 14.703 9.538 23.835 24.893 23.835c10.271 0 17.47-3.763 22-11.504l-7.998-4.602c-3.347 4.465-8.694 7.231-13.997 7.231c-7.773 0-12.413-4.798-12.413-12.84v-2.131h36.008v-8.891c0-14.243-9.352-23.414-23.83-23.414zm12.1 23.638h-24.311v-1.287c0-8.825 4.333-13.695 12.2-13.695c7.576 0 12.101 4.798 12.101 12.84zM512 41.52V31.265h-44.625V41.52h15.646v52.157h-15.646v10.255H512V93.677h-15.651V41.52zM173.638 29.786c-19.93 0-32.32 12.419-32.32 32.42v10.813c0 19.995 12.385 32.42 32.32 32.42s32.321-12.425 32.321-32.42V62.205c-.005-20.022-12.408-32.42-32.321-32.42m18.987 43.973c0 13.279-6.919 20.893-18.987 20.893s-18.982-7.614-18.982-20.893V61.46c0-13.279 6.925-20.893 18.988-20.893S192.63 48.18 192.63 61.46zm53.856-24.685c-6.771 0-12.633 2.805-15.69 7.5l-1.386 2.136v-8.365h-12.27V122.4h12.906V96.3l1.38 2.049c2.904 4.306 8.574 6.875 15.17 6.875c11.125 0 22.35-7.27 22.35-23.518v-9.115c0-11.707-6.919-23.518-22.46-23.518m9.554 32.003c0 8.64-5.04 14.008-13.148 14.008c-7.56 0-12.835-5.675-12.835-13.794v-8.064c0-8.217 5.319-14.002 12.945-14.002c8.047 0 13.048 5.363 13.048 14.002zM419.54 31.27l-26.037 72.684h13.109l4.985-15.58h29.932l.05.154l4.93 15.426h13.104l-26.082-72.69zm-4.744 46.855l11.745-36.748l11.625 36.748zM116.085 51.561a31.37 31.37 0 0 0-2.695-25.774a31.77 31.77 0 0 0-34.184-15.224A31.4 31.4 0 0 0 55.536.001a31.74 31.74 0 0 0-30.278 21.99A31.4 31.4 0 0 0 4.282 37.213a31.77 31.77 0 0 0 3.906 37.218a31.4 31.4 0 0 0 2.695 25.748a31.77 31.77 0 0 0 34.21 15.256a31.4 31.4 0 0 0 23.644 10.562a31.74 31.74 0 0 0 30.278-21.99a31.4 31.4 0 0 0 20.97-15.223a31.73 31.73 0 0 0-3.9-37.224m-47.348 66.22a23.52 23.52 0 0 1-15.108-5.478c.186-.104.548-.285.756-.422l25.09-14.484a4.07 4.07 0 0 0 2.06-3.567V58.453l10.6 6.119a.37.37 0 0 1 .208.296v29.28c0 13.041-10.564 23.618-23.606 23.633M18.015 96.12a23.56 23.56 0 0 1-2.82-15.821c.185.115.514.312.744.443l25.096 14.49a4.08 4.08 0 0 0 4.12 0L75.77 77.528v12.238a.37.37 0 0 1-.148.328L50.26 104.732c-11.292 6.502-25.716 2.637-32.245-8.64zm-6.573-54.782a23.5 23.5 0 0 1 12.287-10.354v29.823a4.08 4.08 0 0 0 2.06 3.567l30.623 17.683l-10.639 6.141a.37.37 0 0 1-.356.033L20.059 73.589c-11.282-6.527-15.148-20.957-8.64-32.25zm87.102 20.27L67.92 43.924l10.59-6.125a.38.38 0 0 1 .355-.033l25.359 14.643a23.61 23.61 0 0 1-3.649 42.598V65.191a4.08 4.08 0 0 0-2.049-3.583zM109.1 45.721a30 30 0 0 0-.745-.444L83.26 30.788a4.08 4.08 0 0 0-4.12 0L48.517 48.466V36.233a.4.4 0 0 1 .154-.328l25.358-14.638a23.61 23.61 0 0 1 35.06 24.46zM42.738 67.546l-10.605-6.119a.4.4 0 0 1-.203-.295V31.85a23.605 23.605 0 0 1 38.714-18.155c-.186.105-.52.285-.756.422l-25.09 14.484a4.08 4.08 0 0 0-2.06 3.567zm5.758-12.418l13.64-7.878l13.635 7.878v15.744l-13.64 7.877l-13.64-7.877z"/>
+  </svg>
+</div>
 
 
 </div>
@@ -1102,8 +1227,33 @@ Every component from uipub registry is compatible with shadcn/ui CLI.</p>
 <TiltedLines  borderL={true} borderR={true}  />
 
 
-<div className="w-[54%] ml-auto mr-auto min-h-[600px] ">
-  <div className="border-b border-l  border-[#e7e7e715] min-h-[600px] w-full flex">
+<div className="md:w-[54%] w-[100%] ml-auto mr-auto min-h-[600px] ">
+  <div className="block md:hidden">
+  <div className=" w-[100%]  border-r border-b border-[#e7e7e715] min-h-[200px] flex items-center relative ">
+      
+      
+      <div className=" w-[80%] h-[85%] ml-auto mr-auto">
+        <p className="text-2xl fon">Common Questions</p>
+        <p className="text-xs ml-0.5 mt-1.5 fon">Still have questions? Email Me</p>
+      </div>
+
+       
+    </div>
+    <div className=" w-[100%]  border-r min-h-[600px] border-[#e7e7e715]  ">
+
+
+<CommonQuestionItem borderSide="" question={"What Is Your Education?"} answer={"I will receive a M.Tech degree in 2026 and B.E. in IT Engineering from SVIT, Vasad (GTU) in 2024, building on my Diploma in Computer Engineering (8 CGPA) from Parul Polytechnic Institute (GTU)."} />
+<CommonQuestionItem question={" What Are Your Experiences?"} answer={" Primarily project-based, focusing on full-stack web development using technologies like Next.js, PostgreSQL, Firebase, and Supabase. I'm eager to apply my skills in a professional setting"}  />
+<CommonQuestionItem question={"How Are You In Communications?"} answer={"I communicate effectively with open-mindedness, active listening, and clear articulation. Beyond conveying technical details, I focus on building rapport, understanding project needs, and ensuring everyone is aligned. My soft skills enable me to foster collaborative environments, manage expectations, and maintain professionalism in all interactions. This enables me to deliver a project under the desired requirements. "}  />
+<CommonQuestionItem question={"What Are Your Projects Made By?"} answer={"My projects showcase my full-stack development capabilities, from project initiation to completion, by working on Frontend, Backend, and the integration of the Backend to the Frontend. I am skilled in choosing the right technologies to meet specific project requirements. This includes server-side rendering, interactive front-ends, data management, and leveraging cloud platforms for scalable backend services. "}  />
+<CommonQuestionItem question={"Are You Down To Learn New Languages? "} answer={" Absolutely"}  />
+<CommonQuestionItem question={"  Are You Down To Relocate To Another Town?"} answer={" I'm open to relocation depending on the role and company. I prioritize opportunities that align with my growth targets."}  />
+<CommonQuestionItem question={"What Is Your Current CTC and Position? "} answer={"Im currently holding on an offer of 4LPA but on the same time also, I'm actively seeking entry-level opportunities that offer hands-on experience and long-term rowth potential. "}  />
+<CommonQuestionItem question={"Have You Done Any Internships Till This Day? "} answer={"I'm currently looking for internships to gain real-world experience and contribute to meaningful projects. I am actively applying and interviewing "}  />
+<CommonQuestionItem borderSide="border-b border-t" question={"How Many Languages Do You Know? "} answer={" I'm fluent in English, Hindi, Marathi, and Gujarati."}  />
+
+      </div></div>
+  <div className="border-b border-l  border-[#e7e7e715] min-h-[600px] w-full flex  md:flex hidden md:block">
     <div className=" w-[33.33%]  border-r border-[#e7e7e715] min-h-[600px] flex items-center relative">
       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" 
         className="w-6 h-6 text-[#e7e7e740] absolute top-0 right-0 -mt-3 -mr-3" aria-hidden="true">
@@ -1140,12 +1290,12 @@ Every component from uipub registry is compatible with shadcn/ui CLI.</p>
   
 </div>
 <TiltedLines  borderL={true} borderR={true}  />
-<div className="w-[54%] border-b bg-[#161616]  border-[#e7e7e715] ml-auto mr-auto h-[150x] ">
+<div className="w-[100%] md:w-[54%] border-b bg-[#161616]  border-[#e7e7e715] ml-auto mr-auto h-[150x] ">
   <div className="border-b border-l border-r border-[#e7e7e715]  h-[150px] w-full ">
     <div className=" w-[100%] h-full flex items-center justify-center ">
       
-    <div className="h-[70%]  w-[95%] flex items-start  ">
-    <p className="text-sm fon">© 2025 Designed & Developed By Bhargav Joshi</p>
+    <div className="h-[70%]  w-[95%] flex items-center     md:items-start  ">
+    <p className="text-sm fon ">© 2025 Designed & Developed By Bhargav Joshi</p>
     </div>
 
 
@@ -1156,7 +1306,7 @@ Every component from uipub registry is compatible with shadcn/ui CLI.</p>
 </div>
 <div className="  w-[54%] ml-auto mr-auto  h-[50px]   ">
 <br />
-<div className="w-[95%]    ml-auto mr-auto  h-full flex  items-center justify-between">
+<div className="w-[95%]  ml-auto mr-auto  h-full items-center justify-between hidden md:flex">
 
     <div className="flex flex-col items-center justify-center h-full  ">
       <p className="text-xs fonc text-[#e7e7e750]"> Total Views</p>
@@ -1214,7 +1364,7 @@ Every component from uipub registry is compatible with shadcn/ui CLI.</p>
 
 
 
-<div className=" w-[54%] ml-auto mr-auto  h-[50px]  "></div>
+<div className="w-[100%] md:w-[54%]  ml-auto mr-auto  h-[50px]  "></div>
 
 {/* <div className="h-[50%]"> <p>wd</p></div> */}
 {/* <div className="h-[200px] mt-4 w-[54%] ml-auto mr-auto flex items-center justify-center">

@@ -1,7 +1,7 @@
-
 const TiltedLines = ({
   width = 100,
   widthx = 54,
+  rw= 100,
   height = 100,
   showIcons = true,
   borderL = false,
@@ -44,21 +44,21 @@ const TiltedLines = ({
 
   return (
     <div className={` tilted-lines border flex items-center justify-center border-[#e7e7e715] w-[${width}%]  h-[${height}px]`}>
-      <div className={`w-[${widthx}%] h-full ${borderClasses} border-[#e7e7e715]`}>
+      <div className={`md:w-[${widthx}%] w-[${rw}%] h-full ${borderClasses} border-[#e7e7e715]`}>
         {showIcons && (
           <>
-            <div className="-ml-3 -mt-3.5 -mr-3.5 -mb-3">
+            <div className="hidden md:block -ml-3 -mt-3.5 -mr-3.5 -mb-3">
               <PlusIcon />
             </div>
-            <div className="float-end -ml-4 -mt-3 -mr-3 -mb-3">
+            <div className="hidden md:block float-end -ml-4 -mt-3 -mr-3 -mb-3">
               <PlusIcon />
             </div>
-            <div className="h-full flex items-end justify-end">
+            <div className="hidden md:flex h-full items-end justify-end">
               <div className="-ml-3.5 -mr-3.5 -mb-4">
                 <PlusIcon />
               </div>
             </div>
-            <div className="h-full flex">
+            <div className="hidden md:flex h-full">
               <div className="-ml-3 -mt-2">
                 <PlusIcon />
               </div>

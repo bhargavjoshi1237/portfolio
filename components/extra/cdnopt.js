@@ -40,51 +40,45 @@ export default function CdnOpt() {
     };
 
     return (<>
-<div className="w-[54%] ml-auto mr-auto h-[650px] ">
-  <div className="border-b border-l  border-[#e7e7e715]  h-[650px] w-full flex">
-    <div className=" w-[60%] h-full flex items-center ">
-      
-<div className=" w-[100%] flex ">
-      <div className="w-[85%] flex ml-auto mr-auto items-center justify-center">
-        <div className="relative">
-          <div className="absolute inset-0 scale-y-[2.5] translate-y-[25%] bg-gradient-to-b from-blue-500/40 via-purple-500/30 to-transparent blur-[60px] -z-10"></div>
-          <div className="absolute inset-0 scale-y-[2] translate-y-[35%] bg-gradient-to-b from-blue-600/30 via-purple-600/20 to-transparent blur-[40px] -z-10"></div>
-          <img id="cdnImage" className="h-[80%] w-[80%] ml-auto mr-auto relative z-10" src="logo1.svg" alt="CDN Image" />
+<div className="w-full md:w-[54%] ml-auto mr-auto h-[1300px] md:h-[650px]">
+  <div className="border-b border-l border-[#e7e7e715]  h-[1300px] md:h-[650px] w-full flex flex-col md:flex-row">
+    <div className="w-full h-[50%] md:w-[60%] md:h-full flex items-center">
+      <div className="w-full flex">
+        <div className="w-[85%] flex ml-auto mr-auto items-center justify-center">
+          <div className="relative">
+            <div className="absolute inset-0 scale-y-[2.5] translate-y-[25%] bg-gradient-to-b from-blue-500/40 via-purple-500/30 to-transparent blur-[60px] -z-10"></div>
+            <div className="absolute inset-0 scale-y-[2] translate-y-[35%] bg-gradient-to-b from-blue-600/30 via-purple-600/20 to-transparent blur-[40px] -z-10"></div>
+            <img id="cdnImage" className="h-[80%] w-[80%] ml-auto mr-auto relative z-10" src="logo1.svg" alt="CDN Image" />
+          </div>
         </div>
       </div>
     </div>
-    </div>
-    <div className="w-[40%] border-l border-r border-[#e7e7e715] ">
-
-    <div className="w-full h-full flex flex-col items-start justify-start">
-    <ResizablePanelGroup direction="vertical" > 
+    <div className="w-full h-[50%] md:w-[40%] items-center -mt-16 md:-mt-0 md:h-full border-l border-r border-[#e7e7e715] ">
+      <div className="w-full h-full flex flex-col items-start justify-start">
+        <ResizablePanelGroup direction="vertical" > 
           <ResizablePanel defaultSize={40} className={"flex items-center justify-center h-full "}>
-          <div className=" w-[80%] ml-auto mr-auto gap-4 flex flex-col items-center justify-center h-[40%]">
-    
-     
-       
-     
-    <ToggleGroup type="single" value={selectedRoute} onValueChange={setSelectedRoute}>
-            <ToggleGroupItem value="direct" className={"px-4 text-[#e7e7e795] data-[state=on]:text-[#e7e7e7]"}>Non Routed</ToggleGroupItem>
-            <ToggleGroupItem value="routed" className={"px-4 text-[#e7e7e795] data-[state=on]:text-[#e7e7e7]"}>Routed</ToggleGroupItem>
-            <ToggleGroupItem value="wrapped" className={"px-8 text-[#e7e7e795] data-[state=on]:text-[#e7e7e7]"}>Routed + Wrapped</ToggleGroupItem>
-    </ToggleGroup>
+            <div className="w-[80%] ml-auto mr-auto gap-4 flex flex-col items-center justify-center h-[40%]">
+              <ToggleGroup type="single" value={selectedRoute} onValueChange={setSelectedRoute}>
+                <ToggleGroupItem value="direct" className={"px-4 text-[#e7e7e795] data-[state=on]:text-[#e7e7e7]"}>Non Routed</ToggleGroupItem>
+                <ToggleGroupItem value="routed" className={"px-4 text-[#e7e7e795] data-[state=on]:text-[#e7e7e7]"}>Routed</ToggleGroupItem>
+                <ToggleGroupItem value="wrapped" className={"px-8 text-[#e7e7e795] data-[state=on]:text-[#e7e7e7]"}>Routed + Wrapped</ToggleGroupItem>
+              </ToggleGroup>
 
-    <ToggleGroup type="single" value={selectedSize} onValueChange={setSelectedSize}>
-            <ToggleGroupItem value="light" className={"px-4 text-[#e7e7e795] data-[state=on]:text-[#e7e7e7]"}>~500 KB</ToggleGroupItem>
-            <ToggleGroupItem value="dark" className={"px-4 text-[#e7e7e795] data-[state=on]:text-[#e7e7e7]"}>~ 1 MB</ToggleGroupItem>
-            <ToggleGroupItem value="system" className={"px-4 text-[#e7e7e795] data-[state=on]:text-[#e7e7e7]"}>~ 5 MB</ToggleGroupItem>
-    </ToggleGroup>
-    <ToggleGroup type="single" value={selectedCdn} onValueChange={setSelectedCdn}>
-            <ToggleGroupItem value="light" className={"px-4 text-[#e7e7e795] data-[state=on]:text-[#e7e7e7]"}>EU Endpoint</ToggleGroupItem>
-            <ToggleGroupItem value="dark" className={"px-4 text-[#e7e7e795] data-[state=on]:text-[#e7e7e7]"}>Mumbai Endpoint</ToggleGroupItem>
-            <ToggleGroupItem value="system" className={"px-4 text-[#e7e7e795] data-[state=on]:text-[#e7e7e7]"}>Global CDN</ToggleGroupItem>
-    </ToggleGroup>
-</div>
+              <ToggleGroup type="single" value={selectedSize} onValueChange={setSelectedSize}>
+                <ToggleGroupItem value="light" className={"px-4 text-[#e7e7e795] data-[state=on]:text-[#e7e7e7]"}>~500 KB</ToggleGroupItem>
+                <ToggleGroupItem value="dark" className={"px-4 text-[#e7e7e795] data-[state=on]:text-[#e7e7e7]"}>~ 1 MB</ToggleGroupItem>
+                <ToggleGroupItem value="system" className={"px-4 text-[#e7e7e795] data-[state=on]:text-[#e7e7e7]"}>~ 5 MB</ToggleGroupItem>
+              </ToggleGroup>
+              <ToggleGroup type="single" value={selectedCdn} onValueChange={setSelectedCdn}>
+                <ToggleGroupItem value="light" className={"px-4 text-[#e7e7e795] data-[state=on]:text-[#e7e7e7]"}>EU Endpoint</ToggleGroupItem>
+                <ToggleGroupItem value="dark" className={"px-4 text-[#e7e7e795] data-[state=on]:text-[#e7e7e7]"}>Mumbai Endpoint</ToggleGroupItem>
+                <ToggleGroupItem value="system" className={"px-4 text-[#e7e7e795] data-[state=on]:text-[#e7e7e7]"}>Global CDN</ToggleGroupItem>
+              </ToggleGroup>
+            </div>
           </ResizablePanel>
           <ResizableHandle className={"bg-[#e7e7e715] w-[90%] ml-auto mr-auto"} />
           <ResizablePanel defaultSize={60} className={"flex flex-col items-center justify-start   "}>
-          <button 
+            <button 
                 onClick={() => {
                     if (!selectedSize || !selectedCdn || !selectedRoute) {
                       
