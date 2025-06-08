@@ -88,7 +88,7 @@ export default function Chart1({ data = defaultData, centerLabel = null }) {
   );
 
   return (
-    <Card className="flex  flex-col bg-[#161616] border-none text-white">
+    <Card className="flex  flex-col bg-transparent border-none text-white">
       <CardContent className="flex-1 pb-0 text-white">
         <ChartContainer
           config={chartConfig}
@@ -111,12 +111,12 @@ export default function Chart1({ data = defaultData, centerLabel = null }) {
               animationDuration={1500}
               fill={(entry) => entry.fill}
             >
-              <Label className="text-white"
+              <Label
                 content={({ viewBox }) => {
                   if (viewBox && "cx" in viewBox && "cy" in viewBox) {
                     return (
                       <text
-                      className="fon text-white"
+                        className="fill-white font-medium"
                         x={viewBox.cx}
                         y={viewBox.cy}
                         textAnchor="middle"
@@ -125,22 +125,18 @@ export default function Chart1({ data = defaultData, centerLabel = null }) {
                         <tspan
                           x={viewBox.cx}
                           y={viewBox.cy}
-                          className=" text-white text-3xl  "
+                          className="fill-white text-3xl font-bold"
                         >
                           {centerLabel || totalTime}
                         </tspan>
                         <tspan
                           x={viewBox.cx}
                           y={(viewBox.cy || 0) + 24}
-                          className="text-white"  // Add text-white class here
+                          className="fill-white text-sm"
                         >
                           ms
                         </tspan>
-                        <p className="fon ">
-                        {centerLabel || totalTime}
-                        </p>
-                        </text>
-                      
+                      </text>
                     )
                   }
                 }}

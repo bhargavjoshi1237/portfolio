@@ -8,12 +8,17 @@ import { toast } from "sonner"
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator"
 import { ThreeDMarqueeDemo } from "@/components/marq";
-import dynamic from 'next/dynamic';
-import LampDemo from "@/components/ui/lamp";
-import { motion } from "motion/react";
-import { LampContainer } from "@/components/ui/lamp";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 // import LampDemo from "@/components/lamp";
  import Spline from '@splinetool/react-spline';
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 // Dynamically import Spline with error boundary
 // const SplineComponent = dynamic(() => import('@splinetool/react-spline/dist/react-spline'), {
@@ -50,7 +55,9 @@ export default function Home() {
         }
       }
     `}</style>
+    
     <div className="w-full h-full min-h-screen bg-[#161616] overflow-x-hidden">
+      
       <div className="h-[50px]  w-full flex">
       <div className="w-[5%] md:min-w-[23%]    h-full flex  border-r border-[#e7e7e715]   items-end  justify-end">
       
@@ -122,7 +129,7 @@ export default function Home() {
             </defs>
           </svg>
   
-          <div className=" absolute z-20 w-full md:w-[54%]  flex md:flex-row flex-col md:h-[67%]">
+          <div className="  absolute z-20 w-full md:w-[54%]  flex md:flex-row flex-col md:h-[6.78%]">
             
           <div className="w-full md:w-[61.5%] flex flex-col items-center justify-center mr-auto  h-full">
 
@@ -132,7 +139,7 @@ export default function Home() {
 
             </div>
           <div className="w-full flex items-center justify-center">
-            <p className="text-4xl md:text-6xl objr text-[#e7e7e7] w-full md:-ml-0 -ml-10">Perfect solutions to build next-gen experiences</p>
+            <p className="text-4xl md:text-6xl objr text-[#e7e7e7]   w-full md:-ml-0   -ml-8">Perfect solutions to build next-gen experiences</p>
           </div>
          
           
@@ -142,13 +149,34 @@ export default function Home() {
           A passionate Full-Stack Developer focused on building high-performance, scalable web applications. transform complex ideas into robust, user-centric digital experiences.
           </p>
           <div className="flex mt-10 md:block hidden">
-          <p className="fonc  text-[#e7e7e770] mr-1.5"> For the </p><p className="fon">Pixel Perfection.</p>
+          <p className="fonc  text-[#e7e7e770] mr-1.5"> For the </p><p className="fon">Clean - Sleek Look.</p>
           </div>
-          <Button variant="secondary"
-          onClick={() => {
-            toast("Contact Info")
-        }}
-          className={"px-6 mt-10  md:-ml-0 -ml-10"}>Contact Info</Button>
+          <div className="mt-8 h-[30px] flex -ml-10   gap-5 md:-ml-0 px-6">
+
+          <a className="-ml-5" href="https://www.linkedin.com/in/bhargav-joshi-95a1b9194/" target="_blank" rel="noopener noreferrer">
+          <img className="h-[30px]" src="https://api.iconify.design/logos:linkedin-icon.svg" alt="" />
+          </a>
+
+ <a className="- " href="https://dribbble.com/bhargavj0shi" target="_blank" rel="noopener noreferrer">
+          <img  className="h-[30px]" src="https://api.iconify.design/logos:dribbble-icon.svg" alt="" />
+ </a>
+
+ <a className=" " href="https://www.figma.com/@bhargavjoshi1" target="_blank" rel="noopener noreferrer">
+          <img  className="h-[30px]" src=" https://api.iconify.design/logos:figma.svg" alt="" />
+ </a>
+
+
+ <a className=" " href="https://github.com/bhargavjoshi1237" target="_blank" rel="noopener noreferrer">
+ <svg  className="h-[30px]" xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24">
+  <path fill="white" d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385c.6.105.825-.255.825-.57c0-.285-.015-1.23-.015-2.235c-3.015.555-3.795-.735-4.035-1.41c-.135-.345-.72-1.41-1.23-1.695c-.42-.225-1.02-.78-.015-.795c.945-.015 1.62.87 1.845 1.23c1.08 1.815 2.805 1.305 3.495.99c.105-.78.42-1.305.765-1.605c-2.67-.3-5.46-1.335-5.46-5.925c0-1.305.465-2.385 1.23-3.225c-.12-.3-.54-1.53.12-3.18c0 0 1.005-.315 3.3 1.23c.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23c.66 1.65.24 2.88.12 3.18c.765.84 1.23 1.905 1.23 3.225c0 4.605-2.805 5.625-5.475 5.925c.435.375.81 1.095.81 2.22c0 1.605-.015 2.895-.015 3.3c0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+</svg></a>
+
+
+          
+
+
+          </div>
+           
           {/* <button 
                 
                 className="w-[180px] h-[40px] mt-4 mx-auto bg-[#1a1a1a] text-white rounded-md
@@ -190,7 +218,7 @@ export default function Home() {
             
   <div className="w-full  ml-auto mr-auto    md:w-[75%] h-[80%]  mt-2 md:mt-0">
   <div className="w-full h-[25px]  flex items-center justify-center md:block hidden">
-    <p className="fonc  text-[#e7e7e775] text-md">Build using industry standard tools</p>
+    <p className="fonc  text-[#e7e7e775] text-md ">Build using industry standard tools</p>
   </div>
   <div className="w-full h-full  flex items-center md:mt-0 mt-15">
             <div className=" w-full h-[90%] flex  gap-2 flex-col items-center justify-center">
@@ -414,7 +442,7 @@ export default function Home() {
           </div>
           <p className="fon text-md">Exploring different facets of web development through tangible projects. </p>
            <p className="mt-2 fon text-md">Selected works illustrating the development journey. These projects represent dedicated effort in design, architecture, coding, and optimization, leveraging modern day tools.</p>
-          
+             <p className="mt-2 fon text-md">Click on project below for more details.</p>
           </div>
       </div>
     </div>
@@ -468,26 +496,119 @@ Every component from uipub registry is compatible with shadcn/ui CLI.</p>
 
 <div className=" absolute z-1 left-1/2 -mt-13 flex items-center justify-center ml-8 h-[100%] max-w-none w-[120%] -translate-y-1/2  -translate-x-1/2">
 <img
-    className=" fill-[#e7e7e715] h-[135%] ml-auto mr-auto  mt-29"
+    className=" fill-[#e7e7e715] h-[135%] ml-auto mr-auto -z-50 mt-29"
     src="/sq2.svg"
     alt="sq2"
     style={{ pointerEvents: "none" }}
   />
 </div>
 <div className="h-[1000px] md:flex-row flex-col md:h-[300px] w-full md:w-[54%] ml-auto mr-auto flex ">
-    <div className="  w-[100%] md:w-[33.33%] h-full flex  items-center border-[#e7e7e715]  border-l">
+   
+<Dialog>
+<div className="relative w-[100%] md:w-[33.33%] h-full flex items-center border-[#e7e7e715] border-l absolute z-[9999]">
+  <DialogTrigger className="w-[100%] md:w-[100%] h-full flex items-center border-[#e7e7e715] border-l absolute z-[9999]">
+     <div className="  ">
 
         <div className="w-[80%] ml-auto mr-auto h-[80%]">
          <div className="  w-[100%] h-[50px] items-center justify-start flex">
          <p className="text-2xl fon ">Anime Alley</p>
          <img src="/aa.png" className="ml-auto end-0" alt="" />
          </div>
-          <p className="text-sm fon mt-5 ">Connects anime fans through a comprehensive platform offering social features, real-time discussions, content discovery, and robust user engagement tools.
+          <p className="text-sm fon mt-5 text-left">Connects anime fans through a comprehensive platform offering social features, real-time discussions, content discovery, and robust user engagement tools.
  </p>
-<p className="mt-2 text-sm fon  ">Personal lists, blogs, forums, and personalized recommendations based on extensive data</p>
+<p className="mt-2 text-sm fon  text-left">Personal lists, blogs, forums, and personalized recommendations based on extensive data</p>
 
         </div>
     </div>
+  </DialogTrigger></div>
+  <DialogContent>
+ 
+   
+       
+      <DialogTitle> </DialogTitle>
+      
+    
+    <div className="h-[700px]  ">
+    <ScrollArea className="h-full w-[100%]  ">
+
+      <div className=" bg-red-500 mb-6 rounded-lg h-[5px] w-full"></div>
+
+
+         <div className="w-full -ml-1.5" >
+          <img src="/aa.png" className="ml-auto mb-6 mt-3  mr-auto" alt="" />
+         </div>
+
+
+        <p className="fon text-2xl">Total Features Implemented (STALE) </p>
+      <p className="fon text-sm mt-2 w-full  mt-2 ">In This Web-App We have implemented around 12-15 Feature,</p> 
+      <br />
+       <p className="fon text-sm mt-2 w-full  mb-2">•  Profile System (Page, User To User Follow System, Fully Editable)</p> 
+       <p className="fon text-sm mt-2 w-full  mb-2">•  Recomandation System (From Users Activity on the App based )</p> 
+       <p className="fon text-sm mt-2 w-full  mb-2">•  Advance Searching (With Various Filters and Functions)</p> 
+       <p className="fon text-sm mt-2 w-full  mb-2">•  Dedicated Anime List</p>  
+       <p className="fon text-sm mt-2 w-full  mb-2">•  Forums (User Genrateble, With Like And View Count)</p>  
+       <p className="fon text-sm mt-2 w-full  mb-2">•  Blogs</p>  
+       <p className="fon text-sm mt-2 w-full  mb-2">•  Reviews, Explore New Animes, Search Other Users.</p>  
+
+ <br />
+<a href="https://animealley.vercel.app/z" target="_blank">
+  <button
+    className="w-[180px] h-[40px] bg-[#1a1a1a] text-white rounded-md
+    border border-[#e7e7e715] transition-all duration-200 hover:bg-[#2a2a2a]
+    active:scale-95 focus:outline-none focus:ring-2 focus:ring-[#e7e7e71]"
+  >
+    Visit
+  </button>
+</a>
+ 
+    <br /><br />
+      <div className="border-b border-[#474747] mb-6  h-[1px] w-full"></div>
+      
+      
+    
+      <p className="fon text-2xl">Social Logins</p>
+      <p className="fon text-sm mt-2 w-full   ">On this project i have configured social logins and traditional 
+        Email - Pass login</p>  <p className="fon text-sm mt-2 w-full  mb-2">  Discord</p> <p className="fon text-sm mt-2 w-full  mb-2">Spotify</p> <p className="fon text-sm mt-2 w-full  mb-2">Reddit</p> <p className="fon text-sm mt-2 w-full  mb-2">Twitter</p>  
+      <p className="fon text-sm mt-2 w-full  mb-2">More can be implimented easily.</p> 
+<br />
+     <div className=" flex h-[30px] gap-5 w-full   mb-6">
+
+      <img src="https://api.iconify.design/logos:discord-icon.svg" alt="" />
+      <img src="https://api.iconify.design/logos:spotify-icon.svg" alt="" />
+      <img src="https://api.iconify.design/logos:reddit-icon.svg" alt="" />
+      <img src="https://api.iconify.design/logos:x.svg" className="fill-white" alt="" />
+      <img src="https://api.iconify.design/logos:google-icon.svg" alt="" />
+
+      
+
+     </div>
+
+      <div className="border-b border-[#474747] mb-6 mt-2 h-[1px] w-full"></div>
+
+    <div className="flex"><p className="fon text-2xl">User To User Chat</p>
+      
+
+    </div>
+      <p className="fon text-sm mt-2 w-full  mb-2">We have implemented User to user chat in this, which utilise Firebase Live Update,
+        </p> 
+        <p className="fon text-sm mt-2 w-full  mb-2"> Features and its underlaying network, Main purpos is to communicate and 
+        being able to send anime and manga refrences Eg. links of animealley will be auto converted to a widge in chat, </p>
+        <p className="fon text-sm mt-2 w-full  mb-2">Under Consideration planing was to implemnt a in app Call Feature, but it was not possible due to time constraints.</p>
+
+      
+
+ 
+       
+</ScrollArea>
+    </div>
+   
+
+
+
+  </DialogContent>
+</Dialog>
+    
+
     <div className=" blocked md:hidden  w-full h-[50px] flex">
     <div className="w-[20%] flex items-center justify-center">
     <TiltedLines  height={50} showIcons={false} />
@@ -513,18 +634,92 @@ Every component from uipub registry is compatible with shadcn/ui CLI.</p>
     </div>
   </div>
     
-    <div className="  w-[100%] md:w-[33.33%] h-full flex  items-center border-[#e7e7e715] border-l">
-    <div className="w-[80%] ml-auto mr-auto h-[80%]">
-    <div className="  w-[100%] h-[50px] items-center justify-start flex">
+    
+
+    <Dialog>
+<div className="relative  w-[100%] md:w-[33.33%] h-full flex   border-[#e7e7e715] border-l absolute z-[9999]">
+  <DialogTrigger className="w-[100%] md:w-[100%] h-full flex items-start mt-7 border-[#e7e7e715]   absolute z-[9999]">
+     <div className="  ">
+
+        <div className="w-[80%] ml-auto mr-auto h-[80%]">
+         <div className="  w-[100%] h-[50px] items-center justify-start flex">
          <p className="text-2xl fon ">Manga Fusion</p>
          <img src="/mf.png" className="ml-auto end-0" alt="" />
          </div>
-          <p className="text-sm fon mt-5">Compares manga prices across major online stores, allowing users to track specific volumes, receive email alerts for price drops.</p>
-
+          <p className="text-sm fon mt-5 text-left">Compares manga prices across major online stores, allowing users to track specific volumes, receive email alerts for price drops.
+ </p>
+<p className="mt-2 text-sm fon  text-left"> </p>
 
         </div>
-
     </div>
+  </DialogTrigger></div>
+   <DialogContent><DialogTitle></DialogTitle>
+      
+    <div className="h-[700px]  ">
+    <ScrollArea className="h-full w-[100%]  ">
+
+      <div className=" bg-green-500 mb-6 rounded-lg h-[5px] w-full"></div>
+
+  <div className="w-full -ml-1.5" >
+          <img src="/mf.png" className="ml-auto mb-6 mt-3  mr-auto" alt="" />
+         </div>
+        <p className="fon text-2xl">Total Features Implemented   </p>
+      <p className="fon text-sm mt-2 w-full  mt-2 ">In This Web-App We have implemented around 5-7 Feature,</p> 
+      <br />
+       <p className="fon text-sm mt-2 w-full  mb-2">•  User Can Add A Manga or LN to Waiting List, And Recive Email When Price Drop</p> 
+       <p className="fon text-sm mt-2 w-full  mb-2">•  User Can Compare Price Of Wast Manga and LN Collection.</p>  
+       <p className="fon text-sm mt-2 w-full  mb-2">•  Profile System (Widget, Partialy Editable)</p> 
+       <p className="fon text-sm mt-2 w-full  mb-2">•  Recomandation System (From Users Activity on the App based )</p> 
+       <p className="fon text-sm mt-2 w-full  mb-2">•  Searching System</p> 
+       <p className="fon text-sm mt-2 w-full  mb-2">•  Dedicated Anime List</p>  
+       <p className="fon text-sm mt-2 w-full  mb-2">•  Forums (User Genrateble, With Like And View Count)</p>  
+       <p className="fon text-sm mt-2 w-full  mb-2">•  Blogs</p>  
+       <p className="fon text-sm mt-2 w-full  mb-2">•  Reviews, Explore New Animes, Search Other Users.</p>  
+     
+  <br />
+<a href="https://animealley.vercel.app/z" target="_blank">
+  <button
+    className="w-[180px] h-[40px] bg-[#1a1a1a] text-white rounded-md
+    border border-[#e7e7e715] transition-all duration-200 hover:bg-[#2a2a2a]
+    active:scale-95 focus:outline-none focus:ring-2 focus:ring-[#e7e7e71]"
+  >
+    Visit
+  </button>
+</a>
+ 
+    <br /><br />
+      <div className="border-b border-[#474747] mb-6  h-[1px] w-full"></div>
+    
+      <p className="fon text-2xl">Social Logins</p>
+      <p className="fon text-sm mt-2 w-full   ">On this project i have configured social logins and traditional 
+        Email - Pass login</p>  <p className="fon text-sm mt-2 w-full  mb-2">  Discord</p> <p className="fon text-sm mt-2 w-full  mb-2">Spotify</p> <p className="fon text-sm mt-2 w-full  mb-2">Reddit</p> <p className="fon text-sm mt-2 w-full  mb-2">Twitter</p>  
+      <p className="fon text-sm mt-2 w-full  mb-2">More can be implimented easily.</p> 
+<br />
+     <div className=" flex h-[30px] gap-5 w-full   mb-6">
+
+      <img src="https://api.iconify.design/logos:discord-icon.svg" alt="" />
+      <img src="https://api.iconify.design/logos:spotify-icon.svg" alt="" />
+      <img src="https://api.iconify.design/logos:reddit-icon.svg" alt="" />
+      <img src="https://api.iconify.design/logos:x.svg" className="fill-white" alt="" />
+      <img src="https://api.iconify.design/logos:google-icon.svg" alt="" />
+
+  
+     </div>
+      <div className="border-b border-[#474747] mb-6 mt-2 h-[1px] w-full"></div>
+    <div className="flex"><p className="fon text-2xl">User To User Chat</p>
+      
+    </div>
+      <p className="fon text-sm mt-2 w-full  mb-2">We have implemented User to user chat in this, which utilise Firebase Live Update,
+        </p> 
+        <p className="fon text-sm mt-2 w-full  mb-2"> Features and its underlaying network, Main purpos is to communicate and 
+        being able to send anime and manga refrences Eg. links of animealley will be auto converted to a widge in chat, </p>
+        <p className="fon text-sm mt-2 w-full  mb-2">Under Consideration planing was to implemnt a in app Call Feature, but it was not possible due to time constraints.</p>
+
+       
+</ScrollArea></div></DialogContent>
+</Dialog>
+
+
     <div className=" blocked md:hidden  w-full h-[50px] flex">
     <div className="w-[20%] flex items-center justify-center">
     <TiltedLines  height={50} showIcons={false} />
@@ -549,22 +744,89 @@ Every component from uipub registry is compatible with shadcn/ui CLI.</p>
 
     </div>
   </div>
-  <div className="  w-[100%] md:w-[33.33%] h-full flex  items-center border-[#e7e7e715] border-l border-r">
-      
-    <div className="w-[80%] ml-auto mr-auto h-[80%]">
-    <div className="  w-[100%] h-[50px] items-center justify-start flex">
+  
+
+<Dialog>
+<div className="relative border-r w-[100%] md:w-[33.33%] h-full flex   border-[#e7e7e715] border-l absolute z-[9999]">
+  <DialogTrigger className="w-[100%] md:w-[100%] h-full flex items-start mt-7 border-[#e7e7e715]  absolute z-[9999]">
+     <div className="  ">
+
+        <div className="w-[80%] ml-auto mr-auto h-[80%]">
+         <div className="  w-[100%] h-[50px] items-center justify-start flex">
          <p className="text-2xl fon ">0ms - LAS </p>
-         <img src="/ms.png" className="ml-auto end-0" alt="" />
+         <img src="/mf.png" className="ml-auto end-0" alt="" />
          </div>
-         <p className="text-sm fon ">Latency Intelligence SaaS</p>
-
-          <p className="text-sm fon mt-5">Provides real-time performance monitoring for digital infrastructure, including databases, APIs, and edge networks, complete with customizable alerts, historical analytics, and stress testing capabilities.
-
+          <p className="text-sm fon mt-5 text-left">Latency Intelligence SaaS
  </p>
+<p className="mt-2 text-sm fon  text-left">Provides real-time performance monitoring for digital infrastructure, including databases, APIs, and edge networks, complete with customizable alerts, historical analytics, and stress testing capabilities. </p>
 
         </div>
-
     </div>
+  </DialogTrigger></div>
+   <DialogContent><DialogTitle></DialogTitle>
+      
+    <div className="h-[700px]  ">
+    <ScrollArea className="h-full w-[100%]  ">
+
+      <div className=" bg-green-500 mb-6 rounded-lg h-[5px] w-full"></div>
+  <div className="w-full -ml-1.5" >
+          <img src="/ms.png" className="ml-auto mb-6 mt-3  mr-auto" alt="" />
+         </div>
+
+        <p className="fon text-2xl">Total Features Implemented   </p>
+      <p className="fon text-sm mt-2 w-full  mt-2 ">In This Web-App We have implemented around 12-15 Feature,</p> 
+      <br />
+       <p className="fon text-sm mt-2 w-full  mb-2">•  Profile System (Page, User To User Follow System, Fully Editable)</p> 
+       <p className="fon text-sm mt-2 w-full  mb-2">•  Recomandation System (From Users Activity on the App based )</p> 
+       <p className="fon text-sm mt-2 w-full  mb-2">•  Advance Searching (With Various Filters and Functions)</p> 
+       <p className="fon text-sm mt-2 w-full  mb-2">•  Dedicated Anime List</p>  
+       <p className="fon text-sm mt-2 w-full  mb-2">•  Forums (User Genrateble, With Like And View Count)</p>  
+       <p className="fon text-sm mt-2 w-full  mb-2">•  Blogs</p>  
+       <p className="fon text-sm mt-2 w-full  mb-2">•  Reviews, Explore New Animes, Search Other Users.</p>  
+     
+      <br />
+<a href="https://animealley.vercel.app/z" target="_blank">
+  <button
+    className="w-[180px] h-[40px] bg-[#1a1a1a] text-white rounded-md
+    border border-[#e7e7e715] transition-all duration-200 hover:bg-[#2a2a2a]
+    active:scale-95 focus:outline-none focus:ring-2 focus:ring-[#e7e7e71]"
+  >
+    Visit
+  </button>
+</a>
+ 
+    <br /><br />
+      <div className="border-b border-[#474747] mb-6  h-[1px] w-full"></div>
+    
+      <p className="fon text-2xl">Social Logins</p>
+      <p className="fon text-sm mt-2 w-full   ">On this project i have configured social logins and traditional 
+        Email - Pass login</p>  <p className="fon text-sm mt-2 w-full  mb-2">  Discord</p> <p className="fon text-sm mt-2 w-full  mb-2">Spotify</p> <p className="fon text-sm mt-2 w-full  mb-2">Reddit</p> <p className="fon text-sm mt-2 w-full  mb-2">Twitter</p>  
+      <p className="fon text-sm mt-2 w-full  mb-2">More can be implimented easily.</p> 
+<br />
+     <div className=" flex h-[30px] gap-5 w-full   mb-6">
+
+      <img src="https://api.iconify.design/logos:discord-icon.svg" alt="" />
+      <img src="https://api.iconify.design/logos:spotify-icon.svg" alt="" />
+      <img src="https://api.iconify.design/logos:reddit-icon.svg" alt="" />
+      <img src="https://api.iconify.design/logos:x.svg" className="fill-white" alt="" />
+      <img src="https://api.iconify.design/logos:google-icon.svg" alt="" />
+
+  
+     </div>
+      <div className="border-b border-[#474747] mb-6 mt-2 h-[1px] w-full"></div>
+    <div className="flex"><p className="fon text-2xl">User To User Chat</p>
+      
+    </div>
+      <p className="fon text-sm mt-2 w-full  mb-2">We have implemented User to user chat in this, which utilise Firebase Live Update,
+        </p> 
+        <p className="fon text-sm mt-2 w-full  mb-2"> Features and its underlaying network, Main purpos is to communicate and 
+        being able to send anime and manga refrences Eg. links of animealley will be auto converted to a widge in chat, </p>
+        <p className="fon text-sm mt-2 w-full  mb-2">Under Consideration planing was to implemnt a in app Call Feature, but it was not possible due to time constraints.</p>
+
+       
+</ScrollArea></div></DialogContent>
+</Dialog>
+    
    <div className=" blocked md:hidden  w-full h-[50px] flex ">
     <div className="w-[20%] flex items-center justify-center">
     <TiltedLines  height={50} showIcons={false} />
@@ -663,67 +925,38 @@ Every component from uipub registry is compatible with shadcn/ui CLI.</p>
 
 
   <div className="h-[1000px] md:h-[300px] w-full md:w-[54%] ml-auto mr-auto flex md:flex-row flex-col ">
-   <div className="  w-[100%] md:w-[33.33%] h-full flex  items-center border-[#e7e7e715] border-l">
+    
      
-    <div className="w-[80%] ml-auto mr-auto h-[80%]">
-    <div className="  w-[100%] h-[50px] items-center justify-start flex">
-         <p className="text-2xl fon ">E - Marks</p>
-         <img src="/emark.png" className="ml-auto end-0 h-[90%] aspect-auto" alt="" />
-         </div>
-         <p className="text-sm fon mt-5">
-
-          A Very Detailed and organisition oriented notes and taks taking app, with a focus on the user experience and the ability to take notes in a very detailed manner.
-
-         </p>
-         <p className="text-sm fon mt-5">
-
-Works in Folders and page formate, with tags.
-</p>
-        </div>
+     
         
-    </div>
-     <div className=" blocked md:hidden  w-full h-[50px] flex">
-    <div className="w-[20%] flex items-center justify-center">
-    <TiltedLines  height={50} showIcons={false} />
 
-    </div>
-    <div className=" w-full flex items-center  justify-center h-full">
-    <div className="w-full h-full border border-[#e7e7e715] flex items-center justify-center">
-    <svg className="" xmlns="http://www.w3.org/2000/svg" width="1.8em" height="1.8em" viewBox="0 0 256 256"> <defs><linearGradient id="logosNextjsIcon0" x1="55.633%" x2="83.228%" y1="56.385%" y2="96.08%"><stop offset="0%" stopColor="#FFF"/><stop offset="100%" stopColor="#FFF" stopOpacity="0"/></linearGradient><linearGradient id="logosNextjsIcon1" x1="50%" x2="49.953%" y1="0%" y2="73.438%"><stop offset="0%" stopColor="#FFF"/><stop offset="100%" stopColor="#FFF" stopOpacity="0"/></linearGradient><circle id="logosNextjsIcon2" cx="128" cy="128" r="128"/></defs><mask id="logosNextjsIcon3" fill="#fff"><use href="#logosNextjsIcon2"/></mask><g mask="url(#logosNextjsIcon3)"><circle cx="128" cy="128" r="128"/><path fill="url(#logosNextjsIcon0)" d="M212.634 224.028L98.335 76.8H76.8v102.357h17.228V98.68L199.11 234.446a128 128 0 0 0 13.524-10.418"/><path fill="url(#logosNextjsIcon1)" d="M163.556 76.8h17.067v102.4h-17.067z"/></g></svg>
+        <Dialog>
+<div className="relative border-r w-[100%] md:w-[33.33%] h-full flex   border-[#e7e7e715] border-l absolute z-[9999]">
+  <DialogTrigger className="w-[100%] md:w-[100%] h-full flex items-start mt-7 border-[#e7e7e715]  absolute z-[9999]">
+     <div className="  ">
 
-    </div>
-    <div className="w-full h-full border border-[#e7e7e715] flex items-center justify-center">
-    <svg className="" xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 256 263"> <defs><linearGradient id="logosSupabaseIcon0" x1="20.862%" x2="63.426%" y1="20.687%" y2="44.071%"><stop offset="0%" stopColor="#249361"></stop><stop offset="100%" stopColor="#3ECF8E"></stop></linearGradient><linearGradient id="logosSupabaseIcon1" x1="1.991%" x2="21.403%" y1="-13.158%" y2="34.708%"><stop offset="0%"></stop><stop offset="100%" stopOpacity="0"></stop></linearGradient></defs><path fill="url(#logosSupabaseIcon0)" d="M149.602 258.579c-6.718 8.46-20.338 3.824-20.5-6.977l-2.367-157.984h106.229c19.24 0 29.971 22.223 18.007 37.292z"></path><path fill="url(#logosSupabaseIcon1)" fillOpacity=".2" d="M149.602 258.579c-6.718 8.46-20.338 3.824-20.5-6.977l-2.367-157.984h106.229c19.24 0 29.971 22.223 18.007 37.292z"></path><path fill="#3ECF8E" d="M106.399 4.37c6.717-8.461 20.338-3.826 20.5 6.976l1.037 157.984H23.037c-19.241 0-29.973-22.223-18.008-37.292z"></path></svg>
-
-    </div>
-    <div className="w-full h-full border border-[#e7e7e715] flex items-center justify-center">
-    <svg xmlns="http://www.w3.org/2000/svg" width="1.65em" height="1.65em" viewBox="0 0 256 351"><defs><filter id="logosFirebase0" width="200%" height="200%" x="-50%" y="-50%" filterUnits="objectBoundingBox"><feGaussianBlur in="SourceAlpha" result="shadowBlurInner1" stdDeviation="17.5"></feGaussianBlur><feOffset in="shadowBlurInner1" result="shadowOffsetInner1"></feOffset><feComposite in="shadowOffsetInner1" in2="SourceAlpha" k2="-1" k3="1" operator="arithmetic" result="shadowInnerInner1"></feComposite><feColorMatrix in="shadowInnerInner1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0"></feColorMatrix></filter><filter id="logosFirebase1" width="200%" height="200%" x="-50%" y="-50%" filterUnits="objectBoundingBox"><feGaussianBlur in="SourceAlpha" result="shadowBlurInner1" stdDeviation="3.5"></feGaussianBlur><feOffset dx="1" dy="-9" in="shadowBlurInner1" result="shadowOffsetInner1"></feOffset><feComposite in="shadowOffsetInner1" in2="SourceAlpha" k2="-1" k3="1" operator="arithmetic" result="shadowInnerInner1"></feComposite><feColorMatrix in="shadowInnerInner1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.09 0"></feColorMatrix></filter><path id="logosFirebase2" d="m1.253 280.732l1.605-3.131l99.353-188.518l-44.15-83.475C54.392-1.283 45.074.474 43.87 8.188z"></path><path id="logosFirebase3" d="m134.417 148.974l32.039-32.812l-32.039-61.007c-3.042-5.791-10.433-6.398-13.443-.59l-17.705 34.109l-.53 1.744z"></path></defs><path fill="#FFC24A" d="m0 282.998l2.123-2.972L102.527 89.512l.212-2.017L58.48 4.358C54.77-2.606 44.33-.845 43.114 6.951z"></path><use fill="#FFA712" fillRule="evenodd" href="#logosFirebase2"></use><use filter="url(#logosFirebase0)" href="#logosFirebase2"></use><path fill="#F4BD62" d="m135.005 150.38l32.955-33.75l-32.965-62.93c-3.129-5.957-11.866-5.975-14.962 0L102.42 87.287v2.86z"></path><use fill="#FFA50E" fillRule="evenodd" href="#logosFirebase3"></use><use filter="url(#logosFirebase1)" href="#logosFirebase3"></use><path fill="#F6820C" d="m0 282.998l.962-.968l3.496-1.42l128.477-128l1.628-4.431l-32.05-61.074z"></path><path fill="#FDE068" d="m139.121 347.551l116.275-64.847l-33.204-204.495c-1.039-6.398-8.888-8.927-13.468-4.34L0 282.998l115.608 64.548a24.13 24.13 0 0 0 23.513.005"></path><path fill="#FCCA3F" d="M254.354 282.16L221.402 79.218c-1.03-6.35-7.558-8.977-12.103-4.424L1.29 282.6l114.339 63.908a23.94 23.94 0 0 0 23.334.006z"></path><path fill="#EEAB37" d="M139.12 345.64a24.13 24.13 0 0 1-23.512-.005L.931 282.015l-.93.983l115.607 64.548a24.13 24.13 0 0 0 23.513.005l116.275-64.847l-.285-1.752z"></path></svg>
-    </div>
-    </div>
-    <div className="ml-auto w-[25%] ">
-    <TiltedLines  height={50} showIcons={false} />
-    
-
-    </div>
-  </div>
-   <div className="  w-[100%] md:w-[33.33%] h-full flex  items-center border-[#e7e7e715] border-l">
-    <div className="w-[80%] ml-auto mr-auto h-[80%]">
-    <div className="  w-[100%] h-[50px] items-center justify-start flex">
-         <p className="text-2xl fon ">Noteworthy</p>
-         <img src="/note.png" className="ml-auto end-0" alt="" />
+        <div className="w-[80%] ml-auto mr-auto h-[80%]">
+         <div className="  w-[100%] h-[50px] items-center justify-start flex">
+         <p className="text-2xl fon ">E - Marks </p>
+         <img src="/mf.png" className="ml-auto end-0" alt="" />
          </div>
-         <p className="text-sm fon mt-5">
+          <p className="text-sm fon mt-5 text-left">A Very Detailed and organisition oriented notes and taks taking app, with a focus on the user experience and the ability to take notes in a very detailed manner.
+ </p>
+<p className="mt-2 text-sm fon  text-left">Works in Folders and page formate, with tags.</p>
 
-          Made for collaborative note taking using realtime editing capabulities for over 20+ users simultaneously.
-
-         </p>
-         <p className="text-sm fon mt-5">
-
-Works in notebook and page formate, with tags, also works as CRM, with whiteboard and kanban features.
-</p>
         </div>
-
     </div>
+  </DialogTrigger></div>
+  <DialogContent>
+    <DialogHeader>
+      <DialogTitle className={"fon"}> This Section is still UNDER DEVELOPMENT!!</DialogTitle>
+     
+    </DialogHeader>
+  </DialogContent>
+</Dialog>
+
+
+   
      <div className=" blocked md:hidden  w-full h-[50px] flex">
     <div className="w-[20%] flex items-center justify-center">
     <TiltedLines  height={50} showIcons={false} />
@@ -748,7 +981,57 @@ Works in notebook and page formate, with tags, also works as CRM, with whiteboar
 
     </div>
   </div>
-   <div className="  w-[100%] md:w-[33.33%] h-full flex  items-center border-[#e7e7e715] border-l border-r">
+   
+
+      <Dialog>
+<div className="relative border-r w-[100%] md:w-[33.33%] h-full flex   border-[#e7e7e715]   absolute z-[9999]">
+  <DialogTrigger className="w-[100%] md:w-[100%] h-full flex items-start mt-7 border-[#e7e7e715]  absolute z-[9999]">
+     <div className="  ">
+
+        <div className="w-[80%] ml-auto mr-auto h-[80%]">
+         <div className="  w-[100%] h-[50px] items-center justify-start flex">
+         <p className="text-2xl fon ">Noteworthy</p>
+         <img src="/mf.png" className="ml-auto end-0" alt="" />
+         </div>
+          <p className="text-sm fon mt-5 text-left">Made for collaborative note taking using realtime editing capabulities for over 20+ users simultaneously.
+ </p>
+<p className="mt-2 text-sm fon  text-left">Works in notebook and page formate, with tags, also works as CRM, with whiteboard and kanban features.</p>
+
+        </div>
+    </div>
+  </DialogTrigger></div>
+  <DialogContent>
+    <DialogHeader>
+    <DialogTitle className={"fon"}> This Section is still UNDER DEVELOPMENT!!</DialogTitle>
+    </DialogHeader>
+  </DialogContent>
+</Dialog>
+
+     <div className=" blocked md:hidden  w-full h-[50px] flex">
+    <div className="w-[20%] flex items-center justify-center">
+    <TiltedLines  height={50} showIcons={false} />
+
+    </div>
+    <div className=" w-full flex items-center  justify-center h-full">
+    <div className="w-full h-full border border-[#e7e7e715] flex items-center justify-center">
+    <svg className="" xmlns="http://www.w3.org/2000/svg" width="1.8em" height="1.8em" viewBox="0 0 256 256"> <defs><linearGradient id="logosNextjsIcon0" x1="55.633%" x2="83.228%" y1="56.385%" y2="96.08%"><stop offset="0%" stopColor="#FFF"/><stop offset="100%" stopColor="#FFF" stopOpacity="0"/></linearGradient><linearGradient id="logosNextjsIcon1" x1="50%" x2="49.953%" y1="0%" y2="73.438%"><stop offset="0%" stopColor="#FFF"/><stop offset="100%" stopColor="#FFF" stopOpacity="0"/></linearGradient><circle id="logosNextjsIcon2" cx="128" cy="128" r="128"/></defs><mask id="logosNextjsIcon3" fill="#fff"><use href="#logosNextjsIcon2"/></mask><g mask="url(#logosNextjsIcon3)"><circle cx="128" cy="128" r="128"/><path fill="url(#logosNextjsIcon0)" d="M212.634 224.028L98.335 76.8H76.8v102.357h17.228V98.68L199.11 234.446a128 128 0 0 0 13.524-10.418"/><path fill="url(#logosNextjsIcon1)" d="M163.556 76.8h17.067v102.4h-17.067z"/></g></svg>
+
+    </div>
+    <div className="w-full h-full border border-[#e7e7e715] flex items-center justify-center">
+    <svg className="" xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 256 263"> <defs><linearGradient id="logosSupabaseIcon0" x1="20.862%" x2="63.426%" y1="20.687%" y2="44.071%"><stop offset="0%" stopColor="#249361"></stop><stop offset="100%" stopColor="#3ECF8E"></stop></linearGradient><linearGradient id="logosSupabaseIcon1" x1="1.991%" x2="21.403%" y1="-13.158%" y2="34.708%"><stop offset="0%"></stop><stop offset="100%" stopOpacity="0"></stop></linearGradient></defs><path fill="url(#logosSupabaseIcon0)" d="M149.602 258.579c-6.718 8.46-20.338 3.824-20.5-6.977l-2.367-157.984h106.229c19.24 0 29.971 22.223 18.007 37.292z"></path><path fill="url(#logosSupabaseIcon1)" fillOpacity=".2" d="M149.602 258.579c-6.718 8.46-20.338 3.824-20.5-6.977l-2.367-157.984h106.229c19.24 0 29.971 22.223 18.007 37.292z"></path><path fill="#3ECF8E" d="M106.399 4.37c6.717-8.461 20.338-3.826 20.5 6.976l1.037 157.984H23.037c-19.241 0-29.973-22.223-18.008-37.292z"></path></svg>
+
+    </div>
+    <div className="w-full h-full border border-[#e7e7e715] flex items-center justify-center">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1.65em" height="1.65em" viewBox="0 0 256 351"><defs><filter id="logosFirebase0" width="200%" height="200%" x="-50%" y="-50%" filterUnits="objectBoundingBox"><feGaussianBlur in="SourceAlpha" result="shadowBlurInner1" stdDeviation="17.5"></feGaussianBlur><feOffset in="shadowBlurInner1" result="shadowOffsetInner1"></feOffset><feComposite in="shadowOffsetInner1" in2="SourceAlpha" k2="-1" k3="1" operator="arithmetic" result="shadowInnerInner1"></feComposite><feColorMatrix in="shadowInnerInner1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0"></feColorMatrix></filter><filter id="logosFirebase1" width="200%" height="200%" x="-50%" y="-50%" filterUnits="objectBoundingBox"><feGaussianBlur in="SourceAlpha" result="shadowBlurInner1" stdDeviation="3.5"></feGaussianBlur><feOffset dx="1" dy="-9" in="shadowBlurInner1" result="shadowOffsetInner1"></feOffset><feComposite in="shadowOffsetInner1" in2="SourceAlpha" k2="-1" k3="1" operator="arithmetic" result="shadowInnerInner1"></feComposite><feColorMatrix in="shadowInnerInner1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.09 0"></feColorMatrix></filter><path id="logosFirebase2" d="m1.253 280.732l1.605-3.131l99.353-188.518l-44.15-83.475C54.392-1.283 45.074.474 43.87 8.188z"></path><path id="logosFirebase3" d="m134.417 148.974l32.039-32.812l-32.039-61.007c-3.042-5.791-10.433-6.398-13.443-.59l-17.705 34.109l-.53 1.744z"></path></defs><path fill="#FFC24A" d="m0 282.998l2.123-2.972L102.527 89.512l.212-2.017L58.48 4.358C54.77-2.606 44.33-.845 43.114 6.951z"></path><use fill="#FFA712" fillRule="evenodd" href="#logosFirebase2"></use><use filter="url(#logosFirebase0)" href="#logosFirebase2"></use><path fill="#F4BD62" d="m135.005 150.38l32.955-33.75l-32.965-62.93c-3.129-5.957-11.866-5.975-14.962 0L102.42 87.287v2.86z"></path><use fill="#FFA50E" fillRule="evenodd" href="#logosFirebase3"></use><use filter="url(#logosFirebase1)" href="#logosFirebase3"></use><path fill="#F6820C" d="m0 282.998l.962-.968l3.496-1.42l128.477-128l1.628-4.431l-32.05-61.074z"></path><path fill="#FDE068" d="m139.121 347.551l116.275-64.847l-33.204-204.495c-1.039-6.398-8.888-8.927-13.468-4.34L0 282.998l115.608 64.548a24.13 24.13 0 0 0 23.513.005"></path><path fill="#FCCA3F" d="M254.354 282.16L221.402 79.218c-1.03-6.35-7.558-8.977-12.103-4.424L1.29 282.6l114.339 63.908a23.94 23.94 0 0 0 23.334.006z"></path><path fill="#EEAB37" d="M139.12 345.64a24.13 24.13 0 0 1-23.512-.005L.931 282.015l-.93.983l115.607 64.548a24.13 24.13 0 0 0 23.513.005l116.275-64.847l-.285-1.752z"></path></svg>
+    </div>
+    </div>
+    <div className="ml-auto w-[25%] ">
+    <TiltedLines  height={50} showIcons={false} />
+    
+
+    </div>
+  </div>
+   <div className="  w-[100%] md:w-[33.33%] h-full flex  items-center border-[#e7e7e715]   border-r">
       
     <div className="w-[80%] ml-auto mr-auto h-[80%]">
     <p className="text-2xl fon ">Coming Soon</p>
@@ -942,7 +1225,16 @@ Every component from uipub registry is compatible with shadcn/ui CLI.</p>
           </div>
   <p className="fon text-md">Crafting interfaces that resonate, adapt, and perform flawlessly across all devices.</p>
   <p className="mt-2 fon text-md">Custom components from scratch, ensuring designs are not only aesthetically pleasing but also technically feasible and perfectly aligned with projec</p>
-
+<br />
+<a href="https://animealley.vercel.app/z" target="_blank">
+  <button
+    className="w-[180px] h-[40px] bg-[#1a1a1a] text-white rounded-md
+    border border-[#e7e7e715] transition-all duration-200 hover:bg-[#2a2a2a]
+    active:scale-95 focus:outline-none focus:ring-2 focus:ring-[#e7e7e71]"
+  >
+    Visit All Designs
+  </button>
+</a>
 </div>
 
 </div><div className="w-[100%] md:w-[40%] ml-auto mr-auto h-[600px]  md:h-[400px] flex items-center justify-center">
