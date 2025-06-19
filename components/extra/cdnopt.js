@@ -62,29 +62,123 @@ export default function CdnOpt() {
             </div>
             <div className="w-full h-[50%] md:w-[40%] items-center -mt-16 md:-mt-0 md:h-full border-l border-r border-[#e7e7e715] ">
                 <div className="w-full h-full flex flex-col items-start justify-start">
-                    <ResizablePanelGroup direction="vertical" > 
-                        <ResizablePanel defaultSize={40} className={"flex items-center justify-center h-full "}>
-                            <div className="w-[80%] ml-auto mr-auto gap-4 flex flex-col items-center justify-center h-[40%]">
-                                <ToggleGroup type="single" value={selectedRoute} onValueChange={setSelectedRoute}>
-                                    <ToggleGroupItem value="direct" className={"px-4 text-[#e7e7e795] data-[state=on]:text-[#e7e7e7]"}>Non Routed</ToggleGroupItem>
-                                    <ToggleGroupItem value="routed" className={"px-4 text-[#e7e7e795] data-[state=on]:text-[#e7e7e7]"}>Routed</ToggleGroupItem>
-                                    <ToggleGroupItem value="wrapped" className={"px-8 text-[#e7e7e795] data-[state=on]:text-[#e7e7e7]"}>Routed + Wrapped</ToggleGroupItem>
-                                </ToggleGroup>
+                    {/* Desktop view */}
+                    <div className="hidden md:block w-full h-full">
+                        <ResizablePanelGroup direction="vertical" > 
+                            <ResizablePanel defaultSize={40} className={"flex items-center justify-center h-full "}>
+                                <div className="w-[80%] ml-auto mr-auto gap-4 flex flex-col items-center justify-center h-[40%]">
+                                    <ToggleGroup type="single" value={selectedRoute} onValueChange={setSelectedRoute}>
+                                        <ToggleGroupItem value="direct" className={"px-4 text-[#e7e7e795] data-[state=on]:text-[#e7e7e7]"}>Non Routed</ToggleGroupItem>
+                                        <ToggleGroupItem value="routed" className={"px-4 text-[#e7e7e795] data-[state=on]:text-[#e7e7e7]"}>Routed</ToggleGroupItem>
+                                        <ToggleGroupItem value="wrapped" className={"px-8 text-[#e7e7e795] data-[state=on]:text-[#e7e7e7]"}>Routed + Wrapped</ToggleGroupItem>
+                                    </ToggleGroup>
 
-                                <ToggleGroup type="single" value={selectedSize} onValueChange={setSelectedSize}>
-                                    <ToggleGroupItem value="light" className={"px-4 text-[#e7e7e795] data-[state=on]:text-[#e7e7e7]"}>~500 KB</ToggleGroupItem>
-                                    <ToggleGroupItem value="dark" className={"px-4 text-[#e7e7e795] data-[state=on]:text-[#e7e7e7]"}>~ 1 MB</ToggleGroupItem>
-                                    <ToggleGroupItem value="system" className={"px-4 text-[#e7e7e795] data-[state=on]:text-[#e7e7e7]"}>~ 5 MB</ToggleGroupItem>
-                                </ToggleGroup>
-                                <ToggleGroup type="single" value={selectedCdn} onValueChange={setSelectedCdn}>
-                                    <ToggleGroupItem value="light" className={"px-4 text-[#e7e7e795] data-[state=on]:text-[#e7e7e7]"}>EU Endpoint</ToggleGroupItem>
-                                    <ToggleGroupItem value="dark" className={"px-4 text-[#e7e7e795] data-[state=on]:text-[#e7e7e7]"}>Mumbai Endpoint</ToggleGroupItem>
-                                    <ToggleGroupItem value="system" className={"px-4 text-[#e7e7e795] data-[state=on]:text-[#e7e7e7]"}>Global CDN</ToggleGroupItem>
-                                </ToggleGroup>
-                            </div>
-                        </ResizablePanel>
-                        <ResizableHandle className={"bg-[#e7e7e715] w-[90%] ml-auto mr-auto"} />
-                        <ResizablePanel defaultSize={60} className={"flex flex-col items-center justify-start   "}>
+                                    <ToggleGroup type="single" value={selectedSize} onValueChange={setSelectedSize}>
+                                        <ToggleGroupItem value="light" className={"px-4 text-[#e7e7e795] data-[state=on]:text-[#e7e7e7]"}>~500 KB</ToggleGroupItem>
+                                        <ToggleGroupItem value="dark" className={"px-4 text-[#e7e7e795] data-[state=on]:text-[#e7e7e7]"}>~ 1 MB</ToggleGroupItem>
+                                        <ToggleGroupItem value="system" className={"px-4 text-[#e7e7e795] data-[state=on]:text-[#e7e7e7]"}>~ 5 MB</ToggleGroupItem>
+                                    </ToggleGroup>
+                                    <ToggleGroup type="single" value={selectedCdn} onValueChange={setSelectedCdn}>
+                                        <ToggleGroupItem value="light" className={"px-4 text-[#e7e7e795] data-[state=on]:text-[#e7e7e7]"}>EU Endpoint</ToggleGroupItem>
+                                        <ToggleGroupItem value="dark" className={"px-4 text-[#e7e7e795] data-[state=on]:text-[#e7e7e7]"}>Mumbai Endpoint</ToggleGroupItem>
+                                        <ToggleGroupItem value="system" className={"px-4 text-[#e7e7e795] data-[state=on]:text-[#e7e7e7]"}>Global CDN</ToggleGroupItem>
+                                    </ToggleGroup>
+                                </div>
+                            </ResizablePanel>
+                            <ResizableHandle className={"bg-[#e7e7e715] w-[90%] ml-auto mr-auto"} />
+                            <ResizablePanel defaultSize={60} className={"flex flex-col items-center justify-start"}>
+                                <button 
+                                    onClick={() => {
+                                        if (!selectedSize || !selectedCdn || !selectedRoute) {
+                                          
+                                            toast("Please select all options") 
+                                            return;
+                                        }
+
+                                        const imageUrl = getImageUrl();
+                                        const imgElement = document.getElementById('cdnImage');
+                                        if (imgElement) {
+                                            const startTime = performance.now();
+                                            
+                                            const calculateTimings = (totalTime) => {
+                                                // Add extra time based on route type
+                                                let adjustedTime = totalTime;
+                                                if (selectedRoute === "routed") {
+                                                    adjustedTime += 10;
+                                                } else if (selectedRoute === "wrapped") {
+                                                    adjustedTime += 20;
+                                                }
+
+                                                return [
+                                                    { name: "DNS Lookup", time: adjustedTime * 0.05, fill: "#FFFFFF" },
+                                                    { name: "TCP Connection", time: adjustedTime * 0.1, fill: "#E0E0E0" },
+                                                    { name: "TLS Handshake", time: adjustedTime * 0.15, fill: "#BDBDBD" },
+                                                    { name: "First Byte", time: adjustedTime * 0.2, fill: "#9E9E9E" },
+                                                    { name: "Content Download", time: adjustedTime * 0.4, fill: "#757575" },
+                                                    { name: "Processing", time: adjustedTime * 0.1, fill: "#616161" }
+                                                ];
+                                            };
+
+                                            imgElement.onload = () => {
+                                                const endTime = performance.now();
+                                                let totalTime = endTime - startTime;
+                                                
+                                                // Add route timing adjustments
+                                                if (selectedRoute === "routed") {
+                                                    totalTime += 10;
+                                                } else if (selectedRoute === "wrapped") {
+                                                    totalTime += 20;
+                                                }
+                                                
+                                                setLoadTime(totalTime);
+                                                setChartData(calculateTimings(totalTime));
+                                            };
+                                            imgElement.src = imageUrl;
+                                        }
+                                    }}
+                                    className="w-[180px] h-[40px]   bg-[#1a1a1a] text-white rounded-md
+                                    border border-[#e7e7e715] transition-all duration-200 hover:bg-[#2a2a2a]
+                                    active:scale-95 focus:outline-none focus:ring-2 mt-8 focus:ring-[#e7e7e715]"
+                                >
+                                   Test CDN
+                                </button>
+
+                                <div className="h-[100px] ">  {/* Changed from w-full to w-[200px] and added mx-auto */}
+                                    
+                                    <Chart1 
+                                      data={chartData}
+                                      centerLabel={loadTime.toFixed(0)}
+                                      className="text-white"
+                                    />
+                                </div>
+                                
+                            </ResizablePanel>
+                        </ResizablePanelGroup>
+                    </div>
+
+                    {/* Mobile view */}
+                    <div className="md:hidden w-full h-full flex flex-col">
+                        <div className="w-[80%] ml-auto mr-auto gap-4 flex flex-col items-center justify-center py-8">
+                            <ToggleGroup type="single" value={selectedRoute} onValueChange={setSelectedRoute}>
+                                <ToggleGroupItem value="direct" className={"px-4 text-[#e7e7e795] data-[state=on]:text-[#e7e7e7]"}>Non Routed</ToggleGroupItem>
+                                <ToggleGroupItem value="routed" className={"px-4 text-[#e7e7e795] data-[state=on]:text-[#e7e7e7]"}>Routed</ToggleGroupItem>
+                                <ToggleGroupItem value="wrapped" className={"px-8 text-[#e7e7e795] data-[state=on]:text-[#e7e7e7]"}>Routed + Wrapped</ToggleGroupItem>
+                            </ToggleGroup>
+
+                            <ToggleGroup type="single" value={selectedSize} onValueChange={setSelectedSize}>
+                                <ToggleGroupItem value="light" className={"px-4 text-[#e7e7e795] data-[state=on]:text-[#e7e7e7]"}>~500 KB</ToggleGroupItem>
+                                <ToggleGroupItem value="dark" className={"px-4 text-[#e7e7e795] data-[state=on]:text-[#e7e7e7]"}>~ 1 MB</ToggleGroupItem>
+                                <ToggleGroupItem value="system" className={"px-4 text-[#e7e7e795] data-[state=on]:text-[#e7e7e7]"}>~ 5 MB</ToggleGroupItem>
+                            </ToggleGroup>
+
+                            <ToggleGroup type="single" value={selectedCdn} onValueChange={setSelectedCdn}>
+                                <ToggleGroupItem value="light" className={"px-4 text-[#e7e7e795] data-[state=on]:text-[#e7e7e7]"}>EU Endpoint</ToggleGroupItem>
+                                <ToggleGroupItem value="dark" className={"px-4 text-[#e7e7e795] data-[state=on]:text-[#e7e7e7]"}>Mumbai Endpoint</ToggleGroupItem>
+                                <ToggleGroupItem value="system" className={"px-4 text-[#e7e7e795] data-[state=on]:text-[#e7e7e7]"}>Global CDN</ToggleGroupItem>
+                            </ToggleGroup>
+                        </div>
+
+                        <div className="flex flex-col items-center justify-start mt-4">
                             <button 
                                 onClick={() => {
                                     if (!selectedSize || !selectedCdn || !selectedRoute) {
@@ -134,34 +228,23 @@ export default function CdnOpt() {
                                         imgElement.src = imageUrl;
                                     }
                                 }}
-                                className="w-[180px] h-[40px]   bg-[#1a1a1a] text-white rounded-md
+                                className="w-[180px] h-[40px] bg-[#1a1a1a] text-white rounded-md
                                 border border-[#e7e7e715] transition-all duration-200 hover:bg-[#2a2a2a]
                                 active:scale-95 focus:outline-none focus:ring-2 mt-8 focus:ring-[#e7e7e715]"
                             >
-                               Test CDN
+                                Test CDN
                             </button>
 
-                            <div className="h-[100px] ">  {/* Changed from w-full to w-[200px] and added mx-auto */}
-                                
+                            <div className="h-[100px] mt-4">
                                 <Chart1 
-                                  data={chartData}
-                                  centerLabel={loadTime.toFixed(0)}
-                                  className="text-white"
+                                    data={chartData}
+                                    centerLabel={loadTime.toFixed(0)}
+                                    className="text-white"
                                 />
                             </div>
-                            
-                        </ResizablePanel>
-                    </ResizablePanelGroup>
-                
-
-                        {/* <hr className="bg-[#e7e7e750] text-[#e7e7e750] w-[90%] ml-auto mr-auto" /> */}
-
-                        
-
+                        </div>
                     </div>
-                
-                    
-
+                </div>
             </div>
         </div>
     </div>
