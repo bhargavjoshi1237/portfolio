@@ -176,7 +176,7 @@ export default function Home() {
            
           <a href="/simple"><button 
                 
-                className="w-[180px] h-[40px] mt-8 -ml-10 bg-[#1a1a1a] text-white rounded-md
+                className="w-[180px] h-[40px] mt-8 md:-ml-0 -ml-10 bg-[#1a1a1a] text-white rounded-md
                 border border-[#e7e7e715] transition-all duration-200 hover:bg-[#2a2a2a]
                 active:scale-95 focus:outline-none focus:ring-2 focus:ring-[#e7e7e715]"
             >
