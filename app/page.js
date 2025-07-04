@@ -83,6 +83,7 @@ export default function Home() {
 
 
       </div>
+<<<<<<< HEAD
       <div className="w-full md:min-w-[54%] flex items-center justify-center   text-sm  border-[#e7e7e715] border-t border-b "><p className="fon lit">Current Status: Intership At Vardaam</p>
       <svg xmlns="http://www.w3.org/2000/svg" className="w-[50px] -mr-1 -mt-1 h-[30px]" fill="none" viewBox="0 0 70 70" width="100%" height="100%">
   <g clipPath="url(#clip0)">
@@ -110,6 +111,9 @@ export default function Home() {
   </defs>
 </svg><p className="fon lit"> (Unpaid)</p> <div className="  h-[10px] w-[10px] ml-4 bg-red-500 rounded-full glow-green"></div></div>
       
+=======
+      <div className="w-full md:min-w-[54%] flex items-center justify-center   text-sm  border-[#e7e7e715] border-t border-b "><p className="fon lit">Current Status: No Intership or Job</p> <div className="  h-[10px] w-[10px] ml-4 bg-yellow-500 rounded-full glow-green"></div></div>
+>>>>>>> ccbbafc7dff7b730901354752bc92b9d33abfec4
       <div className="w-[5%] md:min-w-[23%]  h-full tilted-linesx border border-[#e7e7e715] flex   items-end  justify-start">
       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-[#e7e7e740] -ml-3 -mb-3" aria-hidden="true">
       <path d="M5 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
