@@ -83,7 +83,33 @@ export default function Home() {
 
 
       </div>
-      <div className="w-full md:min-w-[54%] flex items-center justify-center   text-sm  border-[#e7e7e715] border-t border-b "><p className="fon lit">Current Status: No Intership or Job</p> <div className="  h-[10px] w-[10px] ml-4 bg-red-500 rounded-full glow-green"></div></div>
+      <div className="w-full md:min-w-[54%] flex items-center justify-center   text-sm  border-[#e7e7e715] border-t border-b "><p className="fon lit">Current Status: Intership At Vardaam</p>
+      <svg xmlns="http://www.w3.org/2000/svg" className="w-[50px] -mr-1 -mt-1 h-[30px]" fill="none" viewBox="0 0 70 70" width="100%" height="100%">
+  <g clipPath="url(#clip0)">
+    <mask id="mask0" maskUnits="userSpaceOnUse" x="0" y="12" width="58" height="58">
+      <path
+        fill="#fff"
+        d="M55.5 12.17H2.33A2.32 2.32 0 0 0 0 14.5v53.2A2.32 2.32 0 0 0 2.32 70H55.5a2.32 2.32 0 0 0 2.32-2.32V14.5a2.32 2.32 0 0 0-2.32-2.32Z"
+      />
+    </mask>
+    <g mask="url(#mask0)">
+      <path
+        fill="#94A3B8"
+        d="M0 13.33V41.2l17.33-17.33c.09-.08.2-.13.32-.13h14.46c.62 0 .92.74.49 1.17L0 57.51v4.51l37.81-38.15c.09-.08.2-.13.33-.13h7.43c.38 0 .7.3.7.69v7.45a.5.5 0 0 1-.14.32L8.33 70h5.2L45.1 38.44a.69.69 0 0 1 1.17.49V53.5a.5.5 0 0 1-.13.33L29.95 70h26.72c.83 0 1.12-.77 1.16-1.16V13.33c0-.92-.77-1.16-1.16-1.16H1.16c-.74 0-1.08.77-1.16 1.16Z"
+      />
+    </g>
+  </g>
+  <path
+    fill="#94A3B8"
+    d="M63.91 0a6.09 6.09 0 1 0 0 12.17 6.09 6.09 0 0 0 0-12.17Zm0 10.96a4.88 4.88 0 1 1 .02-9.76 4.88 4.88 0 0 1-.02 9.76Zm.16-4.1h-.88v1.97h-1.1V3.48h1.98c.63 0 1.12.14 1.46.42.34.28.51.67.51 1.19 0 .36-.08.67-.23.91-.16.25-.4.44-.72.58l1.15 2.19v.06h-1.18l-1-1.97Zm-.88-.89h.89c.27 0 .48-.07.64-.21a.75.75 0 0 0 .22-.59.8.8 0 0 0-.21-.59c-.14-.14-.36-.21-.66-.21h-.88v1.6Z"
+  />
+  <defs>
+    <clipPath id="clip0">
+      <rect width="57.83" height="57.83" y="12.17" fill="#fff" rx="2" />
+    </clipPath>
+  </defs>
+</svg><p className="fon lit"> (Unpaid)</p> <div className="  h-[10px] w-[10px] ml-4 bg-red-500 rounded-full glow-green"></div></div>
+      
       <div className="w-[5%] md:min-w-[23%]  h-full tilted-linesx border border-[#e7e7e715] flex   items-end  justify-start">
       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-[#e7e7e740] -ml-3 -mb-3" aria-hidden="true">
       <path d="M5 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
