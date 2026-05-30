@@ -53,9 +53,18 @@ export default function SimplePage() {
             </div>
             
             <h2 className="text-2xl font-bold mt-8 mb-4 fon ">Objective</h2>
-            <p className="mb-6 text-md fon">Seeking a position in the full stack development and UI / UX  field.</p>
-            
-             
+            <p className="mb-4 text-md fon">
+              Full-Stack Developer across both the Node.js and PHP / Laravel ecosystems. I have real-world,
+              professional experience building full-stack applications with Laravel, React, and SQL — frontend/backend
+              integration, deployment workflows, UI implementation, and some team coordination. My own projects lean on
+              the Node side: Next.js, Express, PostgreSQL, Redis, and related tooling.
+            </p>
+            <p className="mb-6 text-md fon">
+              Alongside regular development, I actively work with AI tooling and LLM systems — RAG pipelines, custom AI
+              agents, model orchestration, and self-hosted / local inference (GGUF models, hosted inference). I also have
+              research experience in edge latency optimisation and distributed, latency-sensitive systems, and enjoy
+              working on products where engineering decisions directly shape the user experience.
+            </p>
           </>
         );
       case 'skills':
@@ -84,11 +93,6 @@ export default function SimplePage() {
                     icon: 'logos:javascript'
                   },
                   {
-                    name: 'TypeScript',
-                    icon: 'logos:typescript-icon',
-                    darkBg: true
-                  },
-                  {
                     name: 'React.js',
                     icon: 'logos:react'
                   },
@@ -109,18 +113,13 @@ export default function SimplePage() {
                         skill.darkBg ? 'bg-[#161616]' : ''
                       }`}
                     >
-                      {/* Shine effect borders */}
-                      <div className="absolute inset-0 w-full h-full">
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#474747] to-transparent -translate-x-[200%] group-hover:translate-x-[200%] group-hover:transition-transform group-hover:duration-[750ms] group-hover:ease-in-out"></div>
-                      </div>
-                      
                       {/* Content */}
                       <div className="relative w-[90%] h-full flex items-center justify-evenly mx-auto">
                         <img 
                           src={`https://api.iconify.design/${skill.icon}.svg`} 
                           alt={skill.name}
                           className={`h-[45%] sm:h-[50%] lg:h-[55%] ${
-                            skill.white || ['TypeScript', 'GraphQL', 'Apollo QL', 'Cassandra', 'DynamoDB', 'Cosmos DB', 'Docker', 'Kubernetes'].includes(skill.name) 
+                            skill.white || ['Cassandra', 'Docker', 'Kubernetes'].includes(skill.name)
                             ? '[filter:brightness(0)_invert(1)]' 
                             : ''
                           }`}
@@ -140,25 +139,27 @@ export default function SimplePage() {
                 <hr className="border-[#474747] mb-6" />
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
                   {[{
+                    name: 'Laravel',
+                    icon: 'logos:laravel'
+                  },
+                  {
+                    name: 'Livewire',
+                    icon: 'simple-icons:livewire',
+                    white: true
+                  },
+                  {
+                    name: 'PHP',
+                    icon: 'logos:php'
+                  },
+                  {
                     name: 'Node.js',
                     icon: 'logos:nodejs-icon'
                   },
                   {
-                    name: ' ',
+                    name: 'Express',
                     icon: 'logos:express',
                     white: true
                   },
-                  {
-                    name: 'GraphQL',
-                    icon: 'logos:graphql',
-                    darkBg: true
-                  },
-                  {
-                    name: 'Apollo QL',
-                    icon: 'logos:apollostack',
-                    darkBg: true
-                  },
-                   
                   {
                     name: 'Auth ',
                     icon: 'logos:auth0-icon',
@@ -168,9 +169,6 @@ export default function SimplePage() {
                       className="relative w-full max-w-[200px] mx-auto h-[50px] border border-[#474747] rounded-lg group overflow-hidden hover:border-[#474747] transition-all duration-300"
                     >
                       {/* Shine effect borders */}
-                      <div className="absolute inset-0 w-full h-full">
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#474747] to-transparent -translate-x-[200%] group-hover:translate-x-[200%] transition-transform duration-[750ms] ease-in-out"></div>
-                      </div>
                       
                       {/* Content */}
                       <div className="relative w-[90%] h-full flex items-center justify-evenly mx-auto">
@@ -194,6 +192,10 @@ export default function SimplePage() {
                 <hr className="border-[#474747] mb-6" />
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
                   {[{
+                    name: 'MySQL',
+                    icon: 'logos:mysql-icon'
+                  },
+                  {
                     name: 'PostgreSQL',
                     icon: 'logos:postgresql'
                   },
@@ -206,16 +208,8 @@ export default function SimplePage() {
                     icon: 'logos:firebase'
                   },
                   {
-                    name: 'Cloud Firestore',
+                    name: 'Firestore',
                     icon: 'logos:firebase'
-                  },
-                  {
-                    name: 'DynamoDB',
-                    icon: 'logos:aws-dynamodb'
-                  },
-                  {
-                    name: 'Cosmos DB',
-                    icon: 'logos:azure-icon'
                   },
                   {
                     name: 'Cassandra',
@@ -225,9 +219,6 @@ export default function SimplePage() {
                       className="relative w-full max-w-[200px] mx-auto h-[50px] border border-[#474747] rounded-lg group overflow-hidden hover:border-[#474747] transition-all duration-300"
                     >
                       {/* Shine effect borders */}
-                      <div className="absolute inset-0 w-full h-full">
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#474747] to-transparent -translate-x-[200%] group-hover:translate-x-[200%] transition-transform duration-[750ms] ease-in-out"></div>
-                      </div>
                       
                       {/* Content */}
                       <div className="relative w-[90%] h-full flex items-center justify-evenly mx-auto">
@@ -237,6 +228,59 @@ export default function SimplePage() {
                           className={`h-[55%] ${skill.white ? '[filter:brightness(0)_invert(1)]' : ''}`}
                         />
                         <p className="text-[0.7rem] sm:text-sm lg:text-lg fon">{skill.name}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* AI / LLM */}
+              <div>
+                <div className="flex items-center mb-6">
+                  <img src="https://api.iconify.design/mdi:robot-happy-outline.svg" alt="AI / LLM" className="w-8 h-8 mr-3 [filter:brightness(0)_invert(1)]" />
+                  <h2 className="text-2xl font-bold fon ">AI / LLM</h2>
+                </div>
+                <hr className="border-[#474747] mb-6" />
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+                  {[{
+                    name: 'RAG Architecture',
+                    icon: 'mdi:file-search-outline',
+                    white: true
+                  },
+                  {
+                    name: 'Custom AI Agents',
+                    icon: 'mdi:robot-outline',
+                    white: true
+                  },
+                  {
+                    name: 'Hosted LLM Inference',
+                    icon: 'mdi:server-network',
+                    white: true
+                  },
+                  {
+                    name: 'Local / GGUF Inference',
+                    icon: 'mdi:chip',
+                    white: true
+                  },
+                  {
+                    name: 'Model Orchestration',
+                    icon: 'mdi:sitemap-outline',
+                    white: true
+                  },
+                  {
+                    name: 'AWS Bedrock',
+                    icon: 'logos:aws'
+                  }].map((skill) => (
+                    <div key={skill.name}
+                      className="relative w-full max-w-[200px] mx-auto h-[50px] border border-[#474747] rounded-lg group overflow-hidden hover:border-[#474747] transition-all duration-300"
+                    >
+                      <div className="relative w-[90%] h-full flex items-center justify-evenly mx-auto">
+                        <img
+                          src={`https://api.iconify.design/${skill.icon}.svg`}
+                          alt={skill.name}
+                          className={`h-[55%] ${skill.white ? '[filter:brightness(0)_invert(1)]' : ''}`}
+                        />
+                        <p className="text-[0.7rem] sm:text-xs lg:text-sm fon">{skill.name}</p>
                       </div>
                     </div>
                   ))}
@@ -262,17 +306,10 @@ export default function SimplePage() {
                   {
                     name: 'Amazon S3',
                     icon: 'logos:aws-s3'
-                  },
-                  {
-                    name: 'Amazon DynamoDB',
-                    icon: 'logos:aws-dynamodb'
-                  }].map((skill) => (
+                  },].map((skill) => (
                     <div key={skill.name} 
                       className="relative w-full max-w-[200px] mx-auto h-[50px] border border-[#474747] rounded-lg group overflow-hidden hover:border-[#474747] transition-all duration-300"
                     >
-                      <div className="absolute inset-0 w-full h-full">
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#474747] to-transparent -translate-x-[200%] group-hover:translate-x-[200%] transition-transform duration-[750ms] ease-in-out"></div>
-                      </div>
                       <div className="relative w-[90%] h-full flex items-center justify-evenly mx-auto">
                         <img 
                           src={`https://api.iconify.design/${skill.icon}.svg`} 
@@ -298,16 +335,10 @@ export default function SimplePage() {
                     name: 'Azure Functions',
                     icon: 'logos:azure-icon'
                   },
-                  {
-                    name: 'Azure Cosmos DB',
-                    icon: 'logos:azure-icon'
-                  }].map((skill) => (
+                  ].map((skill) => (
                     <div key={skill.name} 
                       className="relative w-full max-w-[200px] mx-auto h-[50px] border border-[#474747] rounded-lg group overflow-hidden hover:border-[#474747] transition-all duration-300"
                     >
-                      <div className="absolute inset-0 w-full h-full">
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#474747] to-transparent -translate-x-[200%] group-hover:translate-x-[200%] transition-transform duration-[750ms] ease-in-out"></div>
-                      </div>
                       <div className="relative w-[90%] h-full flex items-center justify-evenly mx-auto">
                         <img 
                           src={`https://api.iconify.design/${skill.icon}.svg`} 
@@ -330,15 +361,12 @@ export default function SimplePage() {
                 <hr className="border-[#474747] mb-6" />
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
                   {[{
-                    name: 'Google Cloud Run',
+                    name: 'Cloud Run',
                     icon: 'logos:google-cloud'
                   }].map((skill) => (
                     <div key={skill.name} 
                       className="relative w-full max-w-[200px] mx-auto h-[50px] border border-[#474747] rounded-lg group overflow-hidden hover:border-[#474747] transition-all duration-300"
                     >
-                      <div className="absolute inset-0 w-full h-full">
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#474747] to-transparent -translate-x-[200%] group-hover:translate-x-[200%] transition-transform duration-[750ms] ease-in-out"></div>
-                      </div>
                       <div className="relative w-[90%] h-full flex items-center justify-evenly mx-auto">
                         <img 
                           src={`https://api.iconify.design/${skill.icon}.svg`} 
@@ -355,7 +383,7 @@ export default function SimplePage() {
               {/* DevOps & Tools */}
               <div>
                 <div className="flex items-center mb-6">
-                  <h2 className="text-2xl font-bold fon ">DevOps & Tools</h2>
+                  <h2 className="text-2xl font-bold fon ">DevOps & Tools Knowledge</h2>
                 </div>
                 <hr className="border-[#474747] mb-6" />
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
@@ -370,9 +398,6 @@ export default function SimplePage() {
                     <div key={skill.name} 
                       className="relative w-full max-w-[200px] mx-auto h-[50px] border border-[#474747] rounded-lg group overflow-hidden hover:border-[#474747] transition-all duration-300"
                     >
-                      <div className="absolute inset-0 w-full h-full">
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#474747] to-transparent -translate-x-[200%] group-hover:translate-x-[200%] transition-transform duration-[750ms] ease-in-out"></div>
-                      </div>
                       <div className="relative w-[90%] h-full flex items-center justify-evenly mx-auto">
                         <img 
                           src={`https://api.iconify.design/${skill.icon}.svg`} 
@@ -404,9 +429,6 @@ export default function SimplePage() {
                     <div key={skill.name} 
                       className="relative w-full max-w-[200px] mx-auto h-[50px] border border-[#474747] rounded-lg group overflow-hidden hover:border-[#474747] transition-all duration-300"
                     >
-                      <div className="absolute inset-0 w-full h-full">
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#474747] to-transparent -translate-x-[200%] group-hover:translate-x-[200%] transition-transform duration-[750ms] ease-in-out"></div>
-                      </div>
                       <div className="relative w-[90%] h-full flex items-center justify-evenly mx-auto">
                         <img 
                           src={`https://api.iconify.design/${skill.icon}.svg`} 
@@ -467,7 +489,7 @@ export default function SimplePage() {
                   </div>
                   
                   <a
-                    href="https://animealley.vercel.app/z"
+                    href="https://animealley.vercel.app/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25"
@@ -640,8 +662,72 @@ export default function SimplePage() {
                 <div className="flex items-center mt-2">
                                     <img src="https://api.iconify.design/mdi:school.svg" alt="Education" style={{ filter: 'invert(1)' }} className="w-5 h-5 mr-2 text-zinc-400" />
 
-                  <span className="text-zinc-300">In Progress</span>
+                  <span className="text-zinc-300">7.2 CGPA</span>
                 </div>
+              </div>
+            </div>
+          </>
+        );
+      case 'experience':
+        return (
+          <>
+            <h1 className="text-4xl font-bold mb-8">Experience</h1>
+
+            <div className="space-y-6">
+              <div className="bg-transparent p-5 rounded-lg border border-zinc-800">
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-2 gap-2">
+                  <div>
+                    <h3 className="font-bold text-xl">Vardaam Web Solutions</h3>
+                    <p className="text-zinc-400">Jr. Laravel Developer</p>
+                  </div>
+                  <span className="bg-zinc-800 px-3 py-1 rounded text-sm w-fit">01/01/2026 – Present</span>
+                </div>
+                <p className="text-zinc-300 leading-relaxed mt-3">
+                  Working as a full-stack developer using React, Laravel, and SQL, with a focus on clean, consistent
+                  code and reliable deployment. Hands-on with RAG architecture, hosted LLM inference, and building
+                  custom agents for bespoke use cases. Occasionally handles team-management tasks.
+                </p>
+                <div className="flex flex-wrap gap-2 mt-4">
+                  {['Laravel', 'React', 'SQL', 'RAG', 'LLM Inference', 'Custom Agents', 'Deployment'].map((tag) => (
+                    <span key={tag} className="px-3 py-1 text-xs font-medium bg-zinc-800 text-zinc-300 rounded-full border border-zinc-700">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="bg-transparent p-5 rounded-lg border border-zinc-800">
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-2 gap-2">
+                  <div>
+                    <h3 className="font-bold text-xl">Vardaam Web Solutions</h3>
+                    <p className="text-zinc-400">Full-Stack Developer — Internship</p>
+                  </div>
+                  <span className="bg-zinc-800 px-3 py-1 rounded text-sm w-fit">01/07/2025 – 31/12/2025</span>
+                </div>
+                <p className="text-zinc-300 leading-relaxed mt-3">
+                  Full-stack internship across the React, Laravel, and SQL stack — frontend/backend integration, UI
+                  implementation, and deployment workflows, transitioning into a full-time developer role.
+                </p>
+              </div>
+            </div>
+          </>
+        );
+      case 'publication':
+        return (
+          <>
+            <h1 className="text-4xl font-bold mb-8">Publication</h1>
+
+            <div className="space-y-6">
+              <div className="bg-transparent p-5 rounded-lg border border-zinc-800">
+                <div className="flex items-center mb-2">
+                  <img src="https://api.iconify.design/mdi:file-document-outline.svg" alt="Paper" className="w-6 h-6 mr-2 [filter:brightness(0)_invert(1)]" />
+                  <h3 className="font-bold text-xl">Edge Caching — Latency Intelligence</h3>
+                </div>
+                <p className="text-zinc-400 mb-3">Research Paper · Conference Proceedings</p>
+                <p className="text-zinc-300 leading-relaxed">
+                  Conducted research on edge caching and latency optimisation across distributed, latency-sensitive
+                  systems, resulting in a research paper published in conference proceedings.
+                </p>
               </div>
             </div>
           </>
@@ -728,8 +814,6 @@ export default function SimplePage() {
               Home
             </Link>
             <Link href="/" className="text-zinc-400 hover:text-zinc-100">Full Portfolio</Link>
-            <Link href="#" className="text-zinc-400 hover:text-zinc-100">CDN</Link>
-            <Link href="#" className="text-zinc-400 hover:text-zinc-100">Cube</Link>
             <Link
               href="#"
               className="text-zinc-400 hover:text-zinc-100"
@@ -782,9 +866,7 @@ export default function SimplePage() {
                 >
                   Full Portfolio
                 </Link>
-                <Link href="#" className="block px-4 py-2 rounded-md hover:bg-zinc-800 transition-colors text-zinc-400 hover:text-zinc-100">CDN</Link>
-                <Link href="#" className="block px-4 py-2 rounded-md hover:bg-zinc-800 transition-colors text-zinc-400 hover:text-zinc-100">Cube</Link>
-                <Link
+                 <Link
                   href="#"
                   className="block px-4 py-2 rounded-md hover:bg-zinc-800 transition-colors text-zinc-400 hover:text-zinc-100"
                   onClick={() => { setActiveSection('showcase'); setMobileNavOpen(false); }}
@@ -823,10 +905,21 @@ export default function SimplePage() {
                   </Link>
                   <Link
                     href="#"
+                    onClick={() => { setActiveSection('experience'); setMobileNavOpen(false); }}
+                    className={`block px-4 py-2 rounded-md transition-colors ${
+                      activeSection === 'experience'
+                        ? 'bg-zinc-800 text-zinc-100'
+                        : 'text-zinc-400 hover:bg-zinc-800 hover:text-zinc-100'
+                    }`}
+                  >
+                    Experience
+                  </Link>
+                  <Link
+                    href="#"
                     onClick={() => { setActiveSection('projects'); setMobileNavOpen(false); }}
                     className={`block px-4 py-2 rounded-md transition-colors ${
-                      activeSection === 'projects' 
-                        ? 'bg-zinc-800 text-zinc-100' 
+                      activeSection === 'projects'
+                        ? 'bg-zinc-800 text-zinc-100'
                         : 'text-zinc-400 hover:bg-zinc-800 hover:text-zinc-100'
                     }`}
                   >
@@ -836,12 +929,23 @@ export default function SimplePage() {
                     href="#"
                     onClick={() => { setActiveSection('education'); setMobileNavOpen(false); }}
                     className={`block px-4 py-2 rounded-md transition-colors ${
-                      activeSection === 'education' 
-                        ? 'bg-zinc-800 text-zinc-100' 
+                      activeSection === 'education'
+                        ? 'bg-zinc-800 text-zinc-100'
                         : 'text-zinc-400 hover:bg-zinc-800 hover:text-zinc-100'
                     }`}
                   >
                     Education
+                  </Link>
+                  <Link
+                    href="#"
+                    onClick={() => { setActiveSection('publication'); setMobileNavOpen(false); }}
+                    className={`block px-4 py-2 rounded-md transition-colors ${
+                      activeSection === 'publication'
+                        ? 'bg-zinc-800 text-zinc-100'
+                        : 'text-zinc-400 hover:bg-zinc-800 hover:text-zinc-100'
+                    }`}
+                  >
+                    Publication
                   </Link>
                   <Link
                     href="#"
@@ -880,19 +984,33 @@ export default function SimplePage() {
             >
               Skills
             </Link>
-            <Link 
-              href="#" 
-              onClick={() => setActiveSection('projects')} 
+            <Link
+              href="#"
+              onClick={() => setActiveSection('experience')}
+              className={`block min-w-max ${activeSection === 'experience' ? 'text-zinc-100' : 'text-zinc-400'} hover:text-zinc-100`}
+            >
+              Experience
+            </Link>
+            <Link
+              href="#"
+              onClick={() => setActiveSection('projects')}
               className={`block min-w-max ${activeSection === 'projects' ? 'text-zinc-100' : 'text-zinc-400'} hover:text-zinc-100`}
             >
               Projects
             </Link>
-            <Link 
-              href="#" 
-              onClick={() => setActiveSection('education')} 
+            <Link
+              href="#"
+              onClick={() => setActiveSection('education')}
               className={`block min-w-max ${activeSection === 'education' ? 'text-zinc-100' : 'text-zinc-400'} hover:text-zinc-100`}
             >
               Education
+            </Link>
+            <Link
+              href="#"
+              onClick={() => setActiveSection('publication')}
+              className={`block min-w-max ${activeSection === 'publication' ? 'text-zinc-100' : 'text-zinc-400'} hover:text-zinc-100`}
+            >
+              Publication
             </Link>
             <Link 
               href="#" 
@@ -912,12 +1030,8 @@ export default function SimplePage() {
         {/* Right sidebar */}
         <aside className="w-full lg:w-64 pt-8 lg:pt-12 mt-6 lg:mt-0">
           <div className="rounded-lg border border-zinc-800 bg-transparent p-4 mb-6">
-            <div className="flex items-center mb-3">
-              <img src="https://api.iconify.design/logos:vercel-icon.svg" alt="Vercel" className="w-5 h-5 mr-2" style={{ filter: 'invert(1)' }} />
-              <h3 className="font-semibold">Connect with Bhargav</h3>
-            </div>
             <p className="text-sm text-zinc-400 mb-4">
-              Full Stack Developer specializing in Next.js, React, and database technologies.
+              Full-Stack Developer across the Node.js and Laravel ecosystems, building web apps and AI/LLM systems.
             </p>
             <a href="mailto:bhargavjoshi1237@gmail.com" className="bg-zinc-100 text-zinc-900 px-4 py-2 rounded-md w-full hover:bg-zinc-200 flex items-center justify-center">
               <img src="https://api.iconify.design/mdi:email.svg" alt="Email" className="w-4 h-4 mr-2" />
@@ -936,14 +1050,6 @@ export default function SimplePage() {
               ))}
             </div>
           </div>
-          
-          <div className="rounded-lg border border-zinc-800 bg-transparent p-4">
-            <h3 className="font-semibold mb-2">Date of Birth</h3>
-            <div className="flex items-center">
-              <img src="https://api.iconify.design/mdi:calendar.svg" alt="Calendar" className="w-5 h-5 mr-2 [filter:brightness(0)_invert(1)]" />
-              <span>29-01-2003</span>
-            </div>
-          </div>
         </aside>
       </div>
 
@@ -954,7 +1060,7 @@ export default function SimplePage() {
             {/* About */}
             <div className="space-y-4">
               <h3 className="text-sm sm:text-base lg:text-lg font-semibold">About Me</h3>
-              <p className="text-zinc-400 text-sm">Full Stack Developer specializing in Next.js, React, and modern web technologies.</p>
+              <p className="text-zinc-400 text-sm">Full-Stack Developer across the Node.js and PHP / Laravel ecosystems, building web apps and AI / LLM systems.</p>
             </div>
 
             {/* Quick Links */}
@@ -963,8 +1069,10 @@ export default function SimplePage() {
               <div className="flex flex-col space-y-2 text-sm text-zinc-400">
                 <Link href="#" onClick={() => setActiveSection('introduction')} className="hover:text-zinc-100">Introduction</Link>
                 <Link href="#" onClick={() => setActiveSection('skills')} className="hover:text-zinc-100">Skills</Link>
+                <Link href="#" onClick={() => setActiveSection('experience')} className="hover:text-zinc-100">Experience</Link>
                 <Link href="#" onClick={() => setActiveSection('projects')} className="hover:text-zinc-100">Projects</Link>
                 <Link href="#" onClick={() => setActiveSection('education')} className="hover:text-zinc-100">Education</Link>
+                <Link href="#" onClick={() => setActiveSection('publication')} className="hover:text-zinc-100">Publication</Link>
                 <Link href="#" onClick={() => setActiveSection('showcase')} className="hover:text-zinc-100">Showcase</Link>
               </div>
             </div>

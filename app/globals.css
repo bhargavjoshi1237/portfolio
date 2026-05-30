@@ -1,12 +1,14 @@
 /* Add these rules at the start of the file */
 html {
   max-width: 100vw;
+  background-color: #161616;
 }
 
 body {
   overflow-x: hidden;
   max-width: 100vw;
   position: relative;
+  background-color: #161616;
 }
 
 @import "tailwindcss";
@@ -159,6 +161,56 @@ body {
 }
 .lit {
   color: #e7e7e795;
+}
+
+/* Rotating gold "shine" border revealed on hover (skill cards) */
+@property --shine-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes shine-spin {
+  to {
+    --shine-angle: 360deg;
+  }
+}
+
+.skill-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: conic-gradient(
+    from var(--shine-angle),
+    transparent 0deg,
+    transparent 190deg,
+    #f7e08a 270deg,
+    #d4af37 310deg,
+    #fff3c4 335deg,
+    transparent 360deg
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.skill-card:hover::before {
+  opacity: 1;
+  animation: shine-spin 2.5s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skill-card:hover::before {
+    animation: none;
+  }
 }
 
 .plus-corner-icon {
