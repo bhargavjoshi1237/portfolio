@@ -52,8 +52,8 @@ export default function HeroSection() {
 
 
       </div>
-      <div className="w-full md:min-w-[54%] flex items-center justify-center   text-sm  border-[#e7e7e715] border-t border-b "><p className="fon lit">Current Status: Has Job and is Available</p>
-     <div className="  h-[10px] w-[10px] ml-4 bg-green-500 rounded-full glow-green"></div></div>
+      <div className="w-full md:min-w-[54%] flex items-center justify-center   text-sm  border-[#e7e7e715] border-t border-b "><p className="fon lit"></p>
+     </div>
 
       <div className="w-[5%] md:min-w-[23%]  h-full tilted-linesx border border-[#e7e7e715] flex   items-end  justify-start">
       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-[#e7e7e740] -ml-3 -mb-3" aria-hidden="true">
